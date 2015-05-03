@@ -11,24 +11,26 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 import os
+import secret_settings
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'schnarf'
+SECRET_KEY = secret_settings.SECRET_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-
+ADMINS = (('millan', 'millan.philipose@gmail.com'))
 ALLOWED_HOSTS = []
 
-EMAIL_HOST = 'smasdfa'
-EMAIL_HOST_USER = 'milasdfasdflansdafadf'
-EMAIL_HOST_PASSWORD = 'Msadfasdfeasdf'
+EMAIL_HOST = secret_settings.EMAIL_HOST
+EMAIL_HOST_USER = secret_settings.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = secret_settings.EMAIL_HOST_PASSWORD
+DEFAULT_FROM_EMAIL = 'donotreply@malabarhousereservations.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 # Application definition
@@ -41,7 +43,8 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'registration',
-    'registration.supplements.default'
+    'registration.supplements.default',
+    'registration.contrib.notification'
 )
 
 MIDDLEWARE_CLASSES = (
