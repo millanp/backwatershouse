@@ -1,1 +1,1 @@
-hello thair
+New user (email: {{user.email}})

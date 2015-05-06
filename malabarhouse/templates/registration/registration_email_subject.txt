@@ -1,1 +1,1 @@
-Someone has registered!!
+Malabar House account request send for username {{user.username}}

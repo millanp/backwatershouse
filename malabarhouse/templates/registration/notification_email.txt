@@ -1,1 +1,2 @@
-gogoegegegeg
+Username of desired account: {{user.username}}
+Click http://seattletransitblog.com/

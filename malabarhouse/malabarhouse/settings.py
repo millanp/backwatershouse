@@ -26,7 +26,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 ADMINS = (('millan', 'millan.philipose@gmail.com'))
 ALLOWED_HOSTS = []
-
+REGISTRATION_NOTIFICATION_RECIPIENTS = ["millan.philipose@gmail.com"]
 EMAIL_HOST = secret_settings.EMAIL_HOST
 EMAIL_HOST_USER = secret_settings.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = secret_settings.EMAIL_HOST_PASSWORD
