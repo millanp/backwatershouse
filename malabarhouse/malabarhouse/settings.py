@@ -44,7 +44,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration',
     'registration.supplements.default',
-    'registration.contrib.notification'
+    'registration.contrib.notification',
+    'frontend',
+    'backend'
 )
 
 MIDDLEWARE_CLASSES = (
