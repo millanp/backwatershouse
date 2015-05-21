@@ -1,24 +1,28 @@
-<div id='xeap'>
-<div id='wrapper'>
-<div class='boxed'>
-    <form class="gatewayform">
-        <p>
-            <input type='text' name='user' placeholder=' Email' class='inputter' id='firstinput' required>
-        </p>
-        <p>
-            <input type='password' name='pwd' placeholder=' Password' class='inputter' required>
-        </p>
-        <p>
-            <input type='submit'
-                value='Log In' id='sub'>
-        </p>
-    </form>
-    <div id='bottomlinks-wrapper'>
-    <p><a class='bottomlinks' >Don't have an account? Click here to register</a></p>
-    <p><a class='bottomlinks'>Forgot your password? Reset here.</a></p>
-    <p id="invalidCredentials">Invalid credentials! Try again.</p>
-    <img style='visibility:hidden;height:100px;width:100px' class='spinner' id='myspinner' src='http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'>
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href=" {% static 'frontend/style.css' %} ">
+    <div id='xeap'>
+    <div id='wrapper'>
+    <div class='boxed'>
+        <form class="gatewayform">
+            <p>
+                <input type='text' name='user' placeholder=' Email' class='inputter' id='firstinput' required>
+            </p>
+            <p>
+                <input type='password' name='pwd' placeholder=' Password' class='inputter' required>
+            </p>
+            <p>
+                <input type='submit' value='Log In' id='sub'>
+            </p>
+        </form>
+        <div id='bottomlinks-wrapper'>
+            <p><a class='bottomlinks' >Don't have an account? Click here to register</a></p>
+            <p><a class='bottomlinks'>Forgot your password? Reset here.</a></p>
+            <p id="invalidCredentials">Invalid credentials! Try again.</p>
+            <img style='visibility:hidden;height:100px;width:100px' class='spinner' id='myspinner' src='http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'>
+        </div>
     </div>
-</div>
-</div>
-</div>
+    </div>
+    </div> 
+</html>
