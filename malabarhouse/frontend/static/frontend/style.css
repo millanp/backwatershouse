@@ -69,11 +69,11 @@ form {
 .gatewayform {
   width:100%;
 }
+
 #invalidCredentials {
   font-size:18px;
   font-weight:bold;
   color:red;
-  visibility:hidden;
 }
 #errorMessageCreate {
   font-size:18px;
