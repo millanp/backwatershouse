@@ -21,7 +21,6 @@ a:hover {
 }
 .boxed {
   text-align:center;
-  display: inline-block;
   position:relative;
   top:30%;
   width:500px;

@@ -33,6 +33,7 @@ EMAIL_HOST_PASSWORD = secret_settings.EMAIL_HOST_PASSWORD
 DEFAULT_FROM_EMAIL = 'donotreply@malabarhousereservations.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+LOGIN_REDIRECT_URL = "/"
 # Application definition
 
 INSTALLED_APPS = (

@@ -6,5 +6,5 @@ from django.http.response import HttpResponse
 # Create your views here.
 @login_required
 def home(request):
-#     return render(request, "frontend/gateway.html", {})
+    return render(request, "frontend/home.html", {})
     return HttpResponse("OOKLE")
