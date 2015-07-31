@@ -34,6 +34,7 @@ DEFAULT_FROM_EMAIL = 'donotreply@malabarhousereservations.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 LOGIN_REDIRECT_URL = "/"
+#SESSION_COOKIE_AGE = 30 #I should set this to a reasonable time, not 30 secs
 # Application definition
 
 INSTALLED_APPS = (
