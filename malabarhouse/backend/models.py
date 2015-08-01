@@ -16,4 +16,4 @@ class Booking(models.Model):
     rooms = models.ManyToManyField(Room)
     extra = models.ManyToManyField(Extra)
     approved = models.BooleanField(default=False)
-    payment_required = models.BooleanField(default=False)
+    payment_required = models.BooleanField(default=False) 
