@@ -24,7 +24,7 @@ SECRET_KEY = secret_settings.SECRET_KEY
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-ADMINS = (('millan', 'millan.philipose@gmail.com'))
+ADMINS = (('millan', 'millan.philipose@gmail.com'),)
 ALLOWED_HOSTS = []
 REGISTRATION_NOTIFICATION_RECIPIENTS = ["millan.philipose@gmail.com"]
 EMAIL_HOST = secret_settings.EMAIL_HOST
@@ -48,7 +48,8 @@ INSTALLED_APPS = (
     'registration.supplements.default',
     'registration.contrib.notification',
     'frontend',
-    'backend'
+    'backend',
+    'multiselectfield',
 )
 
 MIDDLEWARE_CLASSES = (
