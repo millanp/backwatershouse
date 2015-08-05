@@ -2,7 +2,6 @@ from django.contrib import admin
 from backend.models import Booking
 
 # Register your models here.
-# TODO: make bookings view prettier
 def set_approved_fee(modeladmin, request, queryset):
     queryset.update(approved=True)
     queryset.update(payment_required=True)
