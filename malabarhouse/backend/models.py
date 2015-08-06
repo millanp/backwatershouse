@@ -9,7 +9,6 @@ class Booking(models.Model):
         ('3', 'Room 3'),
     )
     EXTRAS = (
-        
         ('1', 'Extra1'),
         ('2', 'Extra2'),
         ('3', 'Extra3')
@@ -20,4 +19,4 @@ class Booking(models.Model):
     rooms = MultiSelectField(choices=ROOMS, default="-")
     extra = MultiSelectField(choices=EXTRAS, default="-", null=True, blank=True)
     approved = models.BooleanField(default=False)
-    payment_required = models.BooleanField(default=False) 
+    payment_required = models.BooleanField(default=False)

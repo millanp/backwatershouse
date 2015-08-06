@@ -1,183 +1,147 @@
-<!DOCTYPE html>
 {% load staticfiles %}
-<html>
-    <head>
-        <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
-        <link rel="stylesheet" type="text/css" href=" {% static 'frontend/homeStyle.css' %} " >
-        <link rel="apple-touch-icon" href="https://ssl.gstatic.com/sites/p/cc8eeb/system/app/images/apple-touch-icon.png" type="image/png">
-        <meta name="title" content="Malabar House">
-        <meta itemprop="name" content="Malabar House">
-        <meta property="og:title" content="Malabar House">
-        <style type="text/css">
-            @font-face {
-            font-family: 'Open Sans';
-            font-style: normal;
-            font-weight: 700;
-            src: local('Open Sans Bold'), local('OpenSans-Bold'),
-            url(//fonts.gstatic.com/s/opensans/v10/k3k702ZOKiLJc3WVjuplzOgdm0LZdjqr5-oayXSOefg.woff2)
-            format('woff2');
-            }
-            @font-face {
-            font-family: 'Open Sans';
-            font-style: italic;
-            font-weight: 700;
-            src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'),
-            url(//fonts.gstatic.com/s/opensans/v10/PRmiXeptR36kaC0GEAetxolIZu-HDpmDIZMigmsroc4.woff2)
-            format('woff2');
-            }
-            @font-face {
-            font-family: 'Architects Daughter';
-            font-style: normal;
-            font-weight: 400;
-            src: local('Architects Daughter'), local('ArchitectsDaughter'),
-            url(//fonts.gstatic.com/s/architectsdaughter/v6/RXTgOOQ9AAtaVOHxx0IUBM3t7GjCYufj5TXV5VnA2p8.woff2)
-            format('woff2');
-            }
-            @font-face {
-            font-family: 'Open Sans';
-            font-style: italic;
-            font-weight: 400;
-            src: local('Open Sans Italic'), local('OpenSans-Italic'),
-            url(//fonts.gstatic.com/s/opensans/v10/xjAJXh38I15wypJXxuGMBo4P5ICox8Kq3LLUNMylGO4.woff2)
-            format('woff2');
-            }
-            @font-face {
-            font-family: 'Open Sans';
-            font-style: normal;
-            font-weight: 400;
-            src: local('Open Sans'), local('OpenSans'),
-            url(//fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2)
-            format('woff2');
-            }
-            .orangefloatingbox {
-            display:inline-block;
-            background-color:#E89619;
-            box-shadow: 10px 10px 5px #888888;
-            }
-        </style>
-        <link rel="stylesheet" type="text/css" href="https://ssl.gstatic.com/sites/p/cc8eeb/system/app/themes/ski/standard-css-ski-ltr-ltr.css">
-        <link rel="stylesheet" type="text/css" href="/site/houseonmalabar/_/rsrc/1416990942000/system/app/css/overlay.css?cb=ski29a900px250150goog-ws-nav-nosidenone30middlecenter">
-        <link rel="stylesheet" type="text/css" href="/site/houseonmalabar/_/rsrc/1416990942000/system/app/css/camelot/allthemes-view.css">
-        <title>Malabar House</title>
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&amp;subset=Latin">
-    </head>
-    <body>
-        <a id="logOutLink" style="position:fixed" onclick="startSpinner(); google.script.run.withSuccessHandler(writePageString).logOut('<?=token?>', '<?=user?>')">Log Out</a>
-        <div id="bodyWrapperForBackground" style="background-image: url(http://www.topdesignmag.com/wp-content/uploads/2010/12/1116.jpg)">
-            <div id="sites-page-toolbar" class="sites-header-divider">
-                <div id="sites-status" class="sites-status" style="display: none;">
-                    <div id="sites-notice" class="sites-notice" role="status" aria-live="assertive"></div>
-                </div>
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/homeStyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/skitheme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/added.css' %}">
+</head>
+<body>
+    <div id="bodyWrapperForBackground">
+        <div id="sites-page-toolbar" class="sites-header-divider">
+            <div xmlns="http://www.w3.org/1999/xhtml" id="sites-status"
+                class="sites-status" style="display: none;">
+                <div id="sites-notice" class="sites-notice" role="status"
+                    aria-live="assertive"></div>
             </div>
-            <div id="sites-chrome-everything-scrollbar">
-                <div id="sites-chrome-everything" class="">
-                    <div id="sites-chrome-page-wrapper" style="direction: ltr">
-                        <div id="sites-chrome-page-wrapper-inside">
-                            <div>
-                                <table id="sites-chrome-header" class="sites-layout-hbox-centered" cellspacing="0" style="">
-                                    <tbody>
-                                        <tr class="sites-header-primary-row" id="sites-chrome-userheader">
-                                            <td id="sites-header-title" class="sites-header-title-centered sites-chrome-header-valign-middle" role="banner" style="height: 250px">
-                                                <div class="sites-header-cell-buffer-wrapper">
-                                                    <h2>
-                                                        <div dir="ltr" id="sites-chrome-userheader-title" class="orangefloatingbox" style="font-family: Ubuntu;font-size:60px">Malabar
-                                                            House
-                                                        </div>
-                                                    </h2>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr class="sites-header-secondary-row" id="sites-chrome-horizontal-nav">
-                                            <td colspan="2" id="sites-chrome-header-horizontal-nav-container" role="navigation">
-                                                <div class="sites-header-nav">
-                                                    <ul class="sites-header-nav-container-links">
-                                                        <script type="text/javascript">
-                                                            function writePageString(htmlString) {
-                                                                document.getElementById('xeap').innerHTML = htmlString;
-                                                            }
-                                                            function startSpinner() {
-                                                              var spinner = document.getElementById("myspinner");
-                                                              spinner.style.visibility = "visible";
-                                                            }
-                                                        </script>
-                                                        <div id="navBarSpacer">
-                                                            <li class="current"><a class="sites-navigation-link current" onclick="startSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('home', '<?=token?>')">Home</a></li>
-                                                            <li class="unselected"><a class="sites-navigation-link unselected" onclick="startSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('rooms', '<?=token?>')">The
-                                                                Rooms</a>
-                                                            </li>
-                                                            <li class="unselected"><a class="sites-navigation-link unselected" onclick="startSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('booking', '<?=token?>')">booking</a></li>
-                                                        </div>
-                                                        <li style="border-bottom: 0px solid;">
-                                                            <img style="visibility:hidden;height:20px;width:20px" class="spinner" id="myspinner" src="http://www.ecr.co.za/static/kagiso_common/images/spinner.gif">
-                                                        </li>
-                                                    </ul>
-                                                    <div style="clear: both;"></div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div id="sites-chrome-main-wrapper" class="glass">
-                                <div id="sites-chrome-main-wrapper-inside">
-                                    <table id="sites-chrome-main" class="sites-layout-hbox" cellspacing="0" cellpadding="{scmCellpadding}" border="0">
-                                        <tbody>
-                                            <tr>
-                                                <td id="sites-chrome-sidebar-left" class="sites-layout-sidebar-left" style="display: none; width: 150px">
-                                                    <div xmlns="http://www.w3.org/1999/xhtml" id="COMP_2bd" class="sites-embed" role="navigation">
-                                                        <div class="sites-embed-content sites-sidebar-nav">
-                                                            <ul role="navigation" jotid="navList">
-                                                                <li class="nav-first ">
-                                                                    <div class="current-bg" jotid="wuid:gx:1d135b2208341774" dir="ltr" style="padding-left: 5px;">Home</div>
-                                                                </li>
-                                                                <li class="">
-                                                                    <div dir="ltr" style="padding-left: 5px;">
-                                                                        <a href="/site/houseonmalabar/booking" jotid="wuid:gx:339d461de59b920f" class="sites-navigation-link">booking</a>
-                                                                    </div>
-                                                                </li>
-                                                                <li class="">
-                                                                    <div dir="ltr" style="padding-left: 5px;">
-                                                                        <a href="/site/houseonmalabar/products-services" jotid="wuid:gx:ae7463c7afb56f0" class="sites-navigation-link">The Rooms</a>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+        </div>
+        <div id="sites-chrome-everything-scrollbar">
+            <div id="sites-chrome-everything" class="">
+                <div id="sites-chrome-page-wrapper" style="direction: ltr">
+                    <div id="sites-chrome-page-wrapper-inside">
+                        <div xmlns="http://www.w3.org/1999/xhtml"
+                            id="sites-chrome-header-wrapper" style="">
+                            <table id="sites-chrome-header"
+                                class="sites-layout-hbox-centered" cellspacing="0" style="">
+                                <tbody>
+                                    <tr class="sites-header-primary-row"
+                                        id="sites-chrome-userheader">
+                                        <td id="sites-header-title"
+                                            class="sites-header-title-centered sites-chrome-header-valign-middle"
+                                            role="banner" style="height: 250px"><div
+                                                class="sites-header-cell-buffer-wrapper">
+                                                <h2>
+                                                    <div 
+                                                        dir="ltr" id="sites-chrome-userheader-title" class="orangefloatingbox" style="font-family: Ubuntu;font-size:60px">Malabar
+                                                        House</div>
+                                                </h2>
+                                            </div></td>
+                                    </tr>
+                                    <tr class="sites-header-secondary-row"
+                                        id="sites-chrome-horizontal-nav">
+                                        <td colspan="2"
+                                            id="sites-chrome-header-horizontal-nav-container"
+                                            role="navigation">
+                                            <div class="sites-header-nav">
+                                                <ul class="sites-header-nav-container-links">
+                                                
+                                                    <div id="navBarSpacer">
+                                                    <li class="current" id="smallHome"><a
+                                                        class="sites-navigation-link current"
+                                                        onclick="location.hash = 'smallHome'"
+                                                        
+                                                        >Home</a></li> <!--onclick was onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('smallHome', '<?=token?>')"!-->
+                                                    <li class="unselected" id="rooms"><a
+                                                        class="sites-navigation-link unselected"
+                                                        onclick="location.hash = 'rooms'"
+                                                        
+                                                        
+                                                        >The <!--onclick was onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('rooms', '<?=token?>')" !-->
+                                                            Rooms</a></li>
+                                                    <li class="unselected" id="myRequests">
+                                                      <a class="sites-navigation-link unselected" 
+                                                        onclick="location.hash = 'myRequests'"
+                                                        
+                                                        
+                                                        >
+                                                        My Requests
+                                                      </a>
+                                                    </li>
+                                                    <li class="unselected" id="booking"><a
+                                                        class="sites-navigation-link unselected"
+                                                        onclick="location.hash = 'booking'"
+                                                        
+                                                        >booking</a></li>
                                                     </div>
-                                                </td>
-                                                <td id="sites-canvas-wrapper">
-                                                    <div id="sites-canvas" role="main">
-                                                        <div id="goog-ws-editor-toolbar-container"></div>
-                                                        <div xmlns="http://www.w3.org/1999/xhtml" id="title-crumbs" style="display: none;"></div>
-                                                        <h3 xmlns="http://www.w3.org/1999/xhtml" id="sites-page-title-header" style="display: none;" align="left">
-                                                            <span id="sites-page-title" dir="ltr">Home</span>
-                                                        </h3>
-                                                        <div id="sites-canvas-main" class="sites-canvas-main">
-                                                            <div id="sites-canvas-main-content">
-                                                                <div xmlns="http://www.w3.org/1999/xhtml" class="sites-layout-name-two-column-hf sites-layout-vbox">
-                                                                    <div class="sites-layout-tile sites-tile-name-header">
-                                                                        <div dir="ltr">
-                                                                            <div style="text-align: center">
-                                                                                <i style="font-family: arial, sans-serif; font-size: medium; line-height: 1.5; background-color: transparent"><span style="color: rgb(68, 68, 68); text-align: justify">"Duis
-                                                                                aute irure dolor in reprehenderit in voluptate
-                                                                                velit esse cillum dolore eu fugiat nulla
-                                                                                pariatur.&nbsp;</span><span style="color: rgb(68, 68, 68); line-height: 1.5; text-align: justify; background-color: transparent">Excepteur
-                                                                                sint occaecat cupidatat non proident, sunt in culpa
-                                                                                qui officia deserunt mollit anim id est laborum."</span></i>
-                                                                            </div>
-                                                                            <div style="text-align: center">
-                                                                                <font face="arial, sans-serif" size="3"><i><span style="color: rgb(68, 68, 68); line-height: 1.5; text-align: justify; background-color: transparent"><br></span></i></font>
-                                                                            </div>
+                                                    
+                                                   
+                                                    <li style="border-bottom: 0px solid; position:absolute;">
+                                                        <!--<img class="spinner" id="smallerSpinner" src="http://www.ecr.co.za/static/kagiso_common/images/spinner.gif">!-->
+                                                                                                                <img class="spinner" id="smallerSpinner" src="https://www.projectonfairrepresentation.org/wp-content/themes/notfair/assets/img/spinner.gif">
+
+                                                    </li>
+                                                    <li id="logOutButtonTwo">
+                                                      <a style="position:fixed" onclick="startSmallerSpinner(); google.script.run.withSuccessHandler(writeFullPageString).logOut('<?=token?>', '<?=user?>')">Log Out</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="sites-chrome-main-wrapper" class="glass">
+                            
+                    
+                            <div id="sites-chrome-main-wrapper-inside">
+                                <table id="sites-chrome-main" class="sites-layout-hbox"
+                                    cellspacing="0" cellpadding="{scmCellpadding}" border="0">
+                                    <tbody>
+                                        <tr>
+                                            
+                                            <td id="sites-canvas-wrapper">
+                                                <div id="sites-canvas" role="main">
+                                                    <h1 style="
+    text-align: center;
+">Welcome to our website!</h1>
+                                                    <div id="goog-ws-editor-toolbar-container"></div>
+                                                    <div xmlns="http://www.w3.org/1999/xhtml" id="title-crumbs"
+                                                        style="display: none;"></div>
+                                                    
+                                                    <div id="sites-canvas-main" class="sites-canvas-main">
+                                                        <div id="sites-canvas-main-content">
+                                                            <div xmlns="http://www.w3.org/1999/xhtml"
+                                                                class="sites-layout-name-two-column-hf sites-layout-vbox">
+                                                                <div class="sites-layout-tile sites-tile-name-header">
+                                                                    <div dir="ltr">
+                                                                        <div style="text-align: center">
+                                                                            <i
+                                                                                style="font-family: arial, sans-serif; font-size: medium; line-height: 1.5; background-color: transparent"><span
+                                                                                style="color: rgb(68, 68, 68); text-align: justify">"Duis
+                                                                                    aute irure dolor in reprehenderit in voluptate
+                                                                                    velit esse cillum dolore eu fugiat nulla
+                                                                                    pariatur.&nbsp;</span><span
+                                                                                style="color: rgb(68, 68, 68); line-height: 1.5; text-align: justify; background-color: transparent">Excepteur
+                                                                                    sint occaecat cupidatat non proident, sunt in culpa
+                                                                                    qui officia deserunt mollit anim id est laborum."</span></i>
+                                                                        </div>
+                                                                        <div style="text-align: center">
+                                                                            <font face="arial, sans-serif" size="3"><i><span
+                                                                                    style="color: rgb(68, 68, 68); line-height: 1.5; text-align: justify; background-color: transparent"><br></span></i></font>
                                                                         </div>
                                                                     </div>
-                                                                    <table cellspacing="0" class="sites-layout-hbox">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td class="sites-layout-tile sites-tile-name-content-1">
-                                                                                    <div dir="ltr">
-                                                                                        <div>
-                                                                                            <p style="text-align: left; color: rgb(68, 68, 68)">
-                                                                                                <b style="text-align: justify; line-height: 1.5; background-color: transparent">Lorem
-                                                                                                ipsum dolor sit amet,</b><span style="text-align: justify; line-height: 1.5; background-color: transparent">
+                                                                </div>
+                                                                <table cellspacing="0" class="sites-layout-hbox">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td
+                                                                                class="sites-layout-tile sites-tile-name-content-1"><div
+                                                                                    dir="ltr">
+                                                                                    <div>
+                                                                                        <p
+                                                                                            style="text-align: left; color: rgb(68, 68, 68)">
+                                                                                            <b
+                                                                                                style="text-align: justify; line-height: 1.5; background-color: transparent">Lorem
+                                                                                                ipsum dolor sit amet,</b><span
+                                                                                                style="text-align: justify; line-height: 1.5; background-color: transparent">
                                                                                                 consectetur adipisicing elit, sed do eiusmod
                                                                                                 tempor incididunt ut labore et dolore magna
                                                                                                 aliqua. Ut enim ad minim veniam, quis nostrud
@@ -193,68 +157,72 @@
                                                                                                 enim ad minim veniam, quis nostrud exercitation
                                                                                                 ullamco laboris nisi ut aliquip ex ea commodo
                                                                                                 consequat.</span>
-                                                                                            </p>
-                                                                                            <p style="color: rgb(68, 68, 68); text-align: justify">
-                                                                                                Ut enim ad minim veniam, quis nostrud
-                                                                                                exercitation ullamco laboris nisi ut aliquip ex
-                                                                                                ea commodo consequat. Duis aute irure dolor in
-                                                                                                reprehenderit in voluptate velit esse cillum
-                                                                                                dolore eu fugiat nulla pariatur.&nbsp;<span style="line-height: 1.5; background-color: transparent">Excepteur
+                                                                                        </p>
+                                                                                        <p
+                                                                                            style="color: rgb(68, 68, 68); text-align: justify">
+                                                                                            Ut enim ad minim veniam, quis nostrud
+                                                                                            exercitation ullamco laboris nisi ut aliquip ex
+                                                                                            ea commodo consequat. Duis aute irure dolor in
+                                                                                            reprehenderit in voluptate velit esse cillum
+                                                                                            dolore eu fugiat nulla pariatur.&nbsp;<span
+                                                                                                style="line-height: 1.5; background-color: transparent">Excepteur
                                                                                                 sint occaecat cupidatat non proident, sunt in
                                                                                                 culpa qui officia deserunt mollit anim id est
                                                                                                 laborum.</span>
-                                                                                            </p>
-                                                                                        </div>
-                                                                                        <span style="color: rgb(68, 68, 68)"> </span>
+                                                                                        </p>
                                                                                     </div>
-                                                                                </td>
-                                                                                <td class="sites-layout-tile sites-tile-name-content-2">
-                                                                                    <div dir="ltr">
-                                                                                        <p style="color: rgb(68, 68, 68); text-align: justify">
-                                                                                            <b>Gallery Preview:&nbsp;</b><span style="line-height: 1.5; background-color: transparent">aute
+                                                                                    <span style="color: rgb(68, 68, 68)"> </span>
+                                                                                </div></td>
+                                                                            <td
+                                                                                class="sites-layout-tile sites-tile-name-content-2"><div
+                                                                                    dir="ltr">
+                                                                                    <p
+                                                                                        style="color: rgb(68, 68, 68); text-align: justify">
+                                                                                        <b>Gallery Preview:&nbsp;</b><span
+                                                                                            style="line-height: 1.5; background-color: transparent">aute
                                                                                             irure dolor in reprehenderit in voluptate velit
                                                                                             esse cillum dolore eu fugiat...</span>
-                                                                                        </p>
-                                                                                        <div style="display: block; text-align: left">
-                                                                                            <img border="0" src="https://sites.google.com/site/houseonmalabar/_/rsrc/1417893280191/home/1a.png" style="width: 100%; display: block; margin-right: auto; text-align: left">
-                                                                                        </div>
-                                                                                        <div style="display: block; text-align: left">
-                                                                                            <br>
-                                                                                        </div>
-                                                                                        <div style="display: block; text-align: left">
-                                                                                            <img border="0" src="https://sites.google.com/site/houseonmalabar/_/rsrc/1417893280191/home/1b.png" style="width: 100%">
-                                                                                        </div>
+                                                                                    </p>
+                                                                                    <div style="display: block; text-align: left">
+                                                                                        <img border="0"
+                                                                                            src="https://lh3.googleusercontent.com/-e48nyvjONWw/VLIIJGkYcPI/AAAAAAAADnM/bZtIrkv1-FE/w1172-h879-no/DSCN1998.JPG"
+                                                                                            style="width: 100%; display: block; margin-right: auto; text-align: left">
                                                                                     </div>
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                </div>
+                                                                                    <div style="display: block; text-align: left">
+                                                                                        <br>
+                                                                                    </div>
+                                                                                    <div style="display: block; text-align: left">
+                                                                                        <img border="0"
+                                                                                            src="https://sites.google.com/site/houseonmalabar/_/rsrc/1417893280191/home/1b.png"
+                                                                                            style="width: 100%">
+                                                                                    </div>
+                                                                                </div></td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                
                                                             </div>
                                                         </div>
-                                                        
-                                                        <div id="sites-canvas-bottom-panel">
-                                                            <div id="sites-attachments-container"></div>
-                                                        </div>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                                    <div id="sites-canvas-bottom-panel">
+                                                        <div id="sites-attachments-container"></div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <div id="sites-chrome-footer-wrapper">
-                                <div id="sites-chrome-footer-wrapper-inside">
-                                    <div id="sites-chrome-footer"></div>
-                                </div>
+                        
+                        </div>
+                        <div id="sites-chrome-footer-wrapper">
+                            <div id="sites-chrome-footer-wrapper-inside">
+                                <div id="sites-chrome-footer"></div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
             </div>
-            <div id="sites-chrome-onebar-footer"></div>
-            
         </div>
-        
-    </body>
-</html>
+    </div>

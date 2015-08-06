@@ -1,12 +1,15 @@
 from django.contrib import admin
 from backend.models import Booking
-
+import mailer
 # Register your models here.
 def set_approved_fee(modeladmin, request, queryset):
-    queryset.update(approved=True)
+    set_approved_free(modeladmin, request, queryset)
     queryset.update(payment_required=True)
+    
 def set_approved_free(modeladmin, request, queryset):
+    mailer.notify_guests_booking_approved(queryset)
     queryset.update(approved=True)
+    
 set_approved_fee.short_description = "Approve, but charge a fee"
 set_approved_free.short_description = "Approve with no fee"
 
