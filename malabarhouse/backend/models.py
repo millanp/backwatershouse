@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField
+from django.forms.models import ModelForm
 # Create your models here.
 class Booking(models.Model):
     ROOMS = (
@@ -20,3 +21,7 @@ class Booking(models.Model):
     extra = MultiSelectField(choices=EXTRAS, default="-", null=True, blank=True)
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
+class BookingForm(ModelForm):
+    class Meta():
+        model = Booking
+        fields = "__all__"

@@ -73,11 +73,7 @@
                                                     </div>
                                                     
                                                    
-                                                    <li style="border-bottom: 0px solid; position:absolute;">
-                                                        <!--<img class="spinner" id="smallerSpinner" src="http://www.ecr.co.za/static/kagiso_common/images/spinner.gif">!-->
-                                                                                                                <img class="spinner" id="smallerSpinner" src="https://www.projectonfairrepresentation.org/wp-content/themes/notfair/assets/img/spinner.gif">
-
-                                                    </li>
+                                                    
                                                     <li id="logOutButtonTwo">
                                                       <a style="position:fixed" onclick="startSmallerSpinner(); google.script.run.withSuccessHandler(writeFullPageString).logOut('<?=token?>', '<?=user?>')">Log Out</a>
                                                     </li>
@@ -89,7 +85,30 @@
                             </table>
                         </div>
                         <div id="sites-chrome-main-wrapper" class="glass">
-                            {% block content %}{% endblock %}
+	                        <div id="sites-chrome-main-wrapper-inside">
+							    <table id="sites-chrome-main" class="sites-layout-hbox"
+							    cellspacing="0" cellpadding="{scmCellpadding}" border="0">
+							        <tbody>
+							            <tr>
+							                
+							                <td id="sites-canvas-wrapper">
+							                    <div id="sites-canvas" role="main">
+							                        <h1 style="text-align: center;">Welcome to our website!</h1>
+							                        <div id="goog-ws-editor-toolbar-container"></div>
+							                        <div xmlns="http://www.w3.org/1999/xhtml" id="title-crumbs"
+							                            style="display: none;"></div>
+							                        
+							                        <div id="sites-canvas-main" class="sites-canvas-main">
+							                            <div id="sites-canvas-main-content">
+							                                {% block content %}{% endblock %}
+							                            </div>
+							                        </div>
+							                    </div>
+							                </td>
+							            </tr>
+							        </tbody>
+							    </table>
+							</div>
                         </div>
                         <div id="sites-chrome-footer-wrapper">
                             <div id="sites-chrome-footer-wrapper-inside">
