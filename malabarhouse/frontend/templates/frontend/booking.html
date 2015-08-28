@@ -21,11 +21,11 @@ xmlns="http://www.w3.org/1999/xhtml">
                 your stay</span></h1><br>
 
                 <form id="bookingForm"
-                name="bookingForm"
+                name="bookingForm" action="/backend/booking-submit"
                 method="post">
                 {% csrf_token %}
-                {{ form.rooms }}
-                {{ form.arrive }}
+                {{ form.as_p }}
+                <input type="submit" value="Submit">
                 <!--<div class="bookingBlock">
                     <b>Choose your rooms
                     <a href=
@@ -34,7 +34,7 @@ xmlns="http://www.w3.org/1999/xhtml">
                         "_blank">(availability
                         calendar)</a></b><br>
 
-                        <input name="name"
+                        <in put name="name"
                         type="hidden"
                         value="&lt;?=realname?&gt;">
                         <input name=
