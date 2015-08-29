@@ -23,9 +23,27 @@ xmlns="http://www.w3.org/1999/xhtml">
                 <form id="bookingForm"
                 name="bookingForm" action="/backend/booking-submit"
                 method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" value="Submit">
+                    {% csrf_token %}
+                    <div class="bookingBlock">
+                    <b>Choose your rooms</b>
+                    {{ form.rooms }}
+                    </div>
+                    <div class="bookingBlock">
+                    <b>Enter arrival and departure dates</b><br>
+                    {{ form.arrive }}<br>
+                    {{ form.leave }}<br>
+                    <b>Extras?</b>
+                    {{ form.extra }}
+                    </div><br>
+                    <input id="bookingSubmit"
+					onmousedown=
+					"this.style.backgroundColor = 'rgba(13, 72, 118, 1)'"
+					onmouseout=
+					"this.style.backgroundColor = 'rgba(30, 105, 163, 1)'"
+					onmouseup=
+					"this.style.backgroundColor = 'rgba(30, 105, 163, 1)'"
+					type="submit" value=
+					"SUBMIT">
                 <!--<div class="bookingBlock">
                     <b>Choose your rooms
                     <a href=

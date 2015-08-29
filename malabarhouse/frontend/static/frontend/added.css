@@ -3,6 +3,13 @@
 #logOutButtonTwo {
   float:right;
 }
+b {
+    color: #616161;
+    line-height: 1.5;
+    padding-top: 0;
+    padding-bottom: 20px;
+    font-family: "Open Sans", sans-serif;
+}
 #navBarSpacer {
   border-right:1px solid rgba(0 , 0 , 0 , 0.08);
   padding-right: 20px;
@@ -153,10 +160,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76a8fe', end
   text-align:center;
 }
 #bookingForm {
-  font-size:17px;
-  width:auto;
-  display:inline-block; 
-  border:1px solid;
+    font-size:17px;
+    width:auto;
+    display:inline-block; 
+    border:1px solid;
+    color: #616161;
+    line-height: 1.5;
+    padding-top: 0;
+    font-family: "Open Sans", sans-serif;
 }
 #bookingSubmit {
   width:100%;
