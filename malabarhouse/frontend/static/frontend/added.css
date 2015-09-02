@@ -2,6 +2,7 @@
 /*-------------Site Top Bar Styles*/
 #logOutButtonTwo {
   float:right;
+  display:inline-block;
 }
 b {
     color: #616161;
@@ -14,7 +15,8 @@ b {
   border-right:1px solid rgba(0 , 0 , 0 , 0.08);
   padding-right: 20px;
   display:inline-block;
-  position:relative;
+  position:absolute;
+  
 }
 .orangefloatingbox {
   display:inline-block;
@@ -177,6 +179,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76a8fe', end
   color:white;
   outline:none;
 }
+.sites-header-nav {
+    height:58px; /* the height of the nav bar*/
+}
 #sites-chrome-main-wrapper {
   background-color:rgba(255,255,255,0.68)!important;
 }
@@ -197,4 +202,8 @@ iframe {
   border:0;
   height:600px;
   width:100%;
+}
+ul {
+    list-style-type:none;
+    padding:0;
 }
