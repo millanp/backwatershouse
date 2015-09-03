@@ -21,9 +21,10 @@ xmlns="http://www.w3.org/1999/xhtml">
                 your stay</span></h1><br>
 
                 <form id="bookingForm"
-                name="bookingForm" action="/backend/booking-submit"
+                name="bookingForm" action="{% url 'booking' %}"
                 method="post">
                     {% csrf_token %}
+                    <input type="hidden" name="id_guest" value="millan"></input>
                     <div class="bookingBlock">
                     <b>Choose your rooms</b>
                     {{ form.rooms }}
@@ -134,7 +135,7 @@ xmlns="http://www.w3.org/1999/xhtml">
                     onmouseup=
                     "this.style.backgroundColor = 'rgba(30, 105, 163, 1)'"
                     type="submit" value=
-                    "SUBMIT">!-->
+                    "SUBMIT">
                 </form><br>
 
                 <p id=

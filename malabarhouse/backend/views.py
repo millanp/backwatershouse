@@ -7,3 +7,4 @@ class BookingCreate(CreateView):
     model = Booking
     form_class = BookingForm
     success_url = '/booking'
+    template_name = 'frontend/booking.html'

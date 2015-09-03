@@ -21,6 +21,7 @@ class Booking(models.Model):
     extra = MultiSelectField(choices=EXTRAS, default="-", null=True, blank=True)
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
+#IMPORTANT!!!! I need to subclass this in order to let the guest value be preset!!!!!!
 class BookingForm(ModelForm):
     class Meta():
         model = Booking
