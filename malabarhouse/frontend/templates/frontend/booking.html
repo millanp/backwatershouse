@@ -27,11 +27,17 @@ xmlns="http://www.w3.org/1999/xhtml">
                     <div class="bookingBlock">
                     <b>Choose your rooms</b>
                     {{ form.rooms }}
+                    {{ form.errors.rooms }}
                     </div>
                     <div class="bookingBlock">
                     <b>Enter arrival and departure dates</b><br>
                     {{ form.arrive }}<br>
-                    {{ form.leave }}<br>
+                    {{ form.errors.arrive }}
+                    {{ form.leave }}
+                    {% if not form.errors.leave %}
+                    <br>
+                    {% endif %}
+                    {{form.errors.leave}}
                     <b>Extras?</b>
                     {{ form.extra }}
                     </div><br>
@@ -54,7 +60,7 @@ xmlns="http://www.w3.org/1999/xhtml">
                 {% endif %}
                 </p>
                 <p id="bookingErrorMessages">
-                    {{form.errors}}
+                    {{form.non_field_errors}}
                 </p>
                 <img class='spinner'
                 id='bookingSpinner' src=
