@@ -21,9 +21,8 @@ class TemplateViewPlus(TemplateView, LoginRequiredMixin):
     context = {}
     def get_context_data(self, **kwargs):
         return self.context;
-@login_required
-def home(request):
-    return render(request, "frontend/home.html", {})
-@login_required
-def booking(request):
-    return render(request, "frontend/booking.html", {'form':BookingForm()})
+def requestsView(request):
+    return render(request, 
+        'frontend/requests.html', 
+        {'bookings':Booking.objects.filter(guest=request.user)},
+    )

@@ -47,36 +47,28 @@
                                                     
                                                     <li class="{% block home_select %}unselected{% endblock %}" id="smallHome"><a
                                                         class="sites-navigation-link current"
-                                                        onclick="location.hash = 'smallHome'"
-                                                        
+                                                        href="{% url 'home' %}"
                                                         >Home</a></li> <!--onclick was onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('smallHome', '<?=token?>')"!-->
                                                     <li class="{% block rooms_select %}unselected{% endblock %}" id="rooms"><a
                                                         class="sites-navigation-link unselected"
-                                                        onclick="location.hash = 'rooms'"
-                                                        
                                                         
                                                         >The <!--onclick was onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('rooms', '<?=token?>')" !-->
                                                             Rooms</a></li>
                                                     <li class="{% block requests_select %}unselected{% endblock %}" id="myRequests">
-                                                      <a class="sites-navigation-link unselected" 
-                                                        onclick="location.hash = 'myRequests'"
-                                                        
-                                                        
-                                                        >
+                                                      <a class="sites-navigation-link unselected" href="{% url 'requests' %}">
                                                         My Requests
                                                       </a>
                                                     </li>
-                                                    <li class="{% block booking_select %}unselected{% endblock %}" id="booking"><a
-                                                        class="sites-navigation-link unselected"
-                                                        onclick="location.hash = 'booking'"
-                                                        
-                                                        >booking</a></li>
+                                                    <li class="{% block booking_select %}unselected{% endblock %}" id="booking">
+                                                        <a class="sites-navigation-link unselected" href="{% url 'booking' %}">
+                                                            booking
+                                                        </a>
+                                                    </li>
                                                     </div>
-                                                    
                                                    
                                                     
                                                     <li id="logOutButtonTwo">
-                                                      <a style="position:fixed" onclick="startSmallerSpinner(); google.script.run.withSuccessHandler(writeFullPageString).logOut('<?=token?>', '<?=user?>')">Log Out</a>
+                                                      <a style="position:fixed" onclick="startSmallerSpinner(); google.script.run.withSuccessHandler(writeFullPageString).logOut('', '')">Log Out</a>
                                                     </li>
                                                 </ul>
                                             </div>

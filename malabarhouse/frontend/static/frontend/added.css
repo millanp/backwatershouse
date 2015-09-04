@@ -203,7 +203,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76a8fe', end
   display:inline-block;
   border:1px solid;
 }
-.myRequestsTd {
+#myRequestTable.tr.td{
   border: 1px solid;
 }
 iframe {
