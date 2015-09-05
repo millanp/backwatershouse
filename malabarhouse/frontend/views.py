@@ -4,9 +4,7 @@ from backend.models import BookingForm, Booking
 from django.views.generic.base import TemplateView
 from braces.views import LoginRequiredMixin
 from django.views.generic.edit import CreateView
-from django.http.response import HttpResponseRedirect
-# from django.http.response import HttpResponse
-class BookingCreate(CreateView):
+class BookingCreate(CreateView, LoginRequiredMixin):
     form_class = BookingForm
     success_url = '/booking'
     template_name = 'frontend/booking.html'
@@ -21,6 +19,7 @@ class TemplateViewPlus(TemplateView, LoginRequiredMixin):
     context = {}
     def get_context_data(self, **kwargs):
         return self.context;
+@login_required
 def requestsView(request):
     return render(request, 
         'frontend/requests.html', 
