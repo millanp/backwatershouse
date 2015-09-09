@@ -24,9 +24,9 @@ SECRET_KEY = secret_settings.SECRET_KEY
 DEBUG = True
 
 TEMPLATE_DEBUG = True
-ADMINS = (('millan', 'millan.philipose@gmail.com'),)
+ADMINS = secret_settings.ADMINS
 ALLOWED_HOSTS = []
-REGISTRATION_NOTIFICATION_RECIPIENTS = ["millan.philipose@gmail.com"]
+REGISTRATION_NOTIFICATION_RECIPIENTS = [admin[1] for admin in ADMINS]
 EMAIL_HOST = secret_settings.EMAIL_HOST
 EMAIL_HOST_USER = secret_settings.EMAIL_HOST_USER
 EMAIL_HOST_PASSWORD = secret_settings.EMAIL_HOST_PASSWORD

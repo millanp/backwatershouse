@@ -4,6 +4,7 @@ from backend.models import BookingForm, Booking
 from django.views.generic.base import TemplateView
 from braces.views import LoginRequiredMixin
 from django.views.generic.edit import CreateView
+from malabarhouse import settings
 class BookingCreate(CreateView, LoginRequiredMixin):
     form_class = BookingForm
     success_url = '/booking'
@@ -21,6 +22,9 @@ class TemplateViewPlus(TemplateView, LoginRequiredMixin):
         return self.context;
 @login_required
 def requestsView(request):
+    paypal_dict = {
+        #business: settings
+    }
     return render(request, 
         'frontend/requests.html', 
         {'bookings':Booking.objects.filter(guest=request.user)},
