@@ -12,11 +12,15 @@
             <td>
                 {{ booking.short_description }}
             </td>
-            {% if booking.payment_required %}
-            <td>
-                
-            </td>
-            {% else %}
+            {% if booking.approved %}
+	            {% if booking.payment_required %}
+	            <td>
+	                {{ booking.payment_button.render }}
+	            </td>
+	            {% else %}
+	                
+	            {% endif %}
+	        {% endif %}
         </tr>
     {% endfor %}  
 </table>

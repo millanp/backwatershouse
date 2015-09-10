@@ -34,6 +34,8 @@ DEFAULT_FROM_EMAIL = 'donotreply@malabarhousereservations.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 LOGIN_REDIRECT_URL = "/"
+PAYPAL_RECEIVER_EMAIL = secret_settings.PAYPAL_BUSINESS
+PAYPAL_TEST = True
 #SESSION_COOKIE_AGE = 30 #I should set this to a reasonable time, not 30 secs
 # Application definition
 

@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from multiselectfield import MultiSelectField
 from django.forms.models import ModelForm
+from paypal.standard.forms import PayPalPaymentsForm
+from malabarhouse import settings
 # Create your models here.
 class Booking(models.Model):
     ROOMS = (
@@ -23,6 +25,19 @@ class Booking(models.Model):
     payment_required = models.BooleanField(default=False)
     def short_description(self):
         return "A visit to " + str(self.get_rooms_display()) + " from " + str(self.arrive) + " to " + str(self.leave)
+    
+    def payment_button(self):
+        paypal_dict = {
+            "business": settings.PAYPAL_RECEIVER_EMAIL,
+            "amount": "5",
+            "item_name": "Malabar House non-family upkeep fee",
+            "quantity": "1",
+            "currency_code": "USD",
+            "env": "www.sandbox",
+            "notify_url": "", #TODO
+            "custom": str(self.pk),
+        }
+        return PayPalPaymentsForm(initial=paypal_dict)
 class BookingForm(ModelForm):
     class Meta():
         model = Booking
