@@ -1,5 +1,5 @@
 from django.contrib import admin
-from backend.models import Booking
+from backend.models import Booking, Room
 import mailer
 # Register your models here.
 def set_approved_fee(modeladmin, request, queryset):
@@ -24,5 +24,7 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('guest', 'arrive', 'leave', roomList, 
                     extraList, 'approved', 'payment_required')
     actions = [set_approved_fee, set_approved_free]
-
+class RoomAdmin(admin.ModelAdmin):
+    list_display = ('name',)
 admin.site.register(Booking, BookingAdmin)
+admin.site.register(Room, RoomAdmin)

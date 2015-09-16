@@ -5,6 +5,10 @@ from django.forms.models import ModelForm
 from paypal.standard.forms import PayPalPaymentsForm
 from malabarhouse import settings
 # Create your models here.
+class Room(models.Model):
+    number = models.PositiveSmallIntegerField()
+    def name(self):
+        return "Room "+str(self.number)
 class Booking(models.Model):
     ROOMS = (
         ('1', 'Room 1'),
@@ -19,8 +23,8 @@ class Booking(models.Model):
     guest = models.ForeignKey(User)
     arrive = models.DateField()
     leave = models.DateField()
-    rooms = MultiSelectField(choices=ROOMS, default="-")
-    extra = MultiSelectField(choices=EXTRAS, default="-", null=True, blank=True)
+    rooms = models.ManyToManyField(Room)
+    extra = models.BooleanField()
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     def short_description(self):
