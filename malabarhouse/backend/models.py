@@ -27,6 +27,8 @@ class Booking(models.Model):
     extra = models.BooleanField()
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
+    def get_rooms_nicelist(self):
+        self.rooms.all()
     def short_description(self):
         return "A visit to " + str(self.get_rooms_display()) + " from " + str(self.arrive) + " to " + str(self.leave)
     
