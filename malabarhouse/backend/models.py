@@ -4,10 +4,11 @@ from multiselectfield import MultiSelectField
 from django.forms.models import ModelForm
 from paypal.standard.forms import PayPalPaymentsForm
 from malabarhouse import settings
+import helpers
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
-    def name(self):
+    def __str__(self):
         return "Room "+str(self.number)
 class Booking(models.Model):
     ROOMS = (
@@ -28,7 +29,7 @@ class Booking(models.Model):
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     def get_rooms_nicelist(self):
-        self.rooms.all()
+        return helpers.humanize_list(self.rooms.all())
     def short_description(self):
         return "A visit to " + str(self.get_rooms_display()) + " from " + str(self.arrive) + " to " + str(self.leave)
     
