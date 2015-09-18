@@ -22,9 +22,7 @@ class TemplateViewPlus(TemplateView, LoginRequiredMixin):
         return self.context;
 @login_required
 def requestsView(request):
-    paypal_dict = {
-        #business: settings
-    }
+
     return render(request, 
         'frontend/requests.html', 
         {'bookings':Booking.objects.filter(guest=request.user)},
