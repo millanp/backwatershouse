@@ -52,6 +52,7 @@ INSTALLED_APPS = (
     'frontend',
     'backend',
     'multiselectfield',
+    'paypal.standard.ipn',
 )
 
 MIDDLEWARE_CLASSES = (

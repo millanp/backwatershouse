@@ -1,26 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
-from multiselectfield import MultiSelectField
 from django.forms.models import ModelForm
 from paypal.standard.forms import PayPalPaymentsForm
 from malabarhouse import settings
 import helpers
+from django.core.urlresolvers import reverse
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
     def __str__(self):
         return "Room "+str(self.number)
 class Booking(models.Model):
-    ROOMS = (
-        ('1', 'Room 1'),
-        ('2', 'Room 2'),
-        ('3', 'Room 3'),
-    )
-    EXTRAS = (
-        ('1', 'Extra1'),
-        ('2', 'Extra2'),
-        ('3', 'Extra3')
-    )
     guest = models.ForeignKey(User)
     arrive = models.DateField()
     leave = models.DateField()
@@ -33,7 +23,6 @@ class Booking(models.Model):
         return helpers.humanize_list(self.rooms.all())
     def short_description(self):
         return "A visit to " + str(self.get_rooms_nicelist()) + " from " + str(self.arrive) + " to " + str(self.leave)
-    
     def payment_button(self):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
@@ -42,7 +31,7 @@ class Booking(models.Model):
             "quantity": "1",
             "currency_code": "USD",
             "env": "www.sandbox",
-            "notify_url": "", #TODO
+            "notify_url": ""+reverse("paypal-ipn"), #TODO
             "custom": str(self.pk),
         }
         return PayPalPaymentsForm(initial=paypal_dict)

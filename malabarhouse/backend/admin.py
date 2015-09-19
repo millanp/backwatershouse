@@ -4,8 +4,8 @@ from backend import helpers
 # Register your models here.
 def set_approved_fee(modeladmin, request, queryset):
     set_approved_free(modeladmin, request, queryset)
-    queryset.update(payment_required=True, paid_for=True)
-    
+    queryset.update(payment_required=True, paid_for=False)
+
 def set_approved_free(modeladmin, request, queryset):
     helpers.notify_guests_booking_approved(queryset)
     queryset.update(approved=True)
