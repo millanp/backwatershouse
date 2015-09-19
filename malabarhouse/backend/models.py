@@ -25,13 +25,14 @@ class Booking(models.Model):
     arrive = models.DateField()
     leave = models.DateField()
     rooms = models.ManyToManyField(Room)
-    extra = models.BooleanField()
+    extra = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
+    paid_for = models.BooleanField(default=True)
     def get_rooms_nicelist(self):
         return helpers.humanize_list(self.rooms.all())
     def short_description(self):
-        return "A visit to " + str(self.get_rooms_display()) + " from " + str(self.arrive) + " to " + str(self.leave)
+        return "A visit to " + str(self.get_rooms_nicelist()) + " from " + str(self.arrive) + " to " + str(self.leave)
     
     def payment_button(self):
         paypal_dict = {

@@ -6,13 +6,10 @@ def notify_guests_booking_approved(bookings):
             "Your booking request has been approved",
             "Please visit your My Requests page to finalize",
         )
-def humanize_list(value):
-#     if len(value) == 0:
-#         return ""
-#     elif len(value) == 1:
-#         return value[0]
-#     s = ", ".join(value[:len(value)-2])
-#     if len(value) > 3:
-#         s += ","
-#     return "%s and %s" % (s, value[len(value)-2])
-    return str(value)
+def humanize_list(xlist):
+    if len(xlist) == 1:
+        return xlist[0]
+    elif len(xlist) == 0:
+        return ""
+    xlist = map(str, xlist)
+    return ", ".join(xlist[:len(xlist)-1]) + " and " + xlist[len(xlist)-1]

@@ -4,7 +4,7 @@ from backend import helpers
 # Register your models here.
 def set_approved_fee(modeladmin, request, queryset):
     set_approved_free(modeladmin, request, queryset)
-    queryset.update(payment_required=True)
+    queryset.update(payment_required=True, paid_for=True)
     
 def set_approved_free(modeladmin, request, queryset):
     helpers.notify_guests_booking_approved(queryset)
@@ -18,7 +18,7 @@ def roomList(obj):
 roomList.short_description = "Rooms"
 class BookingAdmin(admin.ModelAdmin):
     list_display = (roomList, 'arrive', 'leave', 'guest',
-                    'extra', 'approved', 'payment_required')
+                    'extra', 'approved', 'payment_required', 'paid_for')
     actions = [set_approved_fee, set_approved_free]
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('__str__',)
