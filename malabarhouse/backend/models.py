@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
+    blurb = models.TextField(max_length=700)
     def __str__(self):
         return "Room "+str(self.number)
 class Booking(models.Model):
