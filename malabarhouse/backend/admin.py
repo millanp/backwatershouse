@@ -16,6 +16,7 @@ set_approved_free.short_description = "Approve with no fee"
 def roomList(obj):
     return obj.get_rooms_nicelist()
 roomList.short_description = "Rooms"
+
 class BookingAdmin(admin.ModelAdmin):
     list_display = (roomList, 'arrive', 'leave', 'guest',
                     'extra', 'approved', 'payment_required', 'paid_for')
