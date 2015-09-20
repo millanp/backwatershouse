@@ -1,6 +1,11 @@
 """
 Django settings for malabarhouse project.
-shabalabiba
+<---- Notes ---->
+Process of accessing calendar api:
+make Credentials,
+outof make Http,
+outof make service
+----> Notes <----
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
 
