@@ -20,10 +20,11 @@ class Booking(models.Model):
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     paid_for = models.BooleanField(default=True)
-    def get_rooms_nicelist(self):
+    def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
+    nice_rooms.short_description = "Rooms"
     def short_description(self):
-        return "A visit to " + str(self.get_rooms_nicelist()) + " from " + str(self.arrive) + " to " + str(self.leave)
+        return "A visit to " + str(self.nice_rooms()) + " from " + str(self.arrive) + " to " + str(self.leave)
     def payment_button(self):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,

@@ -13,12 +13,8 @@ def set_approved_free(modeladmin, request, queryset):
 set_approved_fee.short_description = "Approve, but charge a fee"
 set_approved_free.short_description = "Approve with no fee"
 
-def roomList(obj):
-    return obj.get_rooms_nicelist()
-roomList.short_description = "Rooms"
-
 class BookingAdmin(admin.ModelAdmin):
-    list_display = (roomList, 'arrive', 'leave', 'guest',
+    list_display = ('nice_rooms', 'arrive', 'leave', 'guest',
                     'extra', 'approved', 'payment_required', 'paid_for')
     actions = [set_approved_fee, set_approved_free]
 class RoomAdmin(admin.ModelAdmin):
