@@ -1,0 +1,31 @@
+{% extends 'frontend/base_inner_site.html' %}
+{% block requests_select %}selected{% endblock %}
+{% block content %}
+<h1>Your upcoming visits</h1>
+<table id="myRequestsTable">
+    <tr>
+        <td>Requests</td>
+        <td>Status</td>
+    </tr>
+    {% for booking in bookings %}
+        <tr>
+            <td>
+                {{ booking.short_description }}
+            </td>
+            {% if booking.approved %}
+	            {% if booking.payment_required %}
+	            <td>
+	                {{ booking.payment_button.render }}
+	            </td>
+	            {% else %}
+	                
+	            {% endif %}
+	        {% else %}
+	           <td>
+	               All set for this visit
+	           </td>
+	        {% endif %}
+        </tr>
+    {% endfor %}  
+</table>
+{% endblock %}

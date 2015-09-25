@@ -1,0 +1,1 @@
+web: gunicorn malabarhouse.wsgi --log-file=-

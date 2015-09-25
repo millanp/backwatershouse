@@ -1,0 +1,74 @@
+{% extends "frontend/base_inner_site.html" %}
+{% block booking_select %}selected{% endblock %}
+{% block content %}
+<table cellspacing="0" class=
+"sites-layout-name-one-column sites-layout-hbox"
+xmlns="http://www.w3.org/1999/xhtml">
+    <tbody>
+        <tr>
+            <td class=
+            "sites-layout-tile sites-tile-name-content-1">
+            <div dir="ltr" id=
+            "bookingFormWrapper">
+                <h1><span dir="ltr" id=
+                "sites-page-title">Choose a
+                date</span></h1><br>
+                <iframe src=
+                "https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.google.com&amp;color=%2342104A&amp;src=nbc712s896fhv76pe8fl95o718%40group.calendar.google.com&amp;color=%23125A12&amp;src=vt8cbiploefrp3492ji1be25f0%40group.calendar.google.com&amp;color=%236B3304&amp;src=tcorkarb8uupa9nguqf9l2fbsc%40group.calendar.google.com&amp;color=%238C500B&amp;src=icoufgc83qm32aer4nuc3k9fjo%40group.calendar.google.com&amp;color=%23865A5A&amp;src=947tekb6h7nna597d11unjk1s8%40group.calendar.google.com&amp;color=%23691426&amp;src=nagh4bsa00ql8r2b4fiv0acnro%40group.calendar.google.com&amp;color=%23853104&amp;src=7gmv5vo3g01qbuneqh3tq4b4a4%40group.calendar.google.com&amp;color=%2323164E&amp;ctz=America%2FLos_Angeles">
+                </iframe>
+
+                <h1><span dir="ltr">Book
+                your stay</span></h1><br>
+
+                <form id="bookingForm"
+                name="bookingForm" action="{% url 'booking' %}"
+                method="post">
+                    {% csrf_token %}
+                    <div class="bookingBlock">
+                    <b>Choose your rooms</b>
+                    {{ form.rooms }}
+                    {{ form.errors.rooms }}
+                    </div>
+                    <div class="bookingBlock">
+                    <b>Enter arrival and departure dates</b><br>
+                    {{ form.arrive }}<br>
+                    {{ form.errors.arrive }}
+                    {{ form.leave }}
+                    {% if not form.errors.leave %}
+                    <br>
+                    {% endif %}
+                    {{form.errors.leave}}
+                    <b>Extras?</b>
+                    {{ form.extra }}
+                    </div><br>
+                    <input id="bookingSubmit"
+					onmousedown=
+					"this.style.backgroundColor = 'rgba(13, 72, 118, 1)'"
+					onmouseout=
+					"this.style.backgroundColor = 'rgba(30, 105, 163, 1)'"
+					onmouseup=
+					"this.style.backgroundColor = 'rgba(30, 105, 163, 1)'"
+					type="submit" value=
+					"SUBMIT">
+                
+                </form><br>
+
+                <p id=
+                "bookingConfirmationMessage">
+                {% if message %}
+                    {{message}}
+                {% endif %}
+                </p>
+                <p id="bookingErrorMessages">
+                    {{form.non_field_errors}}
+                </p>
+                <img class='spinner'
+                id='bookingSpinner' src=
+                'http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'
+                style=
+                'visibility:hidden;height:100px;width:100px'></div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}
