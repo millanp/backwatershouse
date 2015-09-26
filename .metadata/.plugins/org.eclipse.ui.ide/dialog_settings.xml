@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="installedFeatures">
+		<item value="AnyEditTools:2.4.12.201502042042"/>
+		<item value="com.google.eclipse.mechanic:0.4.0"/>
+		<item value="org.eclipse.egit:3.6.0.201412230720-r"/>
+		<item value="org.eclipse.emf.common:2.10.1.v20150123-0348"/>
+		<item value="org.eclipse.emf.ecore:2.10.2.v20150123-0348"/>
+		<item value="org.eclipse.help:2.0.102.v20140925-0400"/>
+		<item value="org.eclipse.jdt:3.10.1.v20150204-1700"/>
+		<item value="org.eclipse.jgit:3.6.0.201412230720-r"/>
+		<item value="org.eclipse.pde:3.10.1.v20150204-1700"/>
+		<item value="org.eclipse.platform:4.4.0.v20140925-0400"/>
+		<item value="org.eclipse.rcp:4.4.0.v20140925-0400"/>
+		<item value="org.eclipse.scout.rt.client:4.0.200.20150218-0841"/>
+		<item value="org.eclipse.scout.rt.source:4.0.200.20150218-0841"/>
+		<item value="org.eclipse.scout.rt:4.0.200.20150218-0841"/>
+		<item value="org.eclipse.scout.sdk.rap.source:4.0.200.20150218-0841"/>
+		<item value="org.eclipse.scout.sdk.rap:4.0.200.20150218-0841"/>
+		<item value="org.eclipse.scout.sdk.source:4.0.200.20150218-0841"/>
+		<item value="org.eclipse.scout.sdk:4.0.200.20150218-0841"/>
+		<item value="org.python.pydev.feature:3.9.2.201502042042"/>
+	</list>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="/home/millan/ceawerpjo"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+</section>

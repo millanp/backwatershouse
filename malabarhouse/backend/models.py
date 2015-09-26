@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.forms.models import ModelForm
 from paypal.standard.forms import PayPalPaymentsForm
 from malabarhouse import settings
-import helpers
+from backend import helpers
 from django.core.urlresolvers import reverse
 # Create your models here.
 class Room(models.Model):

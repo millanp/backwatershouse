@@ -15,7 +15,7 @@ class BookingCreate(CreateView, LoginRequiredMixin):
         obj.save()
         return super(CreateView, self).form_valid(form)
 # Create your views here.
-class TemplateViewPlus(TemplateView, LoginRequiredMixin):
+class TemplateViewPlus(LoginRequiredMixin, TemplateView):
     template_name = "frontend/home.html"
     context = {}
     def get_context_data(self, **kwargs):

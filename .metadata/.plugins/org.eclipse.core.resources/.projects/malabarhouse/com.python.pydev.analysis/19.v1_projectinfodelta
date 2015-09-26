@@ -1,0 +1,9 @@
+INSTUPbackend.views
+/home/millan/ceawerpjo/malabarhouse/backend/views.py
+INFOS:&&1|1|2|0&&3|3|2|1&&3|4|2|1&&3|5|2|1&&3|6|2|1
+template_name=6
+form_class=4
+model=3
+BookingCreate=1
+backend.views=2
+success_url=5
