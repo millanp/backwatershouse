@@ -1,4 +1,5 @@
 *secret_settings.py*
+*db.sqlite*
 *.git/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
