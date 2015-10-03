@@ -3,4 +3,4 @@ EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'malabarhouse'
 EMAIL_HOST_PASSWORD = 'wKVZhCFL2QA'
 ADMINS = (('millan', 'millan.philipose@gmail.com'),)
-PAYPAL_BUSINESS = 'matthai.philipose-facilitator@gmail.com'
+PAYPAL_BUSINESS = 'matthai.philipose@gmail.com'
