@@ -1,6 +1,9 @@
+<<<<<<< HEAD
 *secret_settings.py*
 *db.sqlite*
 *.git/*
+=======
+>>>>>>> 71fd75cc5627c3b52ca284c866c7b59f1b31c6ca
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -32,7 +35,11 @@ var/
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
+<<<<<<< HEAD
 .metadata/
+=======
+
+>>>>>>> 71fd75cc5627c3b52ca284c866c7b59f1b31c6ca
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt

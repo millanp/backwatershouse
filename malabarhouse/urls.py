@@ -8,6 +8,5 @@ urlpatterns = patterns('',
     #url('^registration/', include('registration.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^backend/', include("backend.urls")),
-    url(r'^paypal/', include("paypal.standard.ipn.urls")),
     url(r'^', include("frontend.urls")),
 )
