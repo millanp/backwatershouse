@@ -5,6 +5,7 @@ from paypal.standard.forms import PayPalPaymentsForm
 from malabarhouse import settings
 from backend import helpers
 from django.core.urlresolvers import reverse
+from malabarhouse import settings
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -33,7 +34,7 @@ class Booking(models.Model):
             "quantity": "1",
             "currency_code": "USD",
             "env": "www.sandbox",
-            "notify_url": ""+reverse("paypal-ipn"), #TODO
+            "notify_url": settings.SITE_URL+reverse("paypal-ipn"), #TODO
             "custom": str(self.pk),
         }
         return PayPalPaymentsForm(initial=paypal_dict)
