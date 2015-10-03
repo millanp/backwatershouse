@@ -42,7 +42,7 @@ EMAIL_USE_TLS = True
 LOGIN_REDIRECT_URL = "/"
 PAYPAL_RECEIVER_EMAIL = secret_settings.PAYPAL_BUSINESS
 PAYPAL_TEST = True
-SITE_URL = "http://malabarhouse.herokuapp.com"
+SITE_URL = "https://malabarhouse.herokuapp.com"
 #SESSION_COOKIE_AGE = 30 #I should set this to a reasonable time, not 30 secs
 # Application definition
 
