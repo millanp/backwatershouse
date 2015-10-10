@@ -1,13 +1,13 @@
-from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_recieved
+from paypal.standard.ipn.signals import invalid_ipn_received
 from django.dispatch.dispatcher import receiver
 from paypal.standard.models import ST_PP_COMPLETED
 from backend.models import Booking
 import logging
-@receiver(valid_ipn_received)
-def callback(ipn_obj, **kwargs):
+#@receiver(valid_ipn_received)
+#def callback(ipn_obj, **kwargs):
 	
-    bookings = Booking.objects.all()
-    bookings.update(paid_for=True)
+#    bookings = Booking.objects.all()
+#    bookings.update(paid_for=True)
 #    logger = logging.getLogger('testlogger')
 #    logger.info('LOLOLOLOLOLOLOL LOLOLOLO LOLOLOLOLO LOLO LO LOLOLOLOLLOL')
 #    if ipn_obj.payment_status == ST_PP_COMPLETED:
