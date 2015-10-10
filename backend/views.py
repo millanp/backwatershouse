@@ -13,9 +13,9 @@ class BookingCreate(CreateView):
     template_name = 'frontend/booking.html'
 @csrf_exempt
 def paypal_processer(request):
-    send_mail('ff', 'ff', 'donotreply@mala.com', ['millan.philipose@gmail.com'])
-    b = Booking.objects.all()
+    reqDict = request.POST.dict()
+    b = Booking.objects.filter(pk=eval(reqDict['custom']))
     b.update(paid_for=True)
-    r = requests.post("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate&", params=request.POST.dict())
+    r = requests.post("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate&", params=reqDict)
     
     
