@@ -1,4 +1,4 @@
-from paypal.standard.ipn.signals import invalid_ipn_received
+from paypal.standard.ipn.signals import invalid_ipn_received, valid_ipn_received
 from django.dispatch.dispatcher import receiver
 from paypal.standard.models import ST_PP_COMPLETED
 from backend.models import Booking
