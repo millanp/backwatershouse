@@ -22,7 +22,7 @@ class TemplateViewPlus(LoginRequiredMixin, TemplateView):
         return self.context;
 @login_required
 def requestsView(request):
-
+    print 'displaying requests'
     return render(request, 
         'frontend/requests.html', 
         {'bookings':Booking.objects.filter(guest=request.user)},
