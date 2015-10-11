@@ -15,7 +15,7 @@ class BookingCreate(CreateView):
 def paypal_processer(request):
     reqDict = request.POST.dict()
     r = requests.post("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate&", params=reqDict)
-    print r.text()
+    print r.text
     
     b = Booking.objects.filter(pk=eval(reqDict['custom']))
     b.update(paid_for=True)
