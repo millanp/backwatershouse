@@ -5,6 +5,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 import requests
 from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
+from malabarhouse import settings
 # Create your views here.
 class BookingCreate(CreateView):
     model = Booking
@@ -15,10 +16,14 @@ class BookingCreate(CreateView):
 def paypal_processer(request):
     reqDict = request.POST.dict()
     r = requests.post("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate&", params=reqDict)
-    print r.text
-    
-    b = Booking.objects.filter(pk=eval(reqDict['custom']))
-    b.update(paid_for=True)
+    if r.text == "VERIFIED":
+        if settings.PAYPAL_TEST:
+            b = Booking.objects.filter(pk=eval(reqDict['custom']))
+            b.update(paid_for=True)
+        else:
+            if reqDict['payment_status'] == "Confirmed":
+                b = Booking.objects.filter(pk=eval(reqDict['custom']))
+                b.update(paid_for=True)
     
     
     
