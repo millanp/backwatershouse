@@ -3,8 +3,6 @@ from django.contrib import admin
 from django.contrib.auth import urls
 urlpatterns = patterns('',
     # Examples:
-    url(r'^accounts/login/$', 'django.contrib.auth.views.login',
-       {'template_name': 'admin/login.html'}),
     url('^', include(urls)),
     # url(r'^blog/', include('blog.urls')),
     #url('^registration/', include('registration.urls')),

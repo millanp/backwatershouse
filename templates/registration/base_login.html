@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href=" {% static 'frontend/gatewayStyle.css' %} ">
+    <div id='xeap'>
+    <div id='wrapper'>
+    <div class='boxed'>
+        {% block fields %}{% endblock %}
+        <div id='bottomlinks-wrapper'>
+            <p><a class='bottomlinks' >Don't have an account? Click here to register</a></p>
+            <p><a class='bottomlinks'>Forgot your password? Reset here.</a></p>
+            {% if form.errors %}
+            <p id="invalidCredentials">Invalid credentials! Try again.</p>
+            {% endif %}
+            <img style='visibility:hidden;height:100px;width:100px' class='spinner' id='myspinner' src='http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'>
+        </div>
+    </div>
+    </div>
+    </div> 
+</html> 
