@@ -3,6 +3,7 @@ from django.contrib import admin
 import django.contrib.auth.views as djviews
 urlpatterns = patterns('',
     # Examples:
+    url('^password_reset/$', djviews.password_reset),
     url('^', include('django.contrib.auth.urls')),
     # url(r'^blog/', include('blog.urls')),
     #url('^registration/', include('registration.urls')),
