@@ -16,7 +16,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 
 import os
-from malabarhouse import secret_settings
+
 import dj_database_url
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -24,23 +24,23 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secret_settings.SECRET_KEY
+SECRET_KEY = os.environ['SECRET_KEY'] 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 TEMPLATE_DEBUG = True
-ADMINS = secret_settings.ADMINS
+ADMINS = (('millan', 'millan.philipose@gmail.com'),)
 ALLOWED_HOSTS = ['*']
 REGISTRATION_NOTIFICATION_RECIPIENTS = [admin[1] for admin in ADMINS]
-EMAIL_HOST = secret_settings.EMAIL_HOST
-EMAIL_HOST_USER = secret_settings.EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = secret_settings.EMAIL_HOST_PASSWORD
+EMAIL_HOST = os.environ['EMAIL_HOST']
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 DEFAULT_FROM_EMAIL = 'donotreply@malabarhousereservations.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 LOGIN_REDIRECT_URL = "/"
-PAYPAL_RECEIVER_EMAIL = secret_settings.PAYPAL_BUSINESS
+PAYPAL_RECEIVER_EMAIL = os.environ['PAYPAL_BUSINESS']
 PAYPAL_TEST = True
 SITE_URL = "https://malabarhouse.herokuapp.com"
 #SESSION_COOKIE_AGE = 30 #I should set this to a reasonable time, not 30 secs

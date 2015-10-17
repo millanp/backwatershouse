@@ -1,1 +1,1 @@
-web: gunicorn malabarhouse.wsgi:application --log-file=-
+web: gunicorn malabarhouse.wsgi:application --log-file -
