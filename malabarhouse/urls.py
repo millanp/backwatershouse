@@ -1,10 +1,11 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-import django.contrib.auth.views as djviews
+from django.contrib.auth import urls
 urlpatterns = patterns('',
     # Examples:
-    url('^password_reset/$', djviews.password_reset),
-    url('^', include('django.contrib.auth.urls')),
+    url(r'^accounts/login/$', 'django.contrib.auth.views.login',
+       {'template_name': 'admin/login.html'}),
+    url('^', include(urls)),
     # url(r'^blog/', include('blog.urls')),
     #url('^registration/', include('registration.urls')),
     url(r'^admin/', include(admin.site.urls)),
