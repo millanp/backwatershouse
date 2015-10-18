@@ -11,6 +11,7 @@
     <input type="submit" value="Submit Account Request" id="sub" onmousedown="this.style.boxShadow = 'inset 0px 0px 17px 2px'" onmouseout="this.style.boxShadow = '0px 0px 0px 0px'" onmouseup="this.style.boxShadow = '0px 0px 0px 0px'">
     </p>
 </form>
+{{ form.errors }}
 {% endblock %}
 {% block bottomlinks %}
 <a class="bottomlinks">Back to login</a><br>
