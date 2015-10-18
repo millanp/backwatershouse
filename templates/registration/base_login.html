@@ -7,12 +7,13 @@
     <div class='boxed'>
         {% block fields %}{% endblock %}
         <div id='bottomlinks-wrapper'>
+            {% block bottomlinks %}
             <p><a class='bottomlinks' >Don't have an account? Click here to register</a></p>
             <p><a class='bottomlinks'>Forgot your password? Reset here.</a></p>
             {% if form.errors %}
             <p id="invalidCredentials">Something is wrong. Please try again.</p>
             {% endif %}
-            <img style='visibility:hidden;height:100px;width:100px' class='spinner' id='myspinner' src='http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'>
+            {% endblock %}
         </div>
     </div>
     </div>
