@@ -1,8 +1,17 @@
-FOOFO
+{% extends 'registration/base_login.html' %}
+{% block fields %}
 <form action="" method="post">
 <!--names: username, email1, email2 !-->
     {% csrf_token %}
-    {{ form.as_p }}
-    {{ supplement_form.as_p }}
-    <p><input type="submit" value="Register"></p>
+    <!--<p><input type="text" name="realname" placeholder=" Name" class="inputter" required></p>!-->
+    <p><input type="email" name="username" placeholder=" Email" class="inputter" required></p>
+    <p><input type="password" id="email1" name="password" placeholder=" Password" class="inputter" required></p>
+    <p><input type="password" name="email2" placeholder=" Reenter password" class="inputter" required></p>
+    <p>
+    <input type="submit" value="Submit Account Request" id="sub" onmousedown="this.style.boxShadow = 'inset 0px 0px 17px 2px'" onmouseout="this.style.boxShadow = '0px 0px 0px 0px'" onmouseup="this.style.boxShadow = '0px 0px 0px 0px'">
+    </p>
 </form>
+{% endblock %}
+{% block bottomlinks %}
+<a class="bottomlinks">Back to login</a><br>
+{% endblock %}
