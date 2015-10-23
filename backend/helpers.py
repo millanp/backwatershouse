@@ -1,5 +1,6 @@
 from django.core import mail
 from malabarhouse import settings
+from oauth2client.client import SignedJwtAssertionCredentials
 def notify_guests_booking_approved(bookings):
     for booking in bookings:
         booking.guest.email_user(
@@ -13,3 +14,6 @@ def humanize_list(xlist):
         return ""
     xlist = map(str, xlist)
     return ", ".join(xlist[:len(xlist)-1]) + " and " + xlist[len(xlist)-1]
+def calendar_test():
+#     credential = SignedJwtAssertionCredentials 
+    pass
