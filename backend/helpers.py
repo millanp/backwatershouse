@@ -1,6 +1,6 @@
 from django.core import mail
 from malabarhouse import settings
-from oauth2client.client import SignedJwtAssertionCredentials
+from oauth2client.client import SignedJwtAssertionCredentials, GoogleCredentials
 import os
 from httplib2 import Http
 from googleapiclient.discovery import build
@@ -21,10 +21,9 @@ def calendar_test():
 #     credential = SignedJwtAssertionCredentials 2015-12-23T07:00:00+07:00
     credential = SignedJwtAssertionCredentials(
         os.environ['GOOGLE_CLIENT_EMAIL'],
-        os.environ['GOOGLE_PRIVATE_KEY'],
+        os.environ['GOOGLE_PRIVATE_KEY'].encode(),
         'https://www.googleapis.com/auth/calendar',
     )
-    print os.environ['GOOGLE_PRIVATE_KEY']
     http_auth = credential.authorize(Http())
     calendarapi = build('calendar', 'v3', http=http_auth)
     event = {
