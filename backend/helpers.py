@@ -24,6 +24,7 @@ def calendar_test():
         os.environ['GOOGLE_PRIVATE_KEY'],
         'https://www.googleapis.com/auth/calendar',
     )
+    print os.environ['GOOGLE_PRIVATE_KEY']
     http_auth = credential.authorize(Http())
     calendarapi = build('calendar', 'v3', http=http_auth)
     event = {
