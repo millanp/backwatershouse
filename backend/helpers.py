@@ -1,6 +1,9 @@
 from django.core import mail
 from malabarhouse import settings
 from oauth2client.client import SignedJwtAssertionCredentials
+import os
+from httplib2 import Http
+from googleapiclient.discovery import build
 def notify_guests_booking_approved(bookings):
     for booking in bookings:
         booking.guest.email_user(
@@ -15,5 +18,23 @@ def humanize_list(xlist):
     xlist = map(str, xlist)
     return ", ".join(xlist[:len(xlist)-1]) + " and " + xlist[len(xlist)-1]
 def calendar_test():
-#     credential = SignedJwtAssertionCredentials 
-    pass
+#     credential = SignedJwtAssertionCredentials 2015-12-23T07:00:00+07:00
+    credential = SignedJwtAssertionCredentials(
+        os.environ['GOOGLE_CLIENT_EMAIL'],
+        os.environ['GOOGLE_PRIVATE_KEY'],
+        'https://www.googleapis.com/auth/calendar',
+    )
+    http_auth = credential.authorize(Http())
+    calendarapi = build('calendar', 'v3', http=http_auth)
+    event = {
+        'summary': '(roomOnCalendarEvent)',
+        'location': 'Malabar House',
+        'start': {
+            'date':'startDate.toISOString().slice(0,10)',
+        },
+        'end': {
+            'date':'2015-12-23T07:00:00+07:00',
+        },
+   
+    }
+    calendarapi.events().insert('icoufgc83qm32aer4nuc3k9fjo@group.calendar.google.com', event)
