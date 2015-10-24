@@ -30,7 +30,7 @@ def calendar_testget():
     calapi = cal_api()
     cal_list = calapi.calendarList().list(minAccessRole="writer").execute()
     for cal in cal_list:
-        print cal['summary']
+        print cal
 def calendar_testev():
 #     credential = SignedJwtAssertionCredentials 2015-12-23T07:00:00+07:00
     credential = SignedJwtAssertionCredentials(
