@@ -30,10 +30,10 @@ def calendar_test():
         'summary': '(roomOnCalendarEvent)',
         'location': 'Malabar House',
         'start': {
-            'date':'startDate.toISOString().slice(0,10)',
+            'date':'2015-12-23T07:00:00+07:00',
         },
         'end': {
-            'date':'2015-12-23T07:00:00+07:00',
+            'date':'2015-12-24T08:29:21+07:00',
         },
    
     }
