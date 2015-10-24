@@ -16,6 +16,8 @@ class Room(models.Model):
     blurb = models.TextField(max_length=700)
     def __str__(self):
         return "Room "+str(self.number)
+    def get_booking_calendar_id(self):
+        pass
 class Booking(models.Model):
     guest = models.ForeignKey(User)
     arrive = models.DateField()
