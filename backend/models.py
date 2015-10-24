@@ -10,6 +10,7 @@ import os
 from oauth2client.client import SignedJwtAssertionCredentials
 from googleapiclient.discovery import build
 from httplib2 import Http
+from backend.helpers import cal_api
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -17,7 +18,10 @@ class Room(models.Model):
     def __str__(self):
         return "Room "+str(self.number)
     def get_booking_calendar_id(self):
-        pass
+        calendarapi = cal_api()
+        cal_list = calendarapi.calendarList().list(minAccessRole="writer").execute()
+        for cal in cal_list:
+            print cal['summary']
 class Booking(models.Model):
     guest = models.ForeignKey(User)
     arrive = models.DateField()

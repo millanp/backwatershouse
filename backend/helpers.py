@@ -17,7 +17,21 @@ def humanize_list(xlist):
         return ""
     xlist = map(str, xlist)
     return ", ".join(xlist[:len(xlist)-1]) + " and " + xlist[len(xlist)-1]
-def calendar_test():
+def cal_api():
+    credential = SignedJwtAssertionCredentials(
+        os.environ['GOOGLE_CLIENT_EMAIL'],
+        os.environ['GOOGLE_PRIVATE_KEY'].encode(),
+        'https://www.googleapis.com/auth/calendar',
+    )
+    http_auth = credential.authorize(Http())
+    calendarapi = build('calendar', 'v3', http=http_auth)
+    return calendarapi
+def calendar_testget():
+    calapi = cal_api()
+    cal_list = calapi.calendarList().list(minAccessRole="writer").execute()
+    for cal in cal_list:
+        print cal['summary']
+def calendar_testev():
 #     credential = SignedJwtAssertionCredentials 2015-12-23T07:00:00+07:00
     credential = SignedJwtAssertionCredentials(
         os.environ['GOOGLE_CLIENT_EMAIL'],
