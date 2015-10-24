@@ -28,7 +28,7 @@ def cal_api():
     return calendarapi
 def calendar_testget():
     calapi = cal_api()
-    cal_list = calapi.calendarList().list(minAccessRole="writer").execute()
+    cal_list = calapi.calendarList().list(minAccessRole="reader").execute()
     for cal in cal_list['items']:
         print cal['summary']
 def calendar_testev():
