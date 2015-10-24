@@ -37,4 +37,4 @@ def calendar_test():
         },
    
     }
-    calendarapi.events().insert('icoufgc83qm32aer4nuc3k9fjo@group.calendar.google.com', event)
+    calendarapi.events().insert('icoufgc83qm32aer4nuc3k9fjo@group.calendar.google.com', event).execute()
