@@ -43,7 +43,15 @@ def calendar_test_create_share():
     newcal = {
         'summary':'DEEZ CAL',
     }
-    calapi.calendars().insert(body=newcal).execute()
+    calresource = calapi.calendars().insert(body=newcal).execute()
+    aclrule = {
+        'role':'owner',
+        'scope':{
+            'type':'owner',
+            'value':'millan.philipose@gmail.com'
+        }
+    }
+    x = calapi.acl().insert(calendarId=calresource['id'], body=aclrule).execute()
 def calendar_testev():
 #     credential = SignedJwtAssertionCredentials 2015-12-23T07:00:00+07:00
 
