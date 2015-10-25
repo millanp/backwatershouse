@@ -47,7 +47,7 @@ def calendar_test_create_share():
     aclrule = {
         'role':'owner',
         'scope':{
-            'type':'owner',
+            'type':'user',
             'value':'millan.philipose@gmail.com'
         }
     }
