@@ -38,6 +38,12 @@ def calendar_testget():
     print cal_list
     for cal in cal_list['items']:
         print cal['summary']
+def calendar_test_create_share():
+    calapi = cal_api()
+    newcal = {
+        'summary':'DEEZ CAL',
+    }
+    calapi.calendars().insert(body=newcal).execute()
 def calendar_testev():
 #     credential = SignedJwtAssertionCredentials 2015-12-23T07:00:00+07:00
 
