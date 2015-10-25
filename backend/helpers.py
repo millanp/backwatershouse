@@ -35,6 +35,7 @@ def calendar_testget():
     http_auth = credential.authorize(Http())
     calapi = build('calendar', 'v3', http=http_auth)
     cal_list = calapi.calendarList().list(minAccessRole="reader").execute()
+    print cal_list
     for cal in cal_list['items']:
         print cal['summary']
 def calendar_testev():
