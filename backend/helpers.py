@@ -3,7 +3,8 @@ from malabarhouse import settings
 from oauth2client.client import SignedJwtAssertionCredentials, GoogleCredentials
 import os
 from httplib2 import Http
-from googleapiclient.discovery import build
+from googleapiclient.discovery import build, HttpError
+from django.utils.datetime_safe import time
 def notify_guests_booking_approved(bookings):
     for booking in bookings:
         booking.guest.email_user(

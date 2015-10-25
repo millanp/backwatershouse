@@ -15,8 +15,26 @@ from backend.helpers import cal_api
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
     blurb = models.TextField(max_length=700)
+    def __init__(self, *args, **kwargs):
+        
+        models.Model.__init__(self, *args, **kwargs)
     def __str__(self):
         return "Room "+str(self.number)
+    def create_calendars(self):
+        calapi = cal_api()
+        newcals = [
+            {'summary':str(self),},
+            {'summary':'Requests for'+str(self)}
+        ]
+        calresources = [calapi.calendars().insert(body=newcal).execute() for newcal in newcals]
+        aclrule = {
+            'role':'owner',
+            'scope':{
+                'type':'user',
+                'value':'millan.philipose@gmail.com'
+            }
+        }
+        x = [calapi.acl().insert(calendarId=calresource['id'], body=aclrule).execute() for calresource in calresources]
     def get_booking_calendar_id(self):
         calendarapi = cal_api()
         cal_list = calendarapi.calendarList().list(minAccessRole="writer").execute()
