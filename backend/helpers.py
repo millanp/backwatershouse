@@ -40,13 +40,8 @@ def calendar_testget():
         print cal['summary']
 def calendar_testev():
 #     credential = SignedJwtAssertionCredentials 2015-12-23T07:00:00+07:00
-    credential = SignedJwtAssertionCredentials(
-        os.environ['GOOGLE_CLIENT_EMAIL'],
-        os.environ['GOOGLE_PRIVATE_KEY'].encode(),
-        'https://www.googleapis.com/auth/calendar',
-    )
-    http_auth = credential.authorize(Http())
-    calendarapi = build('calendar', 'v3', http=http_auth)
+
+    calendarapi = cal_api()
     event = {
         'summary': '(roomOnCalendarEvent)',
         'location': 'Malabar House',

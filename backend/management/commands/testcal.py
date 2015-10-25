@@ -4,4 +4,4 @@ class Command(BaseCommand):
     help = 'tests the google calendar api implementation'
     def handle(self, *args, **options):
 #         helpers.calendar_testev()
-        helpers.calendar_testget()
+        helpers.calendar_testev()
