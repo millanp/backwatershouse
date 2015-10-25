@@ -27,7 +27,13 @@ def cal_api():
     calendarapi = build('calendar', 'v3', http=http_auth)
     return calendarapi
 def calendar_testget():
-    calapi = cal_api()
+    credential = SignedJwtAssertionCredentials(
+        os.environ['GOOGLE_CLIENT_EMAIL'],
+        os.environ['GOOGLE_PRIVATE_KEY'].encode(),
+        'https://www.googleapis.com/auth/calendar',
+    )
+    http_auth = credential.authorize(Http())
+    calapi = build('calendar', 'v3', http=http_auth)
     cal_list = calapi.calendarList().list(minAccessRole="reader").execute()
     for cal in cal_list['items']:
         print cal['summary']
