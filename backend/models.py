@@ -26,6 +26,7 @@ class Room(models.Model):
         cal_list = calendarapi.calendarList().list(minAccessRole="writer").execute()
         for cal in cal_list:
             print cal['summary']
+
 def create_calendars(sender, instance, created, **kwargs):
     if created:
         calapi = cal_api()

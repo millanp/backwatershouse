@@ -21,7 +21,7 @@ class BookingAdmin(admin.ModelAdmin):
                     'extra', 'approved', 'payment_required', 'paid_for')
     actions = [set_approved_fee, set_approved_free]
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
+    list_display = ('__str__', 'request_cal_id', 'booking_cal_id')
     actions = [create_calendars]
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(Room, RoomAdmin)
