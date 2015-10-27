@@ -88,6 +88,8 @@ class Booking(models.Model):
             "custom": str(self.pk),
         }
         return PayPalPaymentsForm(initial=paypal_dict)
+    def approve(self):
+        pass
 class BookingForm(ModelForm):
     class Meta():
         model = Booking
