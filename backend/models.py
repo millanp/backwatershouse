@@ -42,6 +42,7 @@ def create_calendars(sender, instance, created, **kwargs):
                 'value':'millan.philipose@gmail.com'
             }
         }
+        instance.update(booking_cal_id=calresources[0], request_cal_id=calresources[1])
         x = [calapi.acl().insert(calendarId=calresource['id'], body=aclrule).execute() for calresource in calresources]
 post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
