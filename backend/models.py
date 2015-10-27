@@ -27,7 +27,7 @@ class Room(models.Model):
         for cal in cal_list:
             print cal['summary']
 def create_calendars(sender, instance, created, **kwargs):
-    if not created:
+    if created:
         calapi = cal_api()
         newcals = [
             {'summary':str(instance),},
