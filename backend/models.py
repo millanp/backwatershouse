@@ -28,8 +28,8 @@ class Room(models.Model):
             print cal['summary']
 def delete_calendars(sender, instance, using, **kwargs):
     calapi = cal_api()
-    calapi.calendars().delete(calendarId=instance.booking_cal_id).execute()
-    calapi.calendars().delete(calendarId=instance.request_cal_id).execute()
+    calapi.calendars().delete(calendarId=instance.booking_cal_id.strip()).execute()
+    calapi.calendars().delete(calendarId=instance.request_cal_id.strip()).execute()
 pre_delete.connect(delete_calendars, sender=Room)
 def create_calendars(sender, instance, created, **kwargs):
     if created:
