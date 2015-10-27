@@ -18,9 +18,7 @@ class Room(models.Model):
     blurb = models.TextField(max_length=700)
     request_cal_id = models.TextField()
     booking_cal_id = models.TextField()
-    def __init__(self, *args, **kwargs):
-        
-        models.Model.__init__(self, *args, **kwargs)
+    rand = models.NullBooleanField()
     def __str__(self):
         return "Room "+str(self.number)
     def get_booking_calendar_id(self):
