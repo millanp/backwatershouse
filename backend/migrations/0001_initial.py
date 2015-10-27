@@ -33,7 +33,6 @@ class Migration(migrations.Migration):
                 ('blurb', models.TextField(max_length=700)),
                 ('request_cal_id', models.TextField()),
                 ('booking_cal_id', models.TextField()),
-                ('random', models.BooleanField()),
             ],
         ),
         migrations.AddField(

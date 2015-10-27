@@ -11,10 +11,6 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='room',
-            name='random',
-        ),
         migrations.AddField(
             model_name='room',
             name='rand',
