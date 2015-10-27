@@ -11,7 +11,7 @@ from oauth2client.client import SignedJwtAssertionCredentials
 from googleapiclient.discovery import build
 from httplib2 import Http
 from backend.helpers import cal_api
-from django.db.models.signals import post_save, post_init
+from django.db.models.signals import post_save, post_init, pre_delete
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -26,7 +26,11 @@ class Room(models.Model):
         cal_list = calendarapi.calendarList().list(minAccessRole="writer").execute()
         for cal in cal_list:
             print cal['summary']
-
+def delete_calendars(sender, instance, using, **kwargs):
+    calapi = cal_api()
+    calapi.calendars().delete(instance.booking_cal_id).execute()
+    calapi.calendars().delete(instance.request_cal_id).execute()
+pre_delete.connect(delete_calendars, sender=Room)
 def create_calendars(sender, instance, created, **kwargs):
     if created:
         calapi = cal_api()
