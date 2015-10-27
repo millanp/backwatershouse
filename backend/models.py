@@ -44,6 +44,7 @@ def create_calendars(sender, instance, created, **kwargs):
         }
         instance.booking_cal_id = calresources[0]['id'] 
         instance.request_cal_id = calresources[1]['id']
+        instance.save()
         x = [calapi.acl().insert(calendarId=calresource['id'], body=aclrule).execute() for calresource in calresources]
 post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
