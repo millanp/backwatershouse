@@ -26,22 +26,23 @@ class Room(models.Model):
         cal_list = calendarapi.calendarList().list(minAccessRole="writer").execute()
         for cal in cal_list:
             print cal['summary']
-def create_calendars(sender, instance, **kwargs):
-    calapi = cal_api()
-    newcals = [
-        {'summary':str(instance),},
-        {'summary':'Requests for '+str(instance)}
-    ]
-    calresources = [calapi.calendars().insert(body=newcal).execute() for newcal in newcals]
-    aclrule = {
-        'role':'owner',
-        'scope':{
-            'type':'user',
-            'value':'millan.philipose@gmail.com'
+def create_calendars(sender, instance, created, **kwargs):
+    if not created:
+        calapi = cal_api()
+        newcals = [
+            {'summary':str(instance),},
+            {'summary':'Requests for '+str(instance)}
+        ]
+        calresources = [calapi.calendars().insert(body=newcal).execute() for newcal in newcals]
+        aclrule = {
+            'role':'owner',
+            'scope':{
+                'type':'user',
+                'value':'millan.philipose@gmail.com'
+            }
         }
-    }
-    x = [calapi.acl().insert(calendarId=calresource['id'], body=aclrule).execute() for calresource in calresources]
-post_init.connect(create_calendars, sender=Room)
+        x = [calapi.acl().insert(calendarId=calresource['id'], body=aclrule).execute() for calresource in calresources]
+post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
     guest = models.ForeignKey(User)
     arrive = models.DateField()
