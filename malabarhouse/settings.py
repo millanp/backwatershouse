@@ -91,7 +91,6 @@ INSTALLED_APPS = (
     'backend',
     'multiselectfield',
     'paypal.standard.ipn',
-    'dajaxice',
 )
 
 MIDDLEWARE_CLASSES = (
