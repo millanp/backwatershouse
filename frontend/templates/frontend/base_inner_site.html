@@ -6,14 +6,14 @@
     <meta name="keywords" content="" />
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500,900' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="frontend/js/skel.min.js"></script>
+    <script src="{% static 'frontend/js/skel.min.js' %}"></script>
     <script src="{% static 'frontend/js/skel-panels.min.js' %}"></script>
     <script src="{% static 'frontend/js/init.js' %}"></script>
-    <noscript>
+    
         <link rel="stylesheet" href="{% static 'frontend/css/skel-noscript.css' %} />
         <link rel="stylesheet" href="{% static 'frontend/css/style.css' %}" />
         <link rel="stylesheet" href="{% static 'frontend/css/style-desktop.css' %}" />
-    </noscript>
+    
 </head>
 {% block content %}{% endblock %}
 <
