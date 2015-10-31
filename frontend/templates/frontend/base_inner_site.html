@@ -5,7 +5,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'frontend/added.css' %}">
     <script src="{% static 'frontend/jquery-1.11.3.min.js' %}"></script>
 </head>
-<body>
+{% block content %}{% endblock %}
+<!--<body>
     <div id="bodyWrapperForBackground">
         <div id="sites-page-toolbar" class="sites-header-divider">
             <div xmlns="http://www.w3.org/1999/xhtml" id="sites-status"
@@ -49,11 +50,11 @@
                                                     <li class="{% block home_select %}unselected{% endblock %}" id="smallHome"><a
                                                         class="sites-navigation-link current"
                                                         href="{% url 'home' %}"
-                                                        >Home</a></li> <!--onclick was onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('smallHome', '<?=token?>')"!-->
+                                                        >Home</a></li> <!--onclick was onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('smallHome', '<?=token?>')"!-/->
                                                     <li class="{% block rooms_select %}unselected{% endblock %}" id="rooms"><a
                                                         class="sites-navigation-link unselected"
                                                         
-                                                        >The <!--onclick was onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('rooms', '<?=token?>')" !-->
+                                                        >The <!--onclick was onclick="select(this.parentNode); startSmallerSpinner(); google.script.run.withSuccessHandler(writePageString).givePage('rooms', '<?=token?>')" !-/->
                                                             Rooms</a></li>
                                                     <li class="{% block requests_select %}unselected{% endblock %}" id="myRequests">
                                                       <a class="sites-navigation-link unselected" href="{% url 'requests' %}">
@@ -115,3 +116,4 @@
             </div>
         </div>
     </div>
+-->
