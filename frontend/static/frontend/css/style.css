@@ -986,7 +986,7 @@
 	{
 		position: relative;
 		text-align: center;
-		background: url(/static/frontend/images/header.jpg) no-repeat center center;
+		background: url(/static/frontend/images/header.jpg) no-repeat top center;
 		background-attachment: fixed;
 		background-size: cover;
 	}
