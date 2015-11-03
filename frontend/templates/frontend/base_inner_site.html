@@ -12,10 +12,11 @@
     <script src="{% static 'frontend/js/skel.min.js' %}"></script>
     <script src="{% static 'frontend/js/skel-panels.min.js' %}"></script>
     <script src="{% static 'frontend/js/init.js' %}"></script>
-    <script>
-	document.getElementById("skel-panels-defaultWrapper").parentNode.removeChild(document.getElementById("skel-panels-defaultWrapper"))
-    </script>
+
     
     
 </head>
 {% block content %}{% endblock %}
+    <script>
+	document.getElementById("skel-panels-defaultWrapper").parentNode.removeChild(document.getElementById("skel-panels-defaultWrapper"))
+    </script>
