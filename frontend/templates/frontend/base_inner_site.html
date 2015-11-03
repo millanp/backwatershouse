@@ -18,5 +18,8 @@
 </head>
 {% block content %}{% endblock %}
     <script>
-	document.getElementById("skel-panels-defaultWrapper").parentNode.removeChild(document.getElementById("skel-panels-defaultWrapper"))
+	$(document).ready(function() {
+	    $("#skel-panels-defaultWrapper").remove();
+	});
+	
     </script>
