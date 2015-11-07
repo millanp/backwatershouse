@@ -12,7 +12,7 @@ from googleapiclient.discovery import build
 from httplib2 import Http
 from backend.helpers import cal_api
 from django.db.models.signals import post_save, post_init, pre_delete
-from datetime import timedelta
+from datetime import timedelta, datetime
 from django.core.exceptions import ValidationError
 # Create your models here.
 class Room(models.Model):
@@ -70,6 +70,8 @@ class Booking(models.Model):
         if (self.leave - self.arrive).total_seconds() < 0:
             raise ValidationError('Arrival time is after departure time')
         #check that booking is not in the past
+        if (self.arrive - datetime.now()).total_seconds() < 0:
+            pass
         #check that booking is not already reserved at all
         pass
     def nice_rooms(self):
