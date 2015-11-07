@@ -63,6 +63,11 @@ class Booking(models.Model):
     def __init__(self, *args, **kwargs):
         self.add_request_to_google()
         models.Model.__init__(self, *args, **kwargs)
+    def clean(self):
+        #check that arrive is before leave
+        #check that booking is not in the past
+        #check that booking is not already reserved at all
+        pass
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms"
@@ -91,7 +96,9 @@ class Booking(models.Model):
     def approve(self):
         pass
 class BookingForm(ModelForm):
+    
     class Meta():
         model = Booking
         fields = "__all__"
         exclude = ['guest']
+    
