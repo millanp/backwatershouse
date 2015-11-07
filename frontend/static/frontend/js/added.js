@@ -8,6 +8,9 @@ $(document).ready(function() {
             success: function(data) {
                 alert(data);
             },
+            error: function() {
+                alert("WRONG");
+            }
         });
     });
 });
