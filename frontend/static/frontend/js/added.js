@@ -6,7 +6,7 @@ $(document).ready(function() {
             type:'POST',
             data: $('#bookingForm').serialize(),
             success: function(data) {
-                alert("FOOFA");
+                alert(data);
             },
         });
     });
