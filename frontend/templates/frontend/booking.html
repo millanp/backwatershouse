@@ -53,7 +53,11 @@
                             <h2>Book a room</h2>
                         </header>
                         <div class="row">
-                            {{ form.as_p }}
+                            <form id="bookingForm">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit" value="Submit">    
+                            </form>
                             <section class="6u">
                                 <ul class="default">
                                     <li><a href="#">Donec facilisis tempor</a></li>
