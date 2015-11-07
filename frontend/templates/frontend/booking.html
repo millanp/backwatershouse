@@ -1,74 +1,125 @@
-{% extends "frontend/base_inner_site.html" %}
-{% block booking_select %}selected{% endblock %}
-{% block content %}
-<table cellspacing="0" class=
-"sites-layout-name-one-column sites-layout-hbox"
-xmlns="http://www.w3.org/1999/xhtml">
-    <tbody>
-        <tr>
-            <td class=
-            "sites-layout-tile sites-tile-name-content-1">
-            <div dir="ltr" id=
-            "bookingFormWrapper">
-                <h1><span dir="ltr" id=
-                "sites-page-title">Choose a
-                date</span></h1><br>
-                <iframe src=
-                "https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.google.com&amp;color=%2342104A&amp;src=nbc712s896fhv76pe8fl95o718%40group.calendar.google.com&amp;color=%23125A12&amp;src=vt8cbiploefrp3492ji1be25f0%40group.calendar.google.com&amp;color=%236B3304&amp;src=tcorkarb8uupa9nguqf9l2fbsc%40group.calendar.google.com&amp;color=%238C500B&amp;src=icoufgc83qm32aer4nuc3k9fjo%40group.calendar.google.com&amp;color=%23865A5A&amp;src=947tekb6h7nna597d11unjk1s8%40group.calendar.google.com&amp;color=%23691426&amp;src=nagh4bsa00ql8r2b4fiv0acnro%40group.calendar.google.com&amp;color=%23853104&amp;src=7gmv5vo3g01qbuneqh3tq4b4a4%40group.calendar.google.com&amp;color=%2323164E&amp;ctz=America%2FLos_Angeles">
-                </iframe>
+<body>
 
-                <h1><span dir="ltr">Book
-                your stay</span></h1><br>
+<!-- Header -->
+    <div id="header">
+        <div id="nav-wrapper"> 
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Homepage</a></li>
+                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
+                    <li class="active"><a href="right-sidebar.html">Right Sidebar</a></li>
+                    <li><a href="no-sidebar.html">No Sidebar</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="container"> 
+            
+            <!-- Logo -->
+            <div id="logo">
+                <h1><a href="#">Linear</a></h1>
+                <span class="tag">By TEMPLATED</span>
+            </div>
+        </div>
+    </div>
+<!-- Header --> 
 
-                <form id="bookingForm"
-                name="bookingForm" action="{% url 'booking' %}"
-                method="post">
-                    {% csrf_token %}
-                    <div class="bookingBlock">
-                    <b>Choose your rooms</b>
-                    {{ form.rooms }}
-                    {{ form.errors.rooms }}
-                    </div>
-                    <div class="bookingBlock">
-                    <b>Enter arrival and departure dates</b><br>
-                    {{ form.arrive }}<br>
-                    {{ form.errors.arrive }}
-                    {{ form.leave }}
-                    {% if not form.errors.leave %}
-                    <br>
-                    {% endif %}
-                    {{form.errors.leave}}
-                    <b>Extras?</b>
-                    {{ form.extra }}
-                    </div><br>
-                    <input id="bookingSubmit"
-					onmousedown=
-					"this.style.backgroundColor = 'rgba(13, 72, 118, 1)'"
-					onmouseout=
-					"this.style.backgroundColor = 'rgba(30, 105, 163, 1)'"
-					onmouseup=
-					"this.style.backgroundColor = 'rgba(30, 105, 163, 1)'"
-					type="submit" value=
-					"SUBMIT">
+<!-- Main -->
+    <div id="main">
+        <div class="container">
+            <div class="row">
+
+                <!-- Content -->
+                <div id="content" class="8u skel-cell-important">
+                    <section style="text-align:center">
+                        <header>
+                            <h2>Booking Calendar</h2>
+                            <span class="byline">Check here to find available dates</span>
+                        </header>
+                        <iframe class="bookingCalendar" src=
+            "https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.google.com&amp;color=%2342104A&amp;src=nbc712s896fhv76pe8fl95o718%40group.calendar.google.com&amp;color=%23125A12&amp;src=vt8cbiploefrp3492ji1be25f0%40group.calendar.google.com&amp;color=%236B3304&amp;src=tcorkarb8uupa9nguqf9l2fbsc%40group.calendar.google.com&amp;color=%238C500B&amp;src=icoufgc83qm32aer4nuc3k9fjo%40group.calendar.google.com&amp;color=%23865A5A&amp;src=947tekb6h7nna597d11unjk1s8%40group.calendar.google.com&amp;color=%23691426&amp;src=nagh4bsa00ql8r2b4fiv0acnro%40group.calendar.google.com&amp;color=%23853104&amp;src=7gmv5vo3g01qbuneqh3tq4b4a4%40group.calendar.google.com&amp;color=%2323164E&amp;ctz=America%2FLos_Angeles"></iframe>
+                        <p>Donec nonummy magna quis risus. Quisque eleifend. Maecenas pede nisl, elementum eu, ornare ac, malesuada at, erat. Proin gravida orci porttitor enim accumsan lacinia. Donec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit.</p>
+                        <p>Maecenas pede nisl, elementum eu, ornare ac, malesuada at, erat. Proin gravida orci porttitor enim accumsan lacinia. Donec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Donec nonummy magna quis risus. Quisque eleifend. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit.</p>
+                        <p>Donec nonummy magna quis risus. Quisque eleifend. Maecenas pede nisl, elementum eu, ornare ac, malesuada at, erat. Proin gravida orci porttitor enim accumsan lacinia. Donec condimentum, urna non molestie semper, ligula enim ornare nibh, quis laoreet eros quam eget ante. Aliquam libero. Vivamus nisl nibh, iaculis vitae, viverra sit amet, ullamcorper vitae, turpis. Aliquam erat volutpat. Vestibulum dui sem, pulvinar sed, imperdiet nec, iaculis nec, leo. Fusce odio. Etiam arcu dui, faucibus eget, placerat vel, sodales eget, orci. Donec ornare neque ac sem. Mauris aliquet. Aliquam sem leo, vulputate sed, convallis at, ultricies quis, justo. Phasellus tempor vehicula justo. Aliquam lacinia metus ut elit.</p>
+                    </section>
+                </div>
+
+                <!-- Sidebar -->
+                <div id="sidebar" class="4u">
+                    <section>
+                        <header>
+                            <h2>Book a room</h2>
+                        </header>
+                        <div class="row">
+                            {{form}}
+                            <section class="6u">
+                                <ul class="default">
+                                    <li><a href="#">Donec facilisis tempor</a></li>
+                                    <li><a href="#">Nulla convallis cursus</a></li>
+                                    <li><a href="#">Integer congue euismod</a></li>
+                                    <li><a href="#">Venenatis vulputate</a></li>
+                                    <li><a href="#">Morbi ligula volutpat</a></li>
+                                </ul>
+                            </section>
+                        </div>
+                    </section>
+                    <section>
+                        <header>
+                            <h2>Mauris vulputate</h2>
+                        </header>
+                        <ul class="style">
+                            <li>
+                                <p class="posted">May 21, 2014  |  (10 )  Comments</p>
+                                <p><a href="#">Nullam non wisi a sem eleifend. Donec mattis libero eget urna. Pellentesque viverra enim.</a></p>
+                            </li>
+                            <li>
+                                <p class="posted">May 18, 2014  |  (10 )  Comments</p>
+                                <p><a href="#">Nullam non wisi a sem eleifend. Donec mattis libero eget urna. Pellentesque viverra enim.</a></p>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
                 
-                </form><br>
+            </div>
+        </div>
+    </div>
+<!-- /Main -->
 
-                <p id=
-                "bookingConfirmationMessage">
-                {% if message %}
-                    {{message}}
-                {% endif %}
-                </p>
-                <p id="bookingErrorMessages">
-                    {{form.non_field_errors}}
-                </p>
-                <img class='spinner'
-                id='bookingSpinner' src=
-                'http://s11.postimg.org/pvpn1xkun/ezgif_com_crop.gif'
-                style=
-                'visibility:hidden;height:100px;width:100px'></div>
-            </td>
-        </tr>
-    </tbody>
-</table>
-{% endblock %}
+<!-- Tweet -->
+    <div id="tweet">
+        <div class="container">
+            <section>
+                <blockquote>&ldquo;In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat.&rdquo;</blockquote>
+            </section>
+        </div>
+    </div>
+<!-- /Tweet -->
+
+<!-- Footer -->
+    <div id="footer">
+        <div class="container">
+            <section>
+                <header>
+                    <h2>Get in touch</h2>
+                    <span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
+                </header>
+                <ul class="contact">
+                    <li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
+                    <li class="active"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
+                    <li><a href="#" class="fa fa-dribbble"><span>Pinterest</span></a></li>
+                    <li><a href="#" class="fa fa-tumblr"><span>Google+</span></a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+<!-- /Footer -->
+
+<!-- Copyright -->
+    <div id="copyright">
+        <div class="container">
+            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
+        </div>
+    </div>
+
+
+</body>
