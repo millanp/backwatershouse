@@ -31,7 +31,7 @@ class AjaxableResponseMixin(object):
             return JsonResponse(data)
         else:
             return response
-class BookingCreate(CreateView, AjaxableResponseMixin, LoginRequiredMixin):
+class BookingCreate(AjaxableResponseMixin, CreateView, LoginRequiredMixin):
     form_class = BookingForm
     success_url = '/booking'
     template_name = 'frontend/booking.html'
