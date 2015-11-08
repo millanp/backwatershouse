@@ -12,9 +12,10 @@ from googleapiclient.discovery import build
 from httplib2 import Http
 from backend.helpers import cal_api
 from django.db.models.signals import post_save, post_init, pre_delete
-from datetime import timedelta, datetime
+from datetime import timedelta, datetime, date
 from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields.ranges import DateRangeField
+from psycopg2._range import DateRange
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -67,6 +68,7 @@ class Booking(models.Model):
     paid_for = models.BooleanField(default=True)
     def __init__(self, *args, **kwargs):
         self.add_request_to_google()
+        self.stay = DateRange(lower=)
         models.Model.__init__(self, *args, **kwargs)
     def clean(self):
         #check that arrive is before leave
@@ -105,6 +107,11 @@ class Booking(models.Model):
         return PayPalPaymentsForm(initial=paypal_dict)
     def approve(self):
         pass
+def fill_stay(sender, instance, created, **kwargs):
+    if created:
+        instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
+        instance.save()
+post_save.connect(fill_stay, sender=Booking)
 class BookingForm(ModelForm):
     
     class Meta():
