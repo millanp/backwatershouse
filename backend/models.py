@@ -14,6 +14,7 @@ from backend.helpers import cal_api
 from django.db.models.signals import post_save, post_init, pre_delete
 from datetime import timedelta, datetime
 from django.core.exceptions import ValidationError
+from django.contrib.postgres.fields.ranges import DateRangeField
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -55,8 +56,7 @@ def create_calendars(sender, instance, created, **kwargs):
 post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
     guest = models.ForeignKey(User)
-    arrive = models.DateField()
-    leave = models.DateField()
+    stay = DateRangeField(null=True)
     rooms = models.ManyToManyField(Room)
     extra = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
@@ -67,18 +67,19 @@ class Booking(models.Model):
         models.Model.__init__(self, *args, **kwargs)
     def clean(self):
         #check that arrive is before leave
-        if (self.leave - self.arrive).total_seconds() < 0:
+        if self.stay.lower > self.stay.upper:
             raise ValidationError('Arrival time is after departure time')
         #check that booking is not in the past
-        if (self.arrive - datetime.now()).total_seconds() < 0:
-            pass
+        if self.stay.lower < datetime.now():
+            raise ValidationError('Booking is in the past')
         #check that booking is not already reserved at all
+        
         pass
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms"
     def short_description(self):
-        return "A visit to " + str(self.nice_rooms()) + " from " + str(self.arrive) + " to " + str(self.leave)
+        return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
     def add_request_to_google(self):
         credential = SignedJwtAssertionCredentials(
             os.environ['GOOGLE_CLIENT_EMAIL'],
