@@ -8,6 +8,7 @@ $(document).ready(function() {
             dataType: 'html',
             success: function(data) {
                 alert(JSON.stringify(data));
+		alert("FAO");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
