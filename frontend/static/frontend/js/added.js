@@ -11,7 +11,7 @@ $(document).ready(function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
-                $("#formWrapper").html('jqXHR.responseText');
+                alert($("#formWrapper").html());
             }
         });
     });
