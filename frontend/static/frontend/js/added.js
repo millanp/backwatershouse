@@ -5,6 +5,7 @@ $(document).ready(function() {
         $.ajax({
             type:'POST',
             data: $('#bookingForm').serialize(),
+            dataType: 'html',
             success: function(data) {
                 alert(JSON.stringify(data));
             },
