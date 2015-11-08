@@ -56,6 +56,9 @@ def create_calendars(sender, instance, created, **kwargs):
 post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
     guest = models.ForeignKey(User)
+    #add arrive and leave here for input sake, then generate stay
+    arrive = models.DateField()
+    leave = models.DateField()
     stay = DateRangeField(null=True)
     rooms = models.ManyToManyField(Room)
     extra = models.BooleanField(default=False)
