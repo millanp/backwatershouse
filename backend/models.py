@@ -66,10 +66,6 @@ class Booking(models.Model):
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     paid_for = models.BooleanField(default=True)
-    def __init__(self, *args, **kwargs):
-        self.add_request_to_google()
-        self.stay = DateRange(lower=)
-        models.Model.__init__(self, *args, **kwargs)
     def clean(self):
         #check that arrive is before leave
         if self.stay.lower > self.stay.upper:
