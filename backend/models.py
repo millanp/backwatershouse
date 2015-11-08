@@ -68,10 +68,10 @@ class Booking(models.Model):
     paid_for = models.BooleanField(default=True)
     def clean(self):
         #check that arrive is before leave
-        if self.stay.lower > self.stay.upper:
+        if self.arrive > self.leave:
             raise ValidationError('Arrival time is after departure time')
         #check that booking is not in the past
-        if self.stay.lower < datetime.now():
+        if self.arrive < datetime.now():
             raise ValidationError('Booking is in the past')
         #check that booking is not already reserved at all
         
