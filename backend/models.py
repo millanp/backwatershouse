@@ -71,7 +71,7 @@ class Booking(models.Model):
         if self.arrive > self.leave:
             raise ValidationError('Arrival time is after departure time')
         #check that booking is not in the past
-        if self.arrive < datetime.now():
+        if self.arrive < datetime.now().date():
             raise ValidationError('Booking is in the past')
         #check that booking is not already reserved at all
         
