@@ -11,7 +11,9 @@ $(document).ready(function() {
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
+		alert("FOO");
                 $('#formWrapper').html(jqXHR.responseText);
+		alert("FOOF");
             }
         });
     });
