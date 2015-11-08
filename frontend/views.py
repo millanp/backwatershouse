@@ -17,7 +17,7 @@ class BookingCreate(CreateView, LoginRequiredMixin):
         super(CreateView, self).form_valid(form)
         return JsonResponse({"FOO":"FFFFFS"})
     def form_invalid(self, form):
-        return JsonResponse({}, status=400)
+        return JsonResponse(form.errors, status=400)
 # Create your views here.
 class TemplateViewPlus(LoginRequiredMixin, TemplateView):
     template_name = "frontend/home.html"

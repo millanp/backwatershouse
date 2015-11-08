@@ -5,11 +5,12 @@ $(document).ready(function() {
         $.ajax({
             type:'POST',
             data: $('#bookingForm').serialize(),
+            dataType: 'json',
             success: function(data) {
                 alert(JSON.stringify(data));
             },
-            error: function() {
-                alert("WRONG");
+            error: function(jqXHR, textStatus, errorThrown) {
+                alert(JSON.stringify(jqXHR.responseJSON));
             }
         });
     });
