@@ -5,7 +5,7 @@ from django.views.generic.base import TemplateView
 from braces.views import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from malabarhouse import settings
-from django.http.response import JsonResponse
+from django.http.response import JsonResponse, HttpResponse
 class BookingCreate(CreateView, LoginRequiredMixin):
     form_class = BookingForm
     success_url = '/booking'
@@ -17,7 +17,8 @@ class BookingCreate(CreateView, LoginRequiredMixin):
         super(CreateView, self).form_valid(form)
         return JsonResponse({"FOO":"FFFFFS"})
     def form_invalid(self, form):
-        return JsonResponse(form.errors, status=400)
+        return HttpResponse(str(form))
+#         return JsonResponse(form.errors, status=400)
 # Create your views here.
 class TemplateViewPlus(LoginRequiredMixin, TemplateView):
     template_name = "frontend/home.html"
