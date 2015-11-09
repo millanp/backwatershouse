@@ -60,7 +60,7 @@ class Booking(models.Model):
     #add arrive and leave here for input sake, then generate stay
     arrive = models.DateField()
     leave = models.DateField()
-    stay = DateRangeField(null=True)
+    stay = DateRangeField(null=True, blank=True)
     rooms = models.ManyToManyField(Room)
     extra = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
