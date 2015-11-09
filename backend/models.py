@@ -74,7 +74,7 @@ class Booking(models.Model):
         if self.arrive < datetime.now().date():
             raise ValidationError('Booking is in the past')
         #check that booking is not already reserved at all (very primitive now)
-        overlaps = Booking.objects.filter(stay__overlap=self.stay)
+        overlaps = Booking.objects.filter(stay__overlap=DateRange(lower=self.arrive, upper=self.leave))
         if len(overlaps) > 0:
             raise ValidationError('Booking is overlapping another booking')
         pass
