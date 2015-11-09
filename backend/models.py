@@ -73,8 +73,10 @@ class Booking(models.Model):
         #check that booking is not in the past
         if self.arrive < datetime.now().date():
             raise ValidationError('Booking is in the past')
-        #check that booking is not already reserved at all
-        
+        #check that booking is not already reserved at all (very primitive now)
+        overlaps = Booking.objects.exclude(pk=self.pk).filter(stay__overlap=self.stay)
+        if len(overlaps) > 0:
+            raise ValidationError('Booking is overlapping another booking')
         pass
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
