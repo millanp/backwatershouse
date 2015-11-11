@@ -8,8 +8,8 @@
         {% block fields %}{% endblock %}
         <div id='bottomlinks-wrapper'>
             {% block bottomlinks %}
-            <p><a class='bottomlinks' >Don't have an account? Click here to register</a></p>
-            <p><a class='bottomlinks'>Forgot your password? Reset here.</a></p>
+            <p><a class='bottomlinks' href="{% url 'registration_register' %}">Don't have an account? Click here to register</a></p>
+            <p><a class='bottomlinks' href="{% url 'password_reset' %}">Forgot your password? Reset here.</a></p>
             {% if form.errors %}
             <p id="invalidCredentials">Something is wrong. Please try again.</p>
             {% endif %}
