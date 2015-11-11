@@ -73,10 +73,6 @@ class Booking(models.Model):
         #check that booking is not in the past
         if self.arrive < datetime.now().date():
             raise ValidationError('Booking is in the past')
-        #check that booking is not already reserved at all in form
-        #filter it using __in filter to get bookings sharing rooms that overlap
-
-        pass
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms"
@@ -112,8 +108,7 @@ post_save.connect(fill_stay, sender=Booking)
 class BookingForm(ModelForm):
     class Meta():
         model = Booking
-        fields = "__all__"
-        exclude = ['guest']
+        fields = ['arrive', 'leave', 'rooms', 'extra']
     def clean(self):
         overlaps = Booking.objects.filter(
             stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
