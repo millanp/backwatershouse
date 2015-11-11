@@ -74,6 +74,11 @@ form {
   font-weight:bold;
   color:red;
 }
+#validSubmission {
+    font-size:18px;
+    font-weight:bold;
+    color:red;
+}
 #errorMessageCreate {
   font-size:18px;
   font-weight:bold;
