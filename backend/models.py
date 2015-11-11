@@ -121,7 +121,10 @@ class BookingForm(ModelForm):
             ).filter(rooms__in=self.cleaned_data.get('rooms'))
         if len(overlaps) > 0:
             raise ValidationError('Booking is overlapping another booking')
-class BookingFormMixin:
+class BookingAdminForm(ModelForm):
+    class Meta():
+        model = Booking
+        fields = "__all__"
     def clean(self):
         overlaps = Booking.objects.filter(
             stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
@@ -129,8 +132,3 @@ class BookingFormMixin:
             ).filter(rooms__in=self.cleaned_data.get('rooms'))
         if len(overlaps) > 0:
             raise ValidationError('Booking is overlapping another booking')
-
-class BookingAdminForm(ModelForm, BookingFormMixin):
-    class Meta():
-        model = Booking
-        fields = "__all__"
