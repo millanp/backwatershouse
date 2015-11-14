@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     # Examples:
     url('^accounts/logout/', views.logout_then_login, name='logout'),
     url('^accounts/', include(urls)),
-#     url(r'^registration/register/$', RegistrationViewUniqueEmail.as_view(), name="myregistration_register"),
+    url(r'^registration/register/$', RegistrationView.as_view(custom_form_class=RegistrationFormUniqueEmail), name="myregistration_register"),
     url(r'^registration/', include('registration.urls')),
     # url(r'^blog/', include('blog.urls')),
     #url('^registration/', include('registration.urls')),
