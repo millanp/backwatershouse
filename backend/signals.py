@@ -3,6 +3,7 @@ from django.dispatch.dispatcher import receiver
 from paypal.standard.models import ST_PP_COMPLETED
 from backend.models import Booking
 import logging
+from registration.signals import user_rejected
 @receiver(valid_ipn_received)
 def callback(ipn_obj, **kwargs):
     bookings = Booking.objects.all()
@@ -14,3 +15,7 @@ def callback(ipn_obj, **kwargs):
 def cal(ipn_object, **kwargs):
     bookings = Booking.objects.all()
     bookings.update(paid_for=True)
+@receiver(user_rejected)
+def deleteUser(user, profile, request):
+    user.delete()
+    profile.delete()
