@@ -31,3 +31,4 @@ static3==0.6.1
 tolerance==0.1.2
 uritemplate==0.6
 wheel==0.24.0
+-e git+https://github.com/millanp/django-inspectional-registration.git#egg=django_inspectional_registration-master
