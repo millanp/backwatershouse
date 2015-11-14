@@ -1,0 +1,19 @@
+{% extends 'registration/base_login.html' %}
+{% block fields %}
+<form action="" method="post" class="gatewayform">
+<!--names: username, email1, email2 !-->
+    {% csrf_token %}
+    <!--<p><input type="text" name="realname" placeholder=" Name" class="inputter" required></p>!-->
+    <p><input type="text" name="username" placeholder=" Username" class="inputter" required></p>
+    <p><input type="email" id="email1" name="email1" placeholder=" Email" class="inputter" required></p>
+    <p><input type="email" name="email2" placeholder=" Reenter email" class="inputter" required></p>
+    <p>
+    <input type="submit" value="Submit Account Request" id="sub" onmousedown="this.style.boxShadow = 'inset 0px 0px 17px 2px'" onmouseout="this.style.boxShadow = '0px 0px 0px 0px'" onmouseup="this.style.boxShadow = '0px 0px 0px 0px'">
+    </p>
+</form>
+<span id="invalidCredentials">{{ form.errors }}</span>
+<span id="validSubmission">Request sent to site administrator.<br></span>
+{% endblock %}
+{% block bottomlinks %}
+<a class="bottomlinks" href="{% url 'login' %}">Back to login</a><br>
+{% endblock %}
