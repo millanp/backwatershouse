@@ -16,6 +16,6 @@ def cal(ipn_object, **kwargs):
     bookings = Booking.objects.all()
     bookings.update(paid_for=True)
 @receiver(user_rejected)
-def deleteUser(user, profile, request):
+def deleteUser(user, profile, request, **kwargs):
     user.delete()
     profile.delete()
