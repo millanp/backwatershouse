@@ -4,6 +4,7 @@ from paypal.standard.models import ST_PP_COMPLETED
 from backend.models import Booking
 import logging
 from registration.signals import user_rejected
+from registration.backends.default import DefaultRegistrationBackend
 @receiver(valid_ipn_received)
 def callback(ipn_obj, **kwargs):
     bookings = Booking.objects.all()
@@ -18,4 +19,4 @@ def cal(ipn_object, **kwargs):
 def deleteUser(user, profile, request, **kwargs):
     user.delete()
     profile.delete()
-user_rejected.connect(deleteUser)
+user_rejected.connect(deleteUser, sender=DefaultRegistrationBackend)
