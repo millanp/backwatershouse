@@ -18,5 +18,5 @@ def cal(ipn_object, **kwargs):
     bookings.update(paid_for=True)
 def deleteUser(sender, **kwargs):
     kwargs.get("user").delete()
-    kwargs.get("profile").delete()
+    kwargs.get("profile").delete() 
 user_rejected.connect(deleteUser, sender=DefaultRegistrationBackend)
