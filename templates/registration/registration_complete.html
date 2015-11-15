@@ -1,6 +1,6 @@
 {% extends 'registration/base_login.html' %}
 {% block fields %}
-<form action="" method="post" class="gatewayform">
+<form action="{% url 'registration_register'%}" method="post" class="gatewayform">
 <!--names: username, email1, email2 !-->
     {% csrf_token %}
     <!--<p><input type="text" name="realname" placeholder=" Name" class="inputter" required></p>!-->
