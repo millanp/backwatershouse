@@ -1,1 +1,2 @@
-localhost:8000{% url 'registration_activate' activation_key %}
+Click here to activate your account
+malabarhouse.herokuapp.com{% url 'registration_activate' activation_key %}
