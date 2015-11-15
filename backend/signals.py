@@ -16,7 +16,7 @@ def callback(ipn_obj, **kwargs):
 def cal(ipn_object, **kwargs):
     bookings = Booking.objects.all()
     bookings.update(paid_for=True)
-def deleteUser(user, profile, request, **kwargs):
-    user.delete()
-    profile.delete()
+def deleteUser(sender, **kwargs):
+    kwargs.get("user").delete()
+    kwargs.get("profile").delete()
 user_rejected.connect(deleteUser, sender=DefaultRegistrationBackend)
