@@ -1,2 +1,2 @@
 Click here to activate your account
-malabarhouse.herokuapp.com{% url 'registration_activate' activation_key %}
+{{ site.domain }}{% url 'registration_activate' activation_key %}
