@@ -1,2 +1,3 @@
 Username of desired account: {{user.username}}
-Click http://seattletransitblog.com/
+Click here to take approve or reject the account:
+{{ site.domain }}{% url 'admin:admin:registration_registrationprofile_changelist' %}

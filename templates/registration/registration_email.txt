@@ -1,1 +1,2 @@
-Wait for the admin to approve the account...
+Username: {{user.username}}
+Expect another email in a couple days allowing you to set your password.
