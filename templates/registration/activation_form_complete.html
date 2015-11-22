@@ -1,9 +1,7 @@
 {% extends 'registration/base_login.html' %}
 {% block fields %}
-<form action method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-</form>
+Activation complete
 {% endblock %}
 {% block bottomlinks %}
+<a class="bottomlinks" href="{% url 'login' %}">
 {% endblock %}
