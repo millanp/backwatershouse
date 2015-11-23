@@ -88,7 +88,7 @@ class Booking(models.Model):
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
     def add_request_to_google(self):
-        for room in self.rooms:
+        for room in self.rooms.all():
             room.request_to_calendar(self.arrive, self.leave)
     def payment_button(self):
         paypal_dict = {
