@@ -27,6 +27,7 @@ class Room(models.Model):
         return "Room "+str(self.number)
 
     def request_to_calendar(self, arrive, leave):
+        print 'requesting to calendar...'
         event = {
             'summary': 'wheredoesthis',
             'start': {
