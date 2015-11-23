@@ -37,7 +37,7 @@ class Room(models.Model):
             }
         }
         calapi = cal_api()
-        calapi.events().insert(calendarId=self.request_cal_id, body=event)
+        calapi.events().insert(calendarId=self.request_cal_id, body=event).execute()
         
 def delete_calendars(sender, instance, using, **kwargs):
     calapi = cal_api()
