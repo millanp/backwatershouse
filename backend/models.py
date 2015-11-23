@@ -107,8 +107,9 @@ class Booking(models.Model):
 def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
-        instance.add_request_to_google()
+        
         instance.save()
+        instance.add_request_to_google()
 post_save.connect(fill_stay, sender=Booking)
 class BookingForm(ModelForm):
     class Meta():
