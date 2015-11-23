@@ -20,16 +20,15 @@ from psycopg2._range import DateRange
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
     blurb = models.TextField(max_length=700)
-    request_cal_id = models.TextField()
-    booking_cal_id = models.TextField()
+    request_cal_id = models.TextField(null=True, blank=True)
+    booking_cal_id = models.TextField(null=True, blank=True)
     rand = models.NullBooleanField()
     def __str__(self):
         return "Room "+str(self.number)
-    def get_booking_calendar_id(self):
-        calendarapi = cal_api()
-        cal_list = calendarapi.calendarList().list(minAccessRole="writer").execute()
-        for cal in cal_list:
-            print cal['summary']
+
+    def request_to_calendar(self, arrive, leave):
+        pass
+        
 def delete_calendars(sender, instance, using, **kwargs):
     calapi = cal_api()
     calapi.calendars().delete(calendarId=instance.booking_cal_id.strip()).execute()
@@ -79,13 +78,16 @@ class Booking(models.Model):
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
     def add_request_to_google(self):
-        credential = SignedJwtAssertionCredentials(
-            os.environ['GOOGLE_CLIENT_EMAIL'],
-            os.environ['GOOGLE_PRIVATE_KEY'].encode(),
-            'https://www.googleapis.com/auth/calendar',
-        )
-        http_auth = credential.authorize(Http())
-        calendarapi = build('calendar', 'v3', http=http_auth)
+        calapi = cal_api()
+        event = {
+            'summary': 'wheredoesthis',
+            'start': {
+                'date': self.arrive.isoformat()
+            },
+            'end': {
+                'date': self.leave.isoformat()
+            }
+        }
     def payment_button(self):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
