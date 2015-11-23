@@ -27,7 +27,17 @@ class Room(models.Model):
         return "Room "+str(self.number)
 
     def request_to_calendar(self, arrive, leave):
-        pass
+        event = {
+            'summary': 'wheredoesthis',
+            'start': {
+                'date': arrive.isoformat()
+            },
+            'end': {
+                'date': leave.isoformat()
+            }
+        }
+        calapi = cal_api()
+        calapi.events().insert(calendarId=self.request_cal_id, body=event)
         
 def delete_calendars(sender, instance, using, **kwargs):
     calapi = cal_api()
@@ -78,16 +88,8 @@ class Booking(models.Model):
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
     def add_request_to_google(self):
-        calapi = cal_api()
-        event = {
-            'summary': 'wheredoesthis',
-            'start': {
-                'date': self.arrive.isoformat()
-            },
-            'end': {
-                'date': self.leave.isoformat()
-            }
-        }
+        for room in self.rooms:
+            room.request_to_calendar(self.arrive, self.leave)
     def payment_button(self):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
@@ -105,6 +107,7 @@ class Booking(models.Model):
 def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
+        instance.add_request_to_google()
         instance.save()
 post_save.connect(fill_stay, sender=Booking)
 class BookingForm(ModelForm):
