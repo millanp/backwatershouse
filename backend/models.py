@@ -112,7 +112,6 @@ def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
         instance.save()
-        instance.add_request_to_google()
 post_save.connect(fill_stay, sender=Booking)
 def post_save_mymodel(sender, instance, action, reverse, pk_set, *args, **kwargs):
     if reverse == False and action == 'post_add':
