@@ -91,6 +91,7 @@ class Booking(models.Model):
     def add_request_to_google(self):
         print 'foo'
         for room in self.rooms.all():
+            print 'asfasdfasdfa'
             room.request_to_calendar(self.arrive, self.leave)
     def payment_button(self):
         paypal_dict = {
@@ -107,7 +108,6 @@ class Booking(models.Model):
     def approve(self):
         pass 
 def fill_stay(sender, instance, created, **kwargs):
-    print 'aos'
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
         instance.save()
