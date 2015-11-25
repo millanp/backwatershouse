@@ -89,9 +89,9 @@ class Booking(models.Model):
     nice_rooms.short_description = "Rooms" #hey this is a comment
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
-    def add_request_to_google(self):
+    def add_request_to_google(self, pk_set):
         print 'foo'
-        for room in self.rooms.all():
+        for room in Room.objects.filter(pk__in=pk_set):
             print 'asfasdfasdfa'
             room.request_to_calendar(self.arrive, self.leave)
     def payment_button(self):
@@ -114,8 +114,9 @@ def fill_stay(sender, instance, created, **kwargs):
         instance.save()
         instance.add_request_to_google()
 post_save.connect(fill_stay, sender=Booking)
-def post_save_mymodel(sender, instance, action, reverse, *args, **kwargs):
-    print 'm2m added'
+def post_save_mymodel(sender, instance, action, reverse, pk_set, *args, **kwargs):
+    if reverse == False and action == 'post_add':
+        instance.add_request_to_google(pk_set)
 m2m_changed.connect(post_save_mymodel, sender=Booking.rooms.through)
 class BookingForm(ModelForm):
     class Meta():
