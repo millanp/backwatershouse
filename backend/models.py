@@ -11,7 +11,8 @@ from oauth2client.client import SignedJwtAssertionCredentials
 from googleapiclient.discovery import build
 from httplib2 import Http
 from backend.helpers import cal_api
-from django.db.models.signals import post_save, post_init, pre_delete
+from django.db.models.signals import post_save, post_init, pre_delete,\
+    m2m_changed
 from datetime import timedelta, datetime, date
 from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields.ranges import DateRangeField
@@ -113,6 +114,9 @@ def fill_stay(sender, instance, created, **kwargs):
         instance.save()
         instance.add_request_to_google()
 post_save.connect(fill_stay, sender=Booking)
+def post_save_mymodel(sender, instance, action, reverse, *args, **kwargs):
+    print 'm2m added'
+m2m_changed.connect(post_save_mymodel, sender=Booking.rooms.through)
 class BookingForm(ModelForm):
     class Meta():
         model = Booking
