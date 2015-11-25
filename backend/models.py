@@ -85,10 +85,11 @@ class Booking(models.Model):
             raise ValidationError('Booking is in the past')
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
-    nice_rooms.short_description = "Rooms"
+    nice_rooms.short_description = "Rooms" #hey this is a comment
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
     def add_request_to_google(self):
+        print 'foo'
         for room in self.rooms.all():
             room.request_to_calendar(self.arrive, self.leave)
     def payment_button(self):
@@ -99,16 +100,16 @@ class Booking(models.Model):
             "quantity": "1",
             "currency_code": "USD",
             "env": "www.sandbox",
-            "notify_url": settings.SITE_URL+reverse("paypal-responder"), #TODO
+            "notify_url": settings.SITE_URL+reverse("paypal-responder"),
             "custom": str(self.pk),
         }
         return PayPalPaymentsForm(initial=paypal_dict)
     def approve(self):
-        pass
+        pass 
 def fill_stay(sender, instance, created, **kwargs):
+    print 'aos'
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
-        
         instance.save()
         instance.add_request_to_google()
 post_save.connect(fill_stay, sender=Booking)
