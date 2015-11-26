@@ -78,7 +78,7 @@ class Booking(models.Model):
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     paid_for = models.BooleanField(default=True)
-    request_event_ids = HStoreField()
+    request_event_ids = HStoreField(null=True, blank=True)
     booking_event_id = HStoreField()
     def clean(self):
         #check that arrive is before leave
