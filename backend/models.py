@@ -17,6 +17,7 @@ from datetime import timedelta, datetime, date
 from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields.ranges import DateRangeField
 from psycopg2._range import DateRange
+from django.contrib.postgres.fields.hstore import HStoreField
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -77,8 +78,8 @@ class Booking(models.Model):
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     paid_for = models.BooleanField(default=True)
-    request_event_id = models.TextField(null=True, blank=True)
-    booking_event_id = models.TextField(null=True, blank=True)
+    request_event_ids = HStoreField()
+    booking_event_id = HStoreField()
     def clean(self):
         #check that arrive is before leave
         if self.arrive > self.leave:
@@ -95,7 +96,7 @@ class Booking(models.Model):
         print 'foo'
         for room in Room.objects.filter(pk__in=pk_set):
             print 'asfasdfasdfa'
-            room.request_to_calendar(self.arrive, self.leave)
+            self.request_event_ids[str(room.pk)] = room.request_to_calendar(self.arrive, self.leave)
     def payment_button(self):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
