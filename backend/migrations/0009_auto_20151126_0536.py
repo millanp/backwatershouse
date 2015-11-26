@@ -8,17 +8,16 @@ import django.contrib.postgres.fields.hstore
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('backend', '0007_auto_20151126_0527'),
+        ('backend', '0008_auto_20151126_0531'),
     ]
 
     operations = [
-        
-        migrations.AlterField(
+        migrations.RenameField(
             model_name='booking',
-            name='booking_event_id',
-            field=django.contrib.postgres.fields.hstore.HStoreField(null=True, blank=True),
+            old_name='booking_event_id',
+            new_name='booking_event_ids',
         ),
-        migrations.AlterField(
+        migrations.AddField(
             model_name='booking',
             name='request_event_ids',
             field=django.contrib.postgres.fields.hstore.HStoreField(null=True, blank=True),
