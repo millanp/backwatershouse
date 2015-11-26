@@ -96,6 +96,7 @@ class Booking(models.Model):
         print 'foo'
         for room in Room.objects.filter(pk__in=pk_set):
             print 'asfasdfasdfa'
+            self.request_event_ids['foo'] = 'bar'
             self.request_event_ids[str(room.pk)] = room.request_to_calendar(self.arrive, self.leave)
     def payment_button(self):
         paypal_dict = {
