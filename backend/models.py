@@ -125,6 +125,8 @@ class BookingForm(ModelForm):
         model = Booking
         fields = ['arrive', 'leave', 'rooms', 'extra']
     def clean(self):
+        if self.arrive < self.leave:
+            raise ValidationError('Arrival time is after departure time')
         overlaps = Booking.objects.filter(
             stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
                                     upper=self.cleaned_data.get('leave'))
