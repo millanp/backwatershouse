@@ -82,7 +82,7 @@ class Booking(models.Model):
     booking_event_ids = HStoreField(null=True, blank=True)
     def clean(self):
         #check that arrive is before leave
-        if self.arrive < self.leave:
+        if self.arrive > self.leave:
             raise ValidationError('Arrival time is after departure time')
         #check that booking is not in the past
         if self.arrive < datetime.now().date():
@@ -125,7 +125,7 @@ class BookingForm(ModelForm):
         model = Booking
         fields = ['arrive', 'leave', 'rooms', 'extra']
     def clean(self):
-        if self.arrive < self.leave:
+        if self.arrive > self.leave:
             raise ValidationError('Arrival time is after departure time')
         overlaps = Booking.objects.filter(
             stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
