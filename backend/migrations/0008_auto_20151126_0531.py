@@ -12,15 +12,15 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        
-        migrations.AlterField(
+        migrations.RenameField(
             model_name='booking',
-            name='booking_event_id',
-            field=django.contrib.postgres.fields.hstore.HStoreField(null=True, blank=True),
+            old_name='booking_event_id',
+            new_name='booking_event_ids',
         ),
-        migrations.AlterField(
+        migrations.AddField(
             model_name='booking',
             name='request_event_ids',
             field=django.contrib.postgres.fields.hstore.HStoreField(null=True, blank=True),
         ),
     ]
+
