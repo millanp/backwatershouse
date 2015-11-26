@@ -31,7 +31,7 @@ class Room(models.Model):
     def request_to_calendar(self, arrive, leave):
         print 'requesting to calendar...'
         event = {
-            'summary': 'Request for Room '+self.number,
+            'summary': 'Request for Room '+str(self.number),
             'start': {
                 'date': arrive.isoformat()
             },
@@ -82,7 +82,7 @@ class Booking(models.Model):
     booking_event_ids = HStoreField(null=True, blank=True)
     def clean(self):
         #check that arrive is before leave
-        if self.arrive > self.leave:
+        if self.arrive < self.leave:
             raise ValidationError('Arrival time is after departure time')
         #check that booking is not in the past
         if self.arrive < datetime.now().date():
