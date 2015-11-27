@@ -9,7 +9,8 @@ def set_approved_fee(modeladmin, request, queryset):
 def set_approved_free(modeladmin, request, queryset):
     helpers.notify_guests_booking_approved(queryset)
     queryset.update(approved=True)
-    
+    for booking in queryset:
+        booking.approve()
 set_approved_fee.short_description = "Approve, but charge a fee"
 set_approved_free.short_description = "Approve with no fee"
 
