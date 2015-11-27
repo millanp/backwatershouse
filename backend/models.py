@@ -44,9 +44,9 @@ class Room(models.Model):
     def delete_event(self, eventId, request=False):
         calapi = cal_api()
         if request:
-            calendarid = self.request_cal_id
+            calendarid = self.request_cal_id.strip()
         else:
-            calendarid = self.booking_cal_id
+            calendarid = self.booking_cal_id.strip()
         calapi.events().delete(calendarId=calendarid, eventId=eventId).execute()
     def request_to_calendar(self, arrive, leave):
         print 'requesting to calendar...'
