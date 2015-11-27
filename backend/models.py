@@ -134,7 +134,7 @@ class Booking(models.Model):
     def approve(self):
         for roomPkString in self.request_event_ids:
             room = Room.objects.get(pk=eval(roomPkString))
-            room.delete_event(self.request_event_ids[roomPkString])
+            room.delete_event(self.request_event_ids[roomPkString], request=True)
             room.book_to_calendar(self.arrive, self.leave)
 def fill_stay(sender, instance, created, **kwargs):
     if created:
