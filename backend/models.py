@@ -27,7 +27,27 @@ class Room(models.Model):
     rand = models.NullBooleanField()
     def __str__(self):
         return "Room "+str(self.number)
-
+    def book_to_calendar(self, arrive, leave):
+        print 'booking to calendar...'
+        event = {
+            'summary': 'Booking for Room '+str(self.number),
+            'start': {
+                'date': arrive.isoformat()
+            },
+            'end': {
+                'date': leave.isoformat()
+            }
+        }
+        calapi = cal_api()
+        event = calapi.events().insert(calendarId=self.booking_cal_id.strip(), body=event).execute()
+        return event.get('id')
+    def delete_event(self, eventId, request=False):
+        calapi = cal_api()
+        if request:
+            calendarid = self.request_cal_id
+        else:
+            calendarid = self.booking_cal_id
+        calapi.events().delete(calendarId=calendarid, eventId=eventId).execute()
     def request_to_calendar(self, arrive, leave):
         print 'requesting to calendar...'
         event = {
@@ -93,9 +113,9 @@ class Booking(models.Model):
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
     def add_request_to_google(self, pk_set):
-        print 'foo'
+        print 'adding request to google'
         for room in Room.objects.filter(pk__in=pk_set):
-            print 'asfasdfasdfa'
+            print 'rooming'
             self.request_event_ids[str(room.pk)] = room.request_to_calendar(self.arrive, self.leave)
             self.save()
     def payment_button(self):
@@ -111,7 +131,12 @@ class Booking(models.Model):
         }
         return PayPalPaymentsForm(initial=paypal_dict)
     def approve(self):
-        pass 
+        calapi = cal_api()
+        for roomPkString in self.request_event_ids:
+            room = Room.objects.get(pk=eval(roomPkString))
+            calapi.events().delete(calendarId=room.request_cal_id, 
+                eventId=self.request_event_ids[room]).execute()
+            
 def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
