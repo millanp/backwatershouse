@@ -3,12 +3,13 @@ from backend.models import Booking, Room, BookingAdminForm
 from backend import helpers
 # Register your models here.
 def set_approved_fee(modeladmin, request, queryset):
-    set_approved_free(modeladmin, request, queryset)
+    set_approved_base(modeladmin, request, queryset)
     queryset.update(payment_required=True, paid_for=False)
-
-def set_approved_free(modeladmin, request, queryset):
+def set_approved_base(modeladmin, request, queryset):
     helpers.notify_guests_booking_approved(queryset)
     queryset.update(approved=True)
+def set_approved_free(modeladmin, request, queryset):
+    set_approved_base(modeladmin, request, queryset)
     for booking in queryset:
         booking.approve()
 set_approved_fee.short_description = "Approve, but charge a fee"

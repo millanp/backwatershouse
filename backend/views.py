@@ -18,12 +18,13 @@ def paypal_processer(request):
     r = requests.post("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_notify-validate&", params=reqDict)
     if r.text == "VERIFIED":
         if settings.PAYPAL_TEST:
-            b = Booking.objects.filter(pk=eval(reqDict['custom']))
-            b.update(paid_for=True)
+            b = Booking.objects.get(pk=eval(reqDict['custom']))
+            b.paid_for=True
+            b.save()
+            b.approve()
         else:
             if reqDict['payment_status'] == "Confirmed":
-                b = Booking.objects.filter(pk=eval(reqDict['custom']))
-                b.update(paid_for=True)
-    
-    
-    
+                b = Booking.objects.get(pk=eval(reqDict['custom']))
+                b.paid_for=True
+                b.save()
+                b.approve()

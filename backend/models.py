@@ -130,7 +130,7 @@ class Booking(models.Model):
             "custom": str(self.pk),
         }
         return PayPalPaymentsForm(initial=paypal_dict)
-    #untested
+    #tested
     def approve(self):
         for roomPkString in self.request_event_ids:
             room = Room.objects.get(pk=eval(roomPkString))
