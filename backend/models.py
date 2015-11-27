@@ -130,13 +130,12 @@ class Booking(models.Model):
             "custom": str(self.pk),
         }
         return PayPalPaymentsForm(initial=paypal_dict)
+    #untested
     def approve(self):
-        calapi = cal_api()
         for roomPkString in self.request_event_ids:
             room = Room.objects.get(pk=eval(roomPkString))
-            calapi.events().delete(calendarId=room.request_cal_id, 
-                eventId=self.request_event_ids[room]).execute()
-            
+            room.delete_event(self.request_event_ids[roomPkString])
+            room.book_to_calendar(self.arrive, self.leave)
 def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
