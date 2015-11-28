@@ -152,7 +152,8 @@ def booking_form_clean(self):
         overlaps = Booking.objects.filter(
             stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
                                     upper=self.cleaned_data.get('leave'))
-            ).filter(rooms__in=self.cleaned_data.get('rooms'))
+            ).filter(rooms__in=self.cleaned_data.get('rooms')
+            ).filter(approved=True)
         if len(overlaps) > 0:
             raise ValidationError('Booking is overlapping another booking')
     
