@@ -144,16 +144,17 @@ def post_save_mymodel(sender, instance, action, reverse, pk_set, *args, **kwargs
 m2m_changed.connect(post_save_mymodel, sender=Booking.rooms.through)
 
 def booking_form_clean(self):
-    if self.cleaned_data.get('arrive') < datetime.now().date():
-        raise ValidationError('Booking is in the past')
-    if self.cleaned_data.get('arrive') > self.cleaned_data.get('leave'):
-        raise ValidationError('Arrival time is after departure time')
-    overlaps = Booking.objects.filter(
-        stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
-                                upper=self.cleaned_data.get('leave'))
-        ).filter(rooms__in=self.cleaned_data.get('rooms'))
-    if len(overlaps) > 0:
-        raise ValidationError('Booking is overlapping another booking')
+    if self.cleaned_data.get('arrive') and self.cleaned_data.get('leave') and self.cleaned_data.get('rooms'):
+        if self.cleaned_data.get('arrive') < datetime.now().date():
+            raise ValidationError('Booking is in the past')
+        if self.cleaned_data.get('arrive') > self.cleaned_data.get('leave'):
+            raise ValidationError('Arrival time is after departure time')
+        overlaps = Booking.objects.filter(
+            stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
+                                    upper=self.cleaned_data.get('leave'))
+            ).filter(rooms__in=self.cleaned_data.get('rooms'))
+        if len(overlaps) > 0:
+            raise ValidationError('Booking is overlapping another booking')
     
 class BookingForm(ModelForm):
     class Meta():
