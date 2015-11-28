@@ -23,11 +23,11 @@ skel.init({
 		},
 		'desktop': {
 			range: '481-',
-			containers: 1200
+			containers: 'fluid'
 		},
 		'1000px': {
 			range: '481-1200',
-			containers: 960
+			containers: 'fluid'
 		}
 	}
 }, {
