@@ -100,14 +100,6 @@ class Booking(models.Model):
     paid_for = models.BooleanField(default=True)
     request_event_ids = HStoreField(null=True, blank=True)
     booking_event_ids = HStoreField(null=True, blank=True)
-    def clean(self):
-        cleaned_data = super(Booking, self).clean()
-        #check that arrive is before leave
-        if self.arrive > self.leave:
-            raise ValidationError('Arrival time is after departure time')
-        #check that booking is not in the past
-        if self.arrive < datetime.now().date():
-            raise ValidationError('Booking is in the past')
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms" #hey this is a comment
@@ -152,6 +144,8 @@ def post_save_mymodel(sender, instance, action, reverse, pk_set, *args, **kwargs
 m2m_changed.connect(post_save_mymodel, sender=Booking.rooms.through)
 
 def booking_form_clean(self):
+    if self.cleaned_data.get('arrive') < datetime.now().date():
+        raise ValidationError('Booking is in the past')
     if self.cleaned_data.get('arrive') > self.cleaned_data.get('leave'):
         raise ValidationError('Arrival time is after departure time')
     overlaps = Booking.objects.filter(
