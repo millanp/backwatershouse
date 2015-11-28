@@ -15,7 +15,7 @@ class BookingCreate(CreateView, LoginRequiredMixin):
         obj.guest = self.request.user
         obj.save()
         super(CreateView, self).form_valid(form)
-        return JsonResponse({"FOO":"FFFFFS"})
+        return HttpResponse(form.as_p())
     def form_invalid(self, form):
         return HttpResponse(form.as_p(), status=400)
 #         return JsonResponse(form.errors, status=400)
