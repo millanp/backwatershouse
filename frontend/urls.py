@@ -6,6 +6,7 @@ urlpatterns = patterns('',
     url(r'^booking/', views.BookingCreate.as_view(), name='booking'),
     url(r'^my-visits/', views.requestsView, name='requests'),
     url(r'^rooms/', views.TemplateViewPlus.as_view(template_name='frontend/rooms.html', 
-                                                   context={'rooms':Room.objects.all()})),
+                                                   context={'rooms':Room.objects.all()}),
+        name='rooms'),
     url(r'^$', views.TemplateViewPlus.as_view(template_name='frontend/home.html'), name='home'),
 )

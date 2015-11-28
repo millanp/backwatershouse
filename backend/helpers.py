@@ -11,6 +11,12 @@ def notify_guests_booking_approved(bookings):
             "Your booking request has been approved",
             "Please visit your My Requests page to finalize",
         )
+def notify_guests_booking_rejected(bookings):
+    for booking in bookings:
+        booking.guest.email_user(
+            "Your Malabar House booking request has been rejected",
+            "Contact the house owner for more information",
+        )
 def humanize_list(xlist):
     if len(xlist) == 1:
         return xlist[0]
