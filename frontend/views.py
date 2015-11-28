@@ -6,7 +6,7 @@ from braces.views import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from malabarhouse import settings
 from django.http.response import JsonResponse, HttpResponse
-class BookingCreate(CreateView, LoginRequiredMixin):
+class BookingCreate(LoginRequiredMixin, CreateView, ):
     form_class = BookingForm
     success_url = '/booking'
     template_name = 'frontend/booking.html'

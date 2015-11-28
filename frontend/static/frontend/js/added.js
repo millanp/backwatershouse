@@ -9,6 +9,7 @@ $(document).ready(function() {
             success: function(data) {
                 alert(JSON.stringify(data));
 		alert("FAO");
+		          $('#formWrapper').html(data);
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
