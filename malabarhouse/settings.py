@@ -92,6 +92,7 @@ INSTALLED_APPS = (
     'backend',
     'multiselectfield',
     'paypal.standard.ipn',
+    'floppyforms'
 )
 
 MIDDLEWARE_CLASSES = (
