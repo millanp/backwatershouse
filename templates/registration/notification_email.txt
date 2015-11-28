@@ -1,3 +1,3 @@
 Username of desired account: {{user.username}}
 Click here to take approve or reject the account:
-{{ site.domain }}{% url 'admin:admin:registration_registrationprofile_changelist' %}
+{{ site.domain }}{% url 'admin:registration_registrationprofile_changelist' %}
