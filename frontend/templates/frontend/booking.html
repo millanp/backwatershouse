@@ -52,6 +52,11 @@
                                 </div>
                                 <input type="submit" value="Submit">    
                             </form>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{message}}
+                                {% endfor %}
+                            {% endif %}
                             <section class="6u">
                                 <ul class="default">
                                     <li><a href="#">Donec facilisis tempor</a></li>

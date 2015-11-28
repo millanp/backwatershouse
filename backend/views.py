@@ -6,11 +6,13 @@ import requests
 from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
 from malabarhouse import settings
+from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
-class BookingCreate(CreateView):
+class BookingCreate(SuccessMessageMixin, CreateView):
     model = Booking
     form_class = BookingForm
     success_url = '/booking'
+    success_message = 'Booking submitted successfully'
     template_name = 'frontend/booking.html'
 @csrf_exempt
 def paypal_processer(request):
