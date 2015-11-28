@@ -101,6 +101,7 @@ class Booking(models.Model):
     request_event_ids = HStoreField(null=True, blank=True)
     booking_event_ids = HStoreField(null=True, blank=True)
     def clean(self):
+        cleaned_data = super(Booking, self).clean()
         #check that arrive is before leave
         if self.arrive > self.leave:
             raise ValidationError('Arrival time is after departure time')
@@ -165,6 +166,7 @@ class BookingForm(ModelForm):
         model = Booking
         fields = ['arrive', 'leave', 'rooms', 'extra']
     def clean(self):
+        cleaned_data = super(BookingForm, self).clean()
         booking_form_clean(self)
         
 class BookingAdminForm(ModelForm):
@@ -172,4 +174,5 @@ class BookingAdminForm(ModelForm):
         model = Booking
         fields = "__all__"
     def clean(self):
+        cleaned_data = super(BookingAdminForm, self).clean()
         booking_form_clean(self)
