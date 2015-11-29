@@ -68,6 +68,7 @@ def delete_calendars(sender, instance, using, **kwargs):
     calapi.calendars().delete(calendarId=instance.request_cal_id.strip()).execute()
 pre_delete.connect(delete_calendars, sender=Room)
 def create_calendars(sender, instance, created, **kwargs):
+    # created means just created
     if created:
         calapi = cal_api()
         newcals = [
@@ -82,10 +83,18 @@ def create_calendars(sender, instance, created, **kwargs):
                 'value':'millan.philipose@gmail.com'
             }
         }
+        publicacl = {
+            'role':'reader',
+            'scope':{
+                'type':'default'
+            }
+        }
         instance.booking_cal_id = calresources[0]['id'] 
         instance.request_cal_id = calresources[1]['id']
         instance.save()
-        x = [calapi.acl().insert(calendarId=calresource['id'], body=aclrule).execute() for calresource in calresources]
+        for res in calresources:
+            calapi.acl().insert(calendarId=res['id'], body=aclrule).execute()
+            calapi.acl().insert(calendarId=res['id'], body=publicacl).execute()
 post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
     guest = models.ForeignKey(User)
@@ -103,6 +112,7 @@ class Booking(models.Model):
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms" #hey this is a comment
+    
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
     def add_request_to_google(self, pk_set):
