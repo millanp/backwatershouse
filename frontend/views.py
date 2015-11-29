@@ -14,6 +14,7 @@ def google_calendar_url(self): #src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.
     for room in Room.objects.all():
         thiscal = "src="+room.request_cal_id.strip()+"&color=%23"+colors.CLUT[color][1]+"&"
         prefix += thiscal
+        color += 1
     prefix += suffix
     return prefix
 class BookingCreate(LoginRequiredMixin, CreateView, ):
