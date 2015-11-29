@@ -39,7 +39,9 @@ class BookingCreate(LoginRequiredMixin, CreateView, ):
         prefix += suffix
         return prefix
     def get_context_data(self, **kwargs):
-        return {'cal_url':google_calendar_url()}
+        dic = super(BookingCreate, self).get_context_data()
+        dic['cal_url'] = google_calendar_url()
+        return dic
         
 #         return JsonResponse(form.errors, status=400)
 # Create your views here.
