@@ -7,12 +7,12 @@ from django.views.generic.edit import CreateView
 from malabarhouse import settings
 from django.http.response import JsonResponse, HttpResponse
 from backend import colors
-def google_calendar_url(self): #src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.google.com&amp;color=%2342104A&amp;src=nbc712s896fhv76pe8fl95o718%40group.calendar.google.com&amp;color=%23125A12&amp;src=vt8cbiploefrp3492ji1be25f0%40group.calendar.google.com&amp;color=%236B3304&amp;src=tcorkarb8uupa9nguqf9l2fbsc%40group.calendar.google.com&amp;color=%238C500B&amp;src=icoufgc83qm32aer4nuc3k9fjo%40group.calendar.google.com&amp;color=%23865A5A&amp;src=947tekb6h7nna597d11unjk1s8%40group.calendar.google.com&amp;color=%23691426&amp;src=nagh4bsa00ql8r2b4fiv0acnro%40group.calendar.google.com&amp;color=%23853104&amp;src=7gmv5vo3g01qbuneqh3tq4b4a4%40group.calendar.google.com&amp;color=%2323164E&amp;
-    prefix = r"https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;"
+def google_calendar_url(self): #src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.google.com&color=%2342104A&src=nbc712s896fhv76pe8fl95o718%40group.calendar.google.com&color=%23125A12&src=vt8cbiploefrp3492ji1be25f0%40group.calendar.google.com&color=%236B3304&src=tcorkarb8uupa9nguqf9l2fbsc%40group.calendar.google.com&color=%238C500B&src=icoufgc83qm32aer4nuc3k9fjo%40group.calendar.google.com&color=%23865A5A&src=947tekb6h7nna597d11unjk1s8%40group.calendar.google.com&color=%23691426&src=nagh4bsa00ql8r2b4fiv0acnro%40group.calendar.google.com&color=%23853104&src=7gmv5vo3g01qbuneqh3tq4b4a4%40group.calendar.google.com&color=%2323164E&
+    prefix = r"https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&height=600&wkst=1&bgcolor=%23FFFFFF&"
     suffix = r"ctz=America%2FLos_Angeles"
     color = 0
     for room in Room.objects.all():
-        thiscal = "src="+room.request_cal_id.strip()+"&amp;color=%23"+colors.CLUT[color][1]+"&amp;"
+        thiscal = "src="+room.request_cal_id.strip()+"&color=%23"+colors.CLUT[color][1]+"&"
         prefix += thiscal
     prefix += suffix
     return prefix
@@ -28,12 +28,12 @@ class BookingCreate(LoginRequiredMixin, CreateView, ):
         return HttpResponse(form.as_p())
     def form_invalid(self, form):
         return HttpResponse(form.as_p(), status=400)
-    def google_calendar_url(self): #src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.google.com&amp;color=%2342104A&amp;src=nbc712s896fhv76pe8fl95o718%40group.calendar.google.com&amp;color=%23125A12&amp;src=vt8cbiploefrp3492ji1be25f0%40group.calendar.google.com&amp;color=%236B3304&amp;src=tcorkarb8uupa9nguqf9l2fbsc%40group.calendar.google.com&amp;color=%238C500B&amp;src=icoufgc83qm32aer4nuc3k9fjo%40group.calendar.google.com&amp;color=%23865A5A&amp;src=947tekb6h7nna597d11unjk1s8%40group.calendar.google.com&amp;color=%23691426&amp;src=nagh4bsa00ql8r2b4fiv0acnro%40group.calendar.google.com&amp;color=%23853104&amp;src=7gmv5vo3g01qbuneqh3tq4b4a4%40group.calendar.google.com&amp;color=%2323164E&amp;
-        prefix = r"https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;"
+    def google_calendar_url(self): #src=tie7uhbl3aohnfnuhotidikjpo%40group.calendar.google.com&color=%2342104A&src=nbc712s896fhv76pe8fl95o718%40group.calendar.google.com&color=%23125A12&src=vt8cbiploefrp3492ji1be25f0%40group.calendar.google.com&color=%236B3304&src=tcorkarb8uupa9nguqf9l2fbsc%40group.calendar.google.com&color=%238C500B&src=icoufgc83qm32aer4nuc3k9fjo%40group.calendar.google.com&color=%23865A5A&src=947tekb6h7nna597d11unjk1s8%40group.calendar.google.com&color=%23691426&src=nagh4bsa00ql8r2b4fiv0acnro%40group.calendar.google.com&color=%23853104&src=7gmv5vo3g01qbuneqh3tq4b4a4%40group.calendar.google.com&color=%2323164E&
+        prefix = r"https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&height=600&wkst=1&bgcolor=%23FFFFFF&"
         suffix = r"ctz=America%2FLos_Angeles"
         color = 0
         for room in Room.objects.all():
-            thiscal = "src="+room.request_cal_id.strip()+"&amp;color=%23"+colors.CLUT[color][1]+"&amp;"
+            thiscal = "src="+room.request_cal_id.strip()+"&color=%23"+colors.CLUT[color][1]+"&"
             prefix += thiscal
         prefix += suffix
         return prefix

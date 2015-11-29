@@ -48,6 +48,32 @@ class Room(models.Model):
         else:
             calendarid = self.booking_cal_id.strip()
         calapi.events().delete(calendarId=calendarid, eventId=eventId).execute()
+    def create_calendars(self):
+        calapi = cal_api()
+        newcals = [
+            {'summary':str(self),},
+            {'summary':'Requests for '+str(self)}
+        ]
+        calresources = [calapi.calendars().insert(body=newcal).execute() for newcal in newcals]
+        aclrule = {
+            'role':'owner',
+            'scope':{
+                'type':'user',
+                'value':'millan.philipose@gmail.com'
+            }
+        }
+        publicacl = {
+            'role':'reader',
+            'scope':{
+                'type':'default'
+            }
+        }
+        self.booking_cal_id = calresources[0]['id'] 
+        self.request_cal_id = calresources[1]['id']
+        self.save()
+        for res in calresources:
+            calapi.acl().insert(calendarId=res['id'], body=aclrule).execute()
+            calapi.acl().insert(calendarId=res['id'], body=publicacl).execute()
     def request_to_calendar(self, arrive, leave):
         print 'requesting to calendar...'
         event = {
@@ -70,31 +96,7 @@ pre_delete.connect(delete_calendars, sender=Room)
 def create_calendars(sender, instance, created, **kwargs):
     # created means just created
     if created:
-        calapi = cal_api()
-        newcals = [
-            {'summary':str(instance),},
-            {'summary':'Requests for '+str(instance)}
-        ]
-        calresources = [calapi.calendars().insert(body=newcal).execute() for newcal in newcals]
-        aclrule = {
-            'role':'owner',
-            'scope':{
-                'type':'user',
-                'value':'millan.philipose@gmail.com'
-            }
-        }
-        publicacl = {
-            'role':'reader',
-            'scope':{
-                'type':'default'
-            }
-        }
-        instance.booking_cal_id = calresources[0]['id'] 
-        instance.request_cal_id = calresources[1]['id']
-        instance.save()
-        for res in calresources:
-            calapi.acl().insert(calendarId=res['id'], body=aclrule).execute()
-            calapi.acl().insert(calendarId=res['id'], body=publicacl).execute()
+        instance.create_calendars()
 post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
     guest = models.ForeignKey(User)
