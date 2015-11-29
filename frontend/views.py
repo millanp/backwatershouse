@@ -29,15 +29,6 @@ class BookingCreate(LoginRequiredMixin, CreateView, ):
         return HttpResponse(form.as_p())
     def form_invalid(self, form):
         return HttpResponse(form.as_p(), status=400)
-    def google_calendar_url(self):
-        prefix = r"https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&height=600&wkst=1&bgcolor=%23FFFFFF&"
-        suffix = r"ctz=America%2FLos_Angeles"
-        color = 0
-        for room in Room.objects.all():
-            thiscal = "src="+room.request_cal_id.strip()+"&color=%23"+colors.CLUT[color][1]+"&"
-            prefix += thiscal
-        prefix += suffix
-        return prefix
     def get_context_data(self, **kwargs):
         dic = CreateView.get_context_data(self, **kwargs)
         dic['cal_url'] = google_calendar_url()
