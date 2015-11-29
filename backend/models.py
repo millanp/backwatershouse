@@ -149,7 +149,7 @@ class Booking(models.Model):
             stay__overlap=DateRange(lower=self.arrive, 
                                     upper=self.leave)
             ).filter(rooms__in=self.rooms.all()
-            ).filter(approved=True)
+            ).filter(approved=False)
         for booking in overlaps:
             booking.reject()
 def fill_stay(sender, instance, created, **kwargs):
