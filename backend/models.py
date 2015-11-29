@@ -88,11 +88,11 @@ class Room(models.Model):
         calapi = cal_api()
         event = calapi.events().insert(calendarId=self.request_cal_id.strip(), body=event).execute()
         return event.get('id')
-def delete_calendars(sender, instance, using, **kwargs):
-    calapi = cal_api()
-    calapi.calendars().delete(calendarId=instance.booking_cal_id.strip()).execute()
-    calapi.calendars().delete(calendarId=instance.request_cal_id.strip()).execute()
-pre_delete.connect(delete_calendars, sender=Room)
+# def delete_calendars(sender, instance, using, **kwargs):
+#     calapi = cal_api()
+#     calapi.calendars().delete(calendarId=instance.booking_cal_id.strip()).execute()
+#     calapi.calendars().delete(calendarId=instance.request_cal_id.strip()).execute()
+# pre_delete.connect(delete_calendars, sender=Room)
 def create_calendars(sender, instance, created, **kwargs):
     # created means just created
     if created:
