@@ -145,6 +145,13 @@ class Booking(models.Model):
             room = Room.objects.get(pk=eval(roomPkString))
             room.delete_event(self.request_event_ids[roomPkString], request=True)
             room.book_to_calendar(self.arrive, self.leave)
+        overlaps = Booking.objects.filter(
+            stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
+                                    upper=self.cleaned_data.get('leave'))
+            ).filter(rooms__in=self.cleaned_data.get('rooms')
+            ).filter(approved=True)
+        for booking in overlaps:
+            booking.reject()
 def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)

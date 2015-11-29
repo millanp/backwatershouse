@@ -14,3 +14,6 @@
     margin:0 auto;
     width:70%;
 }
+.container {
+    width:75% !important;
+}

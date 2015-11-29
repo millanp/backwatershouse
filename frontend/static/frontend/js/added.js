@@ -9,7 +9,7 @@ $(document).ready(function() {
             success: function(data) {
                 alert(JSON.stringify(data));
 		alert("FAO");
-		          $('#formWrapper').html(data + "<p class='successMessage'>Booking complete</p>");
+		          $('#formWrapper').html(data + "<p class='successMessage'>Request sent for booking.<br>Track of its approval status at My Visits.</p>");
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 alert(jqXHR.responseText);
