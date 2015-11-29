@@ -140,6 +140,7 @@ class Booking(models.Model):
         for roomPkString in self.request_event_ids:
             room = Room.objects.get(pk=eval(roomPkString))
             room.delete_event(self.request_event_ids[roomPkString], request=True)
+        self.delete()
     def approve(self):
         for roomPkString in self.request_event_ids:
             room = Room.objects.get(pk=eval(roomPkString))
