@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from floppyforms import ModelForm
+from floppyforms.__future__ import ModelForm
 from paypal.standard.forms import PayPalPaymentsForm
 from malabarhouse import settings
 from backend import helpers
