@@ -39,7 +39,7 @@ class BookingCreate(LoginRequiredMixin, CreateView, ):
         prefix += suffix
         return prefix
     def get_context_data(self, **kwargs):
-        dic = CreateView.get_context_data(self)
+        dic = CreateView.get_context_data(self, **kwargs)
         dic['cal_url'] = google_calendar_url()
         return dic
         
