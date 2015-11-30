@@ -18,6 +18,8 @@ from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields.ranges import DateRangeField
 from psycopg2._range import DateRange
 from django.contrib.postgres.fields.hstore import HStoreField
+from django.core.mail import mail_admins
+from django.contrib.sites.models import Site
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -157,6 +159,9 @@ def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
         instance.save()
+        mail_admins('Someone requested a stay at Malabar House',
+                    'Click here to take action'+Site.objects.get_current().domain+reverse('admin:backend_booking_changelist')
+                    )
 post_save.connect(fill_stay, sender=Booking)
 def post_save_mymodel(sender, instance, action, reverse, pk_set, *args, **kwargs):
     if reverse == False and action == 'post_add':

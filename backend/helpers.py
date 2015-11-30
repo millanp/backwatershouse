@@ -5,11 +5,14 @@ import os
 from httplib2 import Http
 from googleapiclient.discovery import build, HttpError
 from django.utils.datetime_safe import time
+from django.contrib.sites.models import Site
+from django.core.urlresolvers import reverse
 def notify_guests_booking_approved(bookings):
+    myvisitsurl = Site.objects.get_current().domain + reverse('requests')
     for booking in bookings:
         booking.guest.email_user(
             "Your booking request has been approved",
-            "Please visit your My Requests page to finalize",
+            "Please click here to visit your My Visits page to finalize" + myvisitsurl,
         )
 def notify_guests_booking_rejected(bookings):
     for booking in bookings:

@@ -1,2 +1,3 @@
 Username: {{user.username}}
-Expect another email in a couple days allowing you to set your password.
+Wait for the house owner to approve your account request. Once it is approved,
+you will be sent another email allowing you to set your password.
