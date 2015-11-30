@@ -77,6 +77,7 @@ LOGGING = {
         }
     }
 }
+SITE_ID = 1
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -85,6 +86,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
+    'django.contrib.sites',
     'registration',
     'registration.supplements.default',
     'registration.contrib.notification',
