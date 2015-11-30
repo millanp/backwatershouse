@@ -160,7 +160,7 @@ def fill_stay(sender, instance, created, **kwargs):
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
         instance.save()
         mail_admins('Someone requested a stay at Malabar House',
-                    'Click here to take action'+Site.objects.get_current().domain+reverse('admin:backend_booking_changelist')
+                    'Click here to take action '+Site.objects.get_current().domain+reverse('admin:backend_booking_changelist')
                     )
 post_save.connect(fill_stay, sender=Booking)
 def post_save_mymodel(sender, instance, action, reverse, pk_set, *args, **kwargs):
