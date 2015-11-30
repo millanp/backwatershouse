@@ -17,3 +17,6 @@
 .container {
     width:75% !important;
 }
+#myRequestsTable {
+    margin: 0 auto;
+}
