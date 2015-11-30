@@ -111,8 +111,8 @@ class Booking(models.Model):
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     paid_for = models.BooleanField(default=True)
-    request_event_ids = HStoreField(blank=True, default={})
-    booking_event_ids = HStoreField(blank=True, default={})
+    request_event_ids = HStoreField(blank=True, default={}, null=True)
+    booking_event_ids = HStoreField(blank=True, default={}, null=True)
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms" #hey this is a comment
