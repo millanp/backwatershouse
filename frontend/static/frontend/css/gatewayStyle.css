@@ -117,7 +117,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76a8fe', end
   font-size:10px;
   text-decoration:none;
 }
-.huge {
+.huge:link {
     font-size: 20px;
 }
 .bottomlinks:link {
