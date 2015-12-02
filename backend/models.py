@@ -193,7 +193,12 @@ class BookingForm(ModelForm):
 class BookingAdminForm(ModelForm):
     class Meta():
         model = Booking
-        fields = "__all__"
+        fields = ['guest', 'arrive', 'leave', 'rooms', 'extra']
     def clean(self):
         cleaned_data = super(BookingAdminForm, self).clean()
         booking_form_clean(self)
+
+class RoomAdminForm(ModelForm):
+    class Meta():
+        model = Room
+        fields = ['number', 'blurb']

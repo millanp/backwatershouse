@@ -1,5 +1,5 @@
 from django.contrib import admin
-from backend.models import Booking, Room, BookingAdminForm
+from backend.models import Booking, Room, BookingAdminForm, RoomAdminForm
 from backend import helpers
 # Register your models here.
 def set_approved_fee(modeladmin, request, queryset):
@@ -30,5 +30,6 @@ class BookingAdmin(admin.ModelAdmin):
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'request_cal_id', 'booking_cal_id')
     actions = [create_calendars]
+    form = RoomAdminForm
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(Room, RoomAdmin)

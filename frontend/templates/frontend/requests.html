@@ -25,19 +25,23 @@
 						                {{ booking.short_description }}
 						            </td>
 						            {% if booking.approved %}
-						                {% if booking.payment_required %}
+						                {% if booking.payment_required and not booking.paid_for %}
 						                <td>
 						                    {{ booking.payment_button.render }}
 						                </td>
 						                {% else %}
-						                    
+						                    <td>
+						                      All set for this visit
+						                    </td>
 						                {% endif %}
 						            {% else %}
 						               <td>
-						                   All set for this visit
+						                   Wait for the house owner to approve the booking
 						               </td>
 						            {% endif %}
 						        </tr>
+						    {% empty %}
+						    No upcoming visits found
 						    {% endfor %}  
 						</table>                    
                     </section>

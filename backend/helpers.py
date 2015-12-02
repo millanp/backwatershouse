@@ -10,10 +10,16 @@ from django.core.urlresolvers import reverse
 def notify_guests_booking_approved(bookings):
     myvisitsurl = Site.objects.get_current().domain + reverse('requests')
     for booking in bookings:
-        booking.guest.email_user(
-            "Your booking request has been approved",
-            "Please click here to visit your My Visits page to finalize" + myvisitsurl,
-        )
+        if booking.payment_required:
+            booking.guest.email_user(
+                "Your booking request needs action",
+                "Please click here to visit your My Visits page to finalize" + myvisitsurl,
+            )
+        else:
+            booking.guest.email_user(
+                "Your booking request has been approved",
+                "We look forward to seeing you on your reserved date."
+            )
 def notify_guests_booking_rejected(bookings):
     for booking in bookings:
         booking.guest.email_user(
