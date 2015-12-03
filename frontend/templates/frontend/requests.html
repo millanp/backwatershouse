@@ -14,11 +14,14 @@
                             <h2>My Visits</h2>
                             <span class="byline">Your upcoming visits, all in one place</span>
                         </header>
-						<table id="myRequestsTable" class="table table-striped table-hover">
-						    <tr>
-						        <td>Requests</td>
-						        <td>Status</td>
-						    </tr>
+						<table id="myRequestsTable">
+						    <thead>
+							    <tr>
+							        <th>Requests</th>
+							        <th>Status</th>
+							    </tr>
+							</thead>
+						    <tbody>
 						    {% for booking in bookings %}
 						        <tr>
 						            <td>
@@ -43,6 +46,7 @@
 						    {% empty %}
 						    No upcoming visits found
 						    {% endfor %}  
+						    </tbody>
 						</table>                    
                     </section>
                 </div>
