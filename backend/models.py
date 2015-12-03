@@ -108,6 +108,18 @@ class Booking(models.Model):
     stay = DateRangeField(null=True, blank=True)
     rooms = models.ManyToManyField(Room)
     extra = models.BooleanField(default=False)
+    #different states of approval that the user
+    AWAITING_OWNER_APPROVAL = 1
+    PAYMENT_NEEDED = 2
+    FINALIZED_PAID = 3
+    FINALIZED_FREE = 4
+    APPROVAL_STATE_CHOICES = (
+        (AWAITING_OWNER_APPROVAL, 'Awaiting owner approval'),
+        (PAYMENT_NEEDED, 'Payment required'),
+        (FINALIZED_PAID, 'Booking is paid for and complete'),
+        (FINALIZED_FREE, 'Booking is complete'),
+    )
+    approval_state = models.PositiveSmallIntegerField(choices=APPROVAL_STATE_CHOICES)
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     paid_for = models.BooleanField(default=True)
