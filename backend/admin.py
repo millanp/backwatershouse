@@ -24,7 +24,7 @@ def create_calendars(modeladmin, request, queryset):
         room.create_calendars()
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('nice_rooms', 'arrive', 'leave', 'guest',
-                    'extra', 'approved', 'payment_required', 'paid_for')
+                    'extra', 'approval_state')
     actions = [set_approved_fee, set_approved_free, set_rejected]
     form = BookingAdminForm
 class RoomAdmin(admin.ModelAdmin):
