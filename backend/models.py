@@ -115,11 +115,11 @@ class Booking(models.Model):
     FINALIZED_FREE = 4
     APPROVAL_STATE_CHOICES = (
         (AWAITING_OWNER_APPROVAL, 'Awaiting owner approval'),
-        (PAYMENT_NEEDED, 'Payment required'),
+        (PAYMENT_NEEDED, 'Waiting for payment'),
         (FINALIZED_PAID, 'Booking is paid for and complete'),
         (FINALIZED_FREE, 'Booking is complete'),
     )
-    approval_state = models.PositiveSmallIntegerField(choices=APPROVAL_STATE_CHOICES)
+    approval_state = models.PositiveSmallIntegerField(choices=APPROVAL_STATE_CHOICES, default=AWAITING_OWNER_APPROVAL)
     approved = models.BooleanField(default=False)
     payment_required = models.BooleanField(default=False)
     paid_for = models.BooleanField(default=True)
@@ -155,16 +155,21 @@ class Booking(models.Model):
             room = Room.objects.get(pk=eval(roomPkString))
             room.delete_event(self.request_event_ids[roomPkString], request=True)
         self.delete()
-    def approve(self):
+    def approve(self, payment_required=False):
         for roomPkString in self.request_event_ids:
             room = Room.objects.get(pk=eval(roomPkString))
             room.delete_event(self.request_event_ids[roomPkString], request=True)
             room.book_to_calendar(self.arrive, self.leave)
+        if payment_required:
+            self.approval_state = self.PAYMENT_NEEDED
+        else:
+            self.approval_state = self.FINALIZED_FREE
+        self.save()
         overlaps = Booking.objects.filter(
             stay__overlap=DateRange(lower=self.arrive, 
                                     upper=self.leave)
             ).filter(rooms__in=self.rooms.all()
-            ).filter(approved=False)
+            ).filter(approval_state__lt=self.FINALIZED_PAID)
         for booking in overlaps:
             booking.reject()
 def fill_stay(sender, instance, created, **kwargs):
@@ -190,7 +195,7 @@ def booking_form_clean(self):
             stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
                                     upper=self.cleaned_data.get('leave'))
             ).filter(rooms__in=self.cleaned_data.get('rooms')
-            ).filter(approved=True)
+            ).filter(approval_state__gte=Booking.FINALIZED_PAID)
         if len(overlaps) > 0:
             raise ValidationError('Booking is overlapping another booking')
     
