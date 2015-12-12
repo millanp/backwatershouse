@@ -5,6 +5,9 @@
 #nav ul li {
     font-weight:bold;
 }
+#nav-wrapper {
+    position: fixed !important;
+}
 .errorList {
     font-weight:bold;
     color:red;
