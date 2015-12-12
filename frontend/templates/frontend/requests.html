@@ -25,12 +25,12 @@
 							
 						    <tbody>
 						    {% for booking in bookings %}
-						        <tr style="color:{{ booking.status_color }}">
+						        <tr style="background-color:{{ booking.status_color }}">
 						            <td>
 						                {{ booking.short_description }}
 						            </td>
-						            {% if booking.approved %}
-						                {% if booking.payment_required and not booking.paid_for %}
+						            {% if booking.approval_state > booking.AWAITING_OWNER_APPROVAL %}
+						                {% if booking.approval_state == booking.PAYMENT_NEEDED %}
 						                <td>
 						                    {{ booking.payment_button.render }}
 						                </td>
