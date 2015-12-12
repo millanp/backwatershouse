@@ -128,7 +128,13 @@ class Booking(models.Model):
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms" #hey this is a comment
-    
+    def status_color(self):
+        if self.approval_state == self.PAYMENT_NEEDED:
+            return "orange"
+        elif self.approval_state == self.AWAITING_OWNER_APPROVAL:
+            return "white"
+        elif self.approval_state >= self.FINALIZED_PAID:
+            return "green"
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
     def add_request_to_google(self, pk_set):

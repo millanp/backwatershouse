@@ -14,7 +14,7 @@
                             <h2>My Visits</h2>
                             <span class="byline">Your upcoming visits, all in one place</span>
                         </header>
-                        {% if condition %}
+                        {% if bookings %}
 						<table id="myRequestsTable">
 						    <thead>
 							    <tr>
@@ -25,7 +25,7 @@
 							
 						    <tbody>
 						    {% for booking in bookings %}
-						        <tr>
+						        <tr style="color:{{ booking.status_color }}">
 						            <td>
 						                {{ booking.short_description }}
 						            </td>
@@ -44,9 +44,7 @@
 						                   Wait for the house owner to approve the booking
 						               </td>
 						            {% endif %}
-						        </tr>
-						    {% empty %}
-						    
+						        </tr>						    
 						    {% endfor %}  
 						    </tbody>
 						</table>
