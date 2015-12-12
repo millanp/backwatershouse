@@ -7,6 +7,7 @@
 }
 #nav-wrapper {
     position: fixed !important;
+    z-index:2;
 }
 .errorList {
     font-weight:bold;
