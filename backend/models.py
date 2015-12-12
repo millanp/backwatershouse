@@ -132,7 +132,7 @@ class Booking(models.Model):
         if self.approval_state == self.PAYMENT_NEEDED:
             return "orange"
         elif self.approval_state == self.AWAITING_OWNER_APPROVAL:
-            return "white"
+            return "" #to make the html render default color
         elif self.approval_state >= self.FINALIZED_PAID:
             return "green"
     def short_description(self):
@@ -175,7 +175,8 @@ class Booking(models.Model):
             stay__overlap=DateRange(lower=self.arrive, 
                                     upper=self.leave)
             ).filter(rooms__in=self.rooms.all()
-            ).filter(approval_state__lt=self.FINALIZED_PAID)
+            ).filter(approval_state__lt=self.FINALIZED_PAID
+            ).exclude(pk=self.pk)
         for booking in overlaps:
             booking.reject()
 def fill_stay(sender, instance, created, **kwargs):
