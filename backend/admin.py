@@ -8,8 +8,10 @@ def set_approved_fee(modeladmin, request, queryset):
 def set_approved_base(modeladmin, request, queryset, payment_required=False):
     helpers.notify_guests_booking_approved(queryset)
     for booking in queryset:
-        booking.approve(payment_required=payment_required)
-        
+        if not payment_required:
+            booking.approve()
+        else:
+            booking.require_payment()
 def set_approved_free(modeladmin, request, queryset):
     set_approved_base(modeladmin, request, queryset)
 def set_rejected(modeladmin, request, queryset):
@@ -26,6 +28,7 @@ class BookingAdmin(admin.ModelAdmin):
     list_display = ('nice_rooms', 'arrive', 'leave', 'guest',
                     'extra', 'approval_state')
     actions = [set_approved_fee, set_approved_free, set_rejected]
+    ordering = ['approval_state']
     form = BookingAdminForm
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'request_cal_id', 'booking_cal_id')
