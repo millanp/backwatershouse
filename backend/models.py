@@ -163,6 +163,7 @@ class Booking(models.Model):
         self.delete()
     def require_payment(self):
         self.approval_state = self.PAYMENT_NEEDED
+        self.save()
         overlaps = Booking.objects.filter(
             stay__overlap=DateRange(lower=self.arrive, 
                                     upper=self.leave)
