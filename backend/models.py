@@ -116,8 +116,8 @@ class Booking(models.Model):
     APPROVAL_STATE_CHOICES = (
         (AWAITING_OWNER_APPROVAL, 'Awaiting owner approval'),
         (PAYMENT_NEEDED, 'Waiting for payment'),
-        (FINALIZED_PAID, 'Booking is paid for and complete'),
-        (FINALIZED_FREE, 'Booking is complete'),
+        (FINALIZED_PAID, 'Booking is paid for and the house visit is scheduled'),
+        (FINALIZED_FREE, 'House visit scheduled'),
     )
     approval_state = models.PositiveSmallIntegerField(choices=APPROVAL_STATE_CHOICES, default=AWAITING_OWNER_APPROVAL)
     approved = models.BooleanField(default=False)
