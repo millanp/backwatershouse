@@ -1,6 +1,9 @@
 from django.contrib import admin
 from backend.models import Booking, Room, BookingAdminForm, RoomAdminForm
 from backend import helpers
+from django.contrib.auth.models import Group
+from paypal.standard.ipn.models import PayPalIPN
+from django.contrib.sites.models import Site
 # Register your models here.
 def set_approved_fee(modeladmin, request, queryset):
     set_approved_base(modeladmin, request, queryset, payment_required=True)
@@ -36,3 +39,7 @@ class RoomAdmin(admin.ModelAdmin):
     form = RoomAdminForm
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(Room, RoomAdmin)
+
+admin.site.unregister(Group)
+admin.site.unregister(PayPalIPN)
+admin.site.unregister(Site)
