@@ -111,25 +111,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76a8fe', end
   opacity:0.75;
   border:0;
 }
-.bottomlinks {
-  color:#2552A1;
-  font-family:sans-serif;
-  font-size:17px;
-  text-decoration:none;
-}
 .huge:link, .huge {
     font-size: 20px;
 }
 .bottomlinks:link {
   color:#2552A1;
   font-family:sans-serif;
-  font-size:10px;
-  text-decoration:none;
-}
-.bottomlinks:visited {
-  color:#2552A1;
-  font-family:sans-serif;
-  font-size:10px;
+  font-size:17px;
   text-decoration:none;
 }
 #myspinner {
