@@ -27,6 +27,10 @@
 #myRequestsTable {
     margin: 0 auto;
 }
+.image img {
+    object-fit:cover;
+    height:175px;
+}
 /* simple little table */
 table a:link {
     color: #666;
