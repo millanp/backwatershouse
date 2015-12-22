@@ -162,6 +162,10 @@ class Booking(models.Model):
             room = Room.objects.get(pk=eval(roomPkString))
             room.delete_event(self.request_event_ids[roomPkString], request=True)
         self.delete()
+    def post_approval_reject(self):
+        for roomPkString in self.booking_event_ids:
+            room = Room.objects.get(pk=eval(roomPkString))
+            
     def require_payment(self):
         self.approval_state = self.PAYMENT_NEEDED
         self.save()

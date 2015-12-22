@@ -8,7 +8,7 @@ from malabarhouse import settings
 from django.http.response import JsonResponse, HttpResponse
 from backend import colors
 def google_calendar_url():
-    prefix = r"https://www.google.com/calendar/embed?title=Malabar%20House%20Bookings&height=600&wkst=1&bgcolor=%23FFFFFF&"
+    prefix = r"https://www.google.com/calendar/embed?title=Find%20an%20open%20timeslot%20here&height=600&wkst=1&bgcolor=%23FFFFFF&"
     suffix = r"ctz=America%2FLos_Angeles"
     color = 0
     for room in Room.objects.all():
