@@ -20,6 +20,7 @@ from psycopg2._range import DateRange
 from django.contrib.postgres.fields.hstore import HStoreField
 from django.core.mail import mail_admins
 from django.contrib.sites.models import Site
+from django.forms import widgets
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -224,7 +225,11 @@ class BookingForm(ModelForm):
     def clean(self):
         cleaned_data = super(BookingForm, self).clean()
         booking_form_clean(self)
-        
+# class RoomsSelect(widgets.SelectMultiple):
+#     def render_option(self, selected_choices, option_value, option_label):
+#         widget = widgets.SelectMultiple.render_option(self, selected_choices, option_value, option_label)
+#         split_widget = widget.split(">")
+#         image_url = 
 class BookingAdminForm(ModelForm):
     class Meta():
         model = Booking
