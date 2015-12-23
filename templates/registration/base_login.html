@@ -1,21 +1,27 @@
 <!DOCTYPE html>
+{# onmousedown="this.style.boxShadow = 'inset 0px 0px 17px 2px'" onmouseout="this.style.boxShadow = '0px 0px 0px 0px'" onmouseup="this.style.boxShadow = '0px 0px 0px 0px'" #}
 <html>
 {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href=" {% static 'frontend/css/gatewayStyle.css' %} ">
-    <div id='xeap'>
-    <div id='wrapper'>
-    <div class='boxed'>
-        {% block fields %}{% endblock %}
-        <div id='bottomlinks-wrapper'>
-            {% block bottomlinks %}
-            <p><a class='bottomlinks' href="{% url 'registration_register' %}">Don't have an account? Click here to register</a></p>
-            <p><a class='bottomlinks' href="{% url 'password_reset' %}">Forgot your password? Reset here.</a></p>
-            {% if form.errors %}
-            <p id="invalidCredentials">Something is wrong. Please try again.</p>
-            {% endif %}
-            {% endblock %}
-        </div>
-    </div>
-    </div>
-    </div> 
+    <head>
+        <title>Malabar House Authentication - {% block loginpagetitle %}{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href=" {% static 'frontend/css/gatewayStyle.css' %} ">
+    </head>
+    <body>
+	    <div id='xeap'>
+	    <div id='wrapper'>
+	    <div class='boxed'>
+	        {% block fields %}{% endblock %}
+	        <div id='bottomlinks-wrapper'>
+	            {% block bottomlinks %}
+	            <p><a class='bottomlinks' href="{% url 'registration_register' %}">Don't have an account? Click here to register</a></p>
+	            <p><a class='bottomlinks' href="{% url 'password_reset' %}">Forgot your password? Reset here.</a></p>
+	            {% if form.errors %}
+	            <p id="invalidCredentials">Something is wrong. Please try again.</p>
+	            {% endif %}
+	            {% endblock %}
+	        </div>
+	    </div>
+	    </div>
+	    </div>
+    </body> 
 </html> 

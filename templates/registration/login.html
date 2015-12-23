@@ -1,9 +1,10 @@
 {% extends 'registration/base_login.html' %}
+{% block loginpagetitle %}Login Page{% endblock %}
 {% block fields %}
 <form class="gatewayform" method="post" action="">
 {% csrf_token %}
 <p>
-    <input type='text' name='username' placeholder=' Email' class='inputter' id='firstinput' required>
+    <input type='text' name='username' placeholder=' Username' class='inputter' id='firstinput' required>
 </p>
 <p>
     <input type='password' name='password' placeholder=' Password' class='inputter' required>
