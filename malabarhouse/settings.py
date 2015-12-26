@@ -31,7 +31,7 @@ DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 TEMPLATE_DEBUG = True
 ADMINS = (('millan', 'millan.philipose@gmail.com'),)
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['www.malabarhouse.herokuapp.com']
 REGISTRATION_NOTIFICATION_RECIPIENTS = [admin[1] for admin in ADMINS]
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
@@ -43,7 +43,10 @@ LOGIN_REDIRECT_URL = "/"
 PAYPAL_RECEIVER_EMAIL = os.environ['PAYPAL_BUSINESS']
 PAYPAL_TEST = True
 SITE_URL = "https://malabarhouse.herokuapp.com"
-#SESSION_COOKIE_AGE = 30 #I should set this to a reasonable time, not 30 secs
+SESSION_COOKIE_AGE = 1200
+SERVER_EMAIL = "server@malabarhouse.herokuapp.com"
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 # Application definition
 LOGGING = {
     'version': 1,
@@ -143,3 +146,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+TEMPLATES = [{
+    'BACKEND': 'django.template.backends.django.DjangoTemplates',
+    'APP_DIRS': True,
+}]

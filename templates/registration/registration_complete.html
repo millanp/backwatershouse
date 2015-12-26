@@ -12,7 +12,10 @@
     </p>
 </form>
 <span id="invalidCredentials">{{ form.errors }}</span>
-<span id="validSubmission">Request sent to site administrator.<br></span>
+<span id="validSubmission">Request sent to site administrator.<br>When the
+account is approved, you will be sent an email allowing you to set your password
+and access the account.
+</span>
 {% endblock %}
 {% block bottomlinks %}
 <a class="bottomlinks" href="{% url 'login' %}">Back to login</a><br>
