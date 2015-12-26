@@ -104,6 +104,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76a8fe', end
   opacity:0.6;
   border:0;
 }
+input[type=submit] {
+    border:0;
+}
 #sub {
   display:inline-block;
   width:100%;
