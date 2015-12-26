@@ -105,7 +105,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#76a8fe', end
   border:0;
 }
 input[type=submit] {
-    border:0;
+    outline:0;
 }
 #sub {
   display:inline-block;
