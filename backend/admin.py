@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from backend.models import Booking, Room, BookingAdminForm, RoomAdminForm
 from backend import helpers
 from django.contrib.auth.models import Group
@@ -10,11 +10,17 @@ def set_approved_fee(modeladmin, request, queryset):
     
 def set_approved_base(modeladmin, request, queryset, payment_required=False):
     helpers.notify_guests_booking_approved(queryset)
+    if queryset.exclude(approval_state=Booking.AWAITING_OWNER_APPROVAL).exists():
+        modeladmin.message_user(request, "One or more of the selected bookings is already approved", level=messages.ERROR)
+        return
     for booking in queryset:
         if not payment_required:
             booking.approve()
         else:
             booking.require_payment()
+    modeladmin.message_user(request, 
+                            str(len(queryset))+" booking requests successfully approved.", 
+                            level=messages.SUCCESS)
 def set_approved_free(modeladmin, request, queryset):
     set_approved_base(modeladmin, request, queryset)
 def set_rejected(modeladmin, request, queryset):
