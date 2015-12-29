@@ -7,7 +7,7 @@ from django.contrib.sites.models import Site
 # Register your models here.
 def set_approved_fee(modeladmin, request, queryset):
     set_approved_base(modeladmin, request, queryset, payment_required=True)
-    
+    modeladmin.message_user(request, "The guests will be charged a house upkeep fee")
 def set_approved_base(modeladmin, request, queryset, payment_required=False):
     helpers.notify_guests_booking_approved(queryset)
     if queryset.exclude(approval_state=Booking.AWAITING_OWNER_APPROVAL).exists():
@@ -19,7 +19,7 @@ def set_approved_base(modeladmin, request, queryset, payment_required=False):
         else:
             booking.require_payment()
     modeladmin.message_user(request, 
-                            str(len(queryset))+" booking requests successfully approved.", 
+                            str(len(queryset))+" booking request(s) successfully approved.", 
                             level=messages.SUCCESS)
 def set_approved_free(modeladmin, request, queryset):
     set_approved_base(modeladmin, request, queryset)

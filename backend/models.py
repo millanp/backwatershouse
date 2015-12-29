@@ -116,7 +116,7 @@ class Booking(models.Model):
     FINALIZED_FREE = 4
     APPROVAL_STATE_CHOICES = (
         (AWAITING_OWNER_APPROVAL, 'Awaiting owner approval'),
-        (PAYMENT_NEEDED, 'Waiting for payment'),
+        (PAYMENT_NEEDED, 'Approved; waiting for payment'),
         (FINALIZED_PAID, 'Booking is paid for and the house visit is scheduled'),
         (FINALIZED_FREE, 'House visit scheduled'),
     )
