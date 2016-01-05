@@ -45,7 +45,6 @@ PAYPAL_TEST = True
 SITE_URL = "https://malabarhouse.herokuapp.com"
 SESSION_COOKIE_AGE = 1200
 SERVER_EMAIL = "server@malabarhouse.herokuapp.com"
-CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 # Application definition
 LOGGING = {
