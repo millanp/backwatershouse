@@ -13,7 +13,8 @@
                 <!-- Content -->
                 <div id="content" class="8u skel-cell-important">
                     <section style="text-align:center">
-                        <iframe class="bookingCalendar" src="{{ cal_url }}"></iframe>
+                        <iframe id="calIframe" class="bookingCalendar" src="{{ cal_url }}"></iframe>
+                        <input type="button" id="calRefresh" value="Refresh calendar">
                         <p>If an event begins with "Request for...", that means that the slot is still available, but someone else has requested the slot before you and is pending approval from the owner.</p>
                         <p>If one begins with "Booking for...", then it is already booked and unavailable at this time.</p>
                     </section>
@@ -83,6 +84,10 @@
     if (!Modernizr.inputtypes.date) {
         $('input[type=date]').datepicker();
     }
+    $('#calRefresh').click(function() {
+        var calIframe = document.getElementById('calIframe');
+        calIframe.src = calIframe.src;
+    })
     </script>
 </body>
 {% endblock content %}
