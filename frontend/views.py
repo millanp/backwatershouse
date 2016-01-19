@@ -17,6 +17,7 @@ def google_calendar_url():
         color += 2
     prefix += suffix
     return prefix
+        
 class BookingCreate(LoginRequiredMixin, CreateView, ):
     form_class = BookingForm
     success_url = '/booking'
