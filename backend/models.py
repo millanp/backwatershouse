@@ -5,22 +5,16 @@ from paypal.standard.forms import PayPalPaymentsForm
 from malabarhouse import settings
 from backend import helpers
 from django.core.urlresolvers import reverse
-from malabarhouse import settings
-import os
-from oauth2client.client import SignedJwtAssertionCredentials
-from googleapiclient.discovery import build
-from httplib2 import Http
 from backend.helpers import cal_api
-from django.db.models.signals import post_save, post_init, pre_delete,\
+from django.db.models.signals import post_save, \
     m2m_changed
-from datetime import timedelta, datetime, date
+from datetime import datetime
 from django.core.exceptions import ValidationError
 from django.contrib.postgres.fields.ranges import DateRangeField
 from psycopg2._range import DateRange
 from django.contrib.postgres.fields.hstore import HStoreField
 from django.core.mail import mail_admins
 from django.contrib.sites.models import Site
-from django.forms import widgets
 # Create your models here.
 class Room(models.Model):
     number = models.PositiveSmallIntegerField()
@@ -103,7 +97,7 @@ def create_calendars(sender, instance, created, **kwargs):
 post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
     guest = models.ForeignKey(User)
-    #add arrive and leave here for input sake, then generate stay
+    # add arrive and leave here for input sake, then generate stay
     arrive = models.DateField()
     leave = models.DateField()
     stay = DateRangeField(null=True, blank=True)
@@ -128,7 +122,12 @@ class Booking(models.Model):
     booking_event_ids = HStoreField(blank=True, default={}, null=True)
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
-    nice_rooms.short_description = "Rooms" #hey this is a comment
+    nice_rooms.short_description = "Rooms"  # hey this is a comment
+    
+    def finalized(self):
+        return self.approval_state >= self.FINALIZED_PAID
+    
+    
     def status_color(self):
         if self.approval_state == self.PAYMENT_NEEDED:
             return "orange"
