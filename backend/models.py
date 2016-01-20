@@ -123,11 +123,11 @@ class Booking(models.Model):
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms"  # hey this is a comment
-    
+
     def finalized(self):
         return self.approval_state >= self.FINALIZED_PAID
-    
-    
+    finalized.boolean = True
+
     def status_color(self):
         if self.approval_state == self.PAYMENT_NEEDED:
             return "orange"
