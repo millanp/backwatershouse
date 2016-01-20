@@ -33,9 +33,15 @@ set_rejected.short_description = "Reject requests"
 def create_calendars(modeladmin, request, queryset):
     for room in queryset:
         room.create_calendars()
+def assistance_required(obj):
+    if obj.extra:
+        return "Assistance required"
+    else:
+        return ""
+assistance_required.short_description = "Added assistance"
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('nice_rooms', 'arrive', 'leave', 'guest',
-                    'extra', 'approval_state')
+                    assistance_required, 'finalized', 'approval_state')
     actions = [set_approved_fee, set_approved_free, set_rejected]
     ordering = ['approval_state']
     form = BookingAdminForm
