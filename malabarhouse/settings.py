@@ -163,4 +163,3 @@ TEMPLATES = [
         },
     },
 ]
-admin.site.site_header = "Malabar House Administration"
