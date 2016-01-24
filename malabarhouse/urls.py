@@ -6,7 +6,7 @@ from registration.views import RegistrationView
 class RegistrationViewUniqueEmail(RegistrationView):
     form_class=RegistrationFormUniqueEmail
 
-admin.site.site_header = "Malabar House Authentication"
+admin.site.site_header = "Malabar House Administration"
 urlpatterns = patterns('',
     # Examples:
     url('^accounts/logout/', views.logout_then_login, name='logout'),
