@@ -93,7 +93,8 @@ INSTALLED_APPS = (
     'frontend',
     'backend',
     'multiselectfield',
-    'floppyforms'
+    'floppyforms',
+    'dappr',
 )
 
 MIDDLEWARE_CLASSES = (
