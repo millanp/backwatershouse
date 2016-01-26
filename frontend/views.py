@@ -16,10 +16,10 @@ def google_calendar_url():
     suffix = r"ctz=America%2FLos_Angeles"
     color = 0
     for room in Room.objects.all():
-        thiscal = "src="+room.request_cal_id.strip()
-        +"&color=%23"+colors.COLORS[color]
-        +"&src="+room.booking_cal_id.strip()
-        +"&color=%23"+colors.COLORS[color+1]+"&"
+        thiscal = ("src="+room.request_cal_id.strip()
+        "&color=%23"+colors.COLORS[color]
+        "&src="+room.booking_cal_id.strip()
+        "&color=%23"+colors.COLORS[color+1]+"&")
         prefix += thiscal
         color += 2
     prefix += suffix
@@ -61,7 +61,7 @@ class TemplateViewPlus(LoginRequiredMixin, TemplateView):
 @login_required
 def requestsView(request):
     print 'displaying requests'
-    return render(request,
-                  'frontend/requests.html',
-                  {'bookings': Booking.objects.filter(guest=request.user)},
-                  )
+    return render(
+        request,
+        'frontend/requests.html',
+        {'bookings': Booking.objects.filter(guest=request.user)})
