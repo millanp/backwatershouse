@@ -17,9 +17,9 @@ def google_calendar_url():
     color = 0
     for room in Room.objects.all():
         thiscal = ("src="+room.request_cal_id.strip()
-        "&color=%23"+colors.COLORS[color]
-        "&src="+room.booking_cal_id.strip()
-        "&color=%23"+colors.COLORS[color+1]+"&")
+                   "&color=%23"+colors.COLORS[color]
+                   "&src="+room.booking_cal_id.strip()
+                   "&color=%23"+colors.COLORS[color+1]+"&")
         prefix += thiscal
         color += 2
     prefix += suffix
