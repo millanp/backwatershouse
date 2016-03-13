@@ -1,14 +1,15 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib import auth
-import dappr
+from django.contrib.auth import views as authurls
+from dappr import urls as dapprurls
 
 admin.site.site_header = "Malabar House Administration"
 urlpatterns = patterns('',
     # Examples:
-    url('^accounts/logout/', auth.views.logout_then_login, name='logout'),
-    url('^accounts/', include(auth.urls)),
-    url('^r/', include(dappr.urls)),
+    url('^accounts/logout/', views.logout_then_login, name='logout'),
+    url('^accounts/', include(authurls)),
+    url('^r/', include(dapprurls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^backend/', include("backend.urls")),
     url(r'^', include("frontend.urls")),
