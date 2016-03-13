@@ -1,2 +1,0 @@
-Click here to activate your account
-{{ site.domain }}{% url 'registration_activate' activation_key %}

@@ -16,7 +16,7 @@
 	        {% block fields %}{% endblock %}
 	        <div id='bottomlinks-wrapper'>
 	            {% block bottomlinks %}
-	            <p><a class='bottomlinks' href="{% url 'registration_register' %}">Don't have an account? Click here to register</a></p>
+	            <p><a class='bottomlinks' href="{% url 'registration_view' %}">Don't have an account? Click here to register</a></p>
 	            <p><a class='bottomlinks' href="{% url 'password_reset' %}">Forgot your password? Reset here.</a></p>
 	            {% if form.errors %}
 	            <p id="invalidCredentials">This username/password combination does not exist.</p>

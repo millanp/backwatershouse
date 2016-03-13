@@ -1,1 +1,0 @@
-Visit us right away at {{ site.domain }} and check it out!

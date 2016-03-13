@@ -1,3 +1,0 @@
-Username: {{user.username}}
-Wait for the house owner to approve your account request. Once it is approved,
-you will be sent another email allowing you to set your password.
