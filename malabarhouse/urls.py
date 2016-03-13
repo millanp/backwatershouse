@@ -1,11 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.contrib import auth
-from registration.forms import RegistrationFormUniqueEmail
-from registration.views import RegistrationView
 import dappr
-class RegistrationViewUniqueEmail(RegistrationView):
-    form_class=RegistrationFormUniqueEmail
 
 admin.site.site_header = "Malabar House Administration"
 urlpatterns = patterns('',
