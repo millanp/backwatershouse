@@ -26,8 +26,12 @@
 	});
 	
     </script>
-    
+    {% block extrahead %}
+    {% endblock %}
     
 </head>
+<body>
+{% include "frontend/header.html" %}
 {% block content %}{% endblock %}
-    
+{% include "frontend/footer.html" %}
+</body>
