@@ -97,7 +97,7 @@ def create_calendars(sender, instance, created, **kwargs):
 post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
     guest = models.ForeignKey(User)
-    # add arrive and leave here for input sake, then generate stay
+    # add arrive and leave here for input sake, then generate state
     arrive = models.DateField()
     leave = models.DateField()
     stay = DateRangeField(null=True, blank=True)
@@ -108,11 +108,13 @@ class Booking(models.Model):
     PAYMENT_NEEDED = 2
     FINALIZED_PAID = 3
     FINALIZED_FREE = 4
+    REJECTED = 5
     APPROVAL_STATE_CHOICES = (
         (AWAITING_OWNER_APPROVAL, 'Awaiting owner approval'),
         (PAYMENT_NEEDED, 'Approved; waiting for payment'),
-        (FINALIZED_PAID, 'Booking is paid for and the house visit is scheduled'),
-        (FINALIZED_FREE, 'House visit scheduled'),
+        (FINALIZED_PAID, 'Paid for, finalized, and finalized'),
+        (FINALIZED_FREE, 'Finalized and scheduled'),
+        (REJECTED, 'Rejected'),
     )
     approval_state = models.PositiveSmallIntegerField(choices=APPROVAL_STATE_CHOICES, default=AWAITING_OWNER_APPROVAL)
     approved = models.BooleanField(default=False)

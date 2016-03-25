@@ -1,102 +1,47 @@
 {% extends 'frontend/base_inner_site.html' %}
 {% block pagetitle %}My Visits{% endblock %}
 {% block content %}
-<body>
-
-    {% include "frontend/header.html" %}
-
 <!-- Main -->
     <div id="main">
 
-                <!-- Content -->
-                <div id="content">
-                    <section style="text-align:center">
-                        <header>
-                            <h2>My Visits</h2>
-                            <span class="byline">Your upcoming visits, all in one place</span>
-                        </header>
-                        {% if bookings %}
-						<table id="myRequestsTable">
-						    <thead>
-							    <tr>
-							        <th>Requests</th>
-							        <th>Status</th>
-							    </tr>
-							</thead>
-							
-						    <tbody>
-						    {% for booking in bookings %}
-						        <tr style="background-color:{{ booking.status_color }}">
-						            <td>
-						                {{ booking.short_description }}
-						            </td>
-						            {% if booking.approval_state > booking.AWAITING_OWNER_APPROVAL %}
-						                {% if booking.approval_state == booking.PAYMENT_NEEDED %}
-						                <td>
-						                    {{ booking.payment_button.render }}
-						                </td>
-						                {% else %}
-						                    <td>
-						                      All set for this visit
-						                    </td>
-						                {% endif %}
-						            {% else %}
-						               <td>
-						                   Wait for the house owner to approve the booking
-						               </td>
-						            {% endif %}
-						        </tr>						    
-						    {% endfor %}  
-						    </tbody>
-						</table>
-						{% else %}
-						No upcoming visits found
-						{% endif %}
-                    </section>
-                </div>
+        <!-- Content -->
+        <div id="content">
+            <section style="text-align:center">
+                <header>
+                    <h2>My Visits</h2>
+                    <span class="byline">Your upcoming visits, all in one place</span>
+                </header>
+                {% if bookings %}
+				<table id="myRequestsTable">
+				    <thead>
+					    <tr>
+					        <th>Requests</th>
+					        <th>Status</th>
+					    </tr>
+					</thead>
+					
+				    <tbody>
+				    {% for booking in bookings %}
+				        <tr style="background-color:{{ booking.status_color }}">
+				            <td>
+				                {{ booking.short_description }}
+				            </td>
+				            <td>
+                            {% if booking.approval_state == booking.PAYMENT_NEEDED %}
+                                {{ booking.payment_button }}
+                            {% else %}
+                                {{ booking.approval_state_display }}
+                            {% endif %}
+                            </td>
+				        </tr>						    
+				    {% endfor %}  
+				    </tbody>
+				</table>
+				{% else %}
+				No upcoming visits found
+				{% endif %}
+            </section>
+        </div>
     </div>
 <!-- /Main -->
-
-<!-- Tweet -->
-    <div id="tweet">
-        <div class="container">
-            <section>
-                <blockquote>&ldquo;In posuere eleifend odio. Quisque semper augue mattis wisi. Maecenas ligula. Pellentesque viverra vulputate enim. Aliquam erat volutpat.&rdquo;</blockquote>
-            </section>
-        </div>
-    </div>
-<!-- /Tweet -->
-
-<!-- Footer -->
-    <div id="footer">
-        <div class="container">
-            <section>
-                <header>
-                    <h2>Get in touch</h2>
-                    <span class="byline">Integer sit amet pede vel arcu aliquet pretium</span>
-                </header>
-                <ul class="contact">
-                    <li><a href="#" class="fa fa-twitter"><span>Twitter</span></a></li>
-                    <li class="active"><a href="#" class="fa fa-facebook"><span>Facebook</span></a></li>
-                    <li><a href="#" class="fa fa-dribbble"><span>Pinterest</span></a></li>
-                    <li><a href="#" class="fa fa-tumblr"><span>Google+</span></a></li>
-                </ul>
-            </section>
-        </div>
-    </div>
-<!-- /Footer -->
-
-<!-- Copyright -->
-    <div id="copyright">
-        <div class="container">
-            Design: <a href="http://templated.co">TEMPLATED</a> Images: <a href="http://unsplash.com">Unsplash</a> (<a href="http://unsplash.com/cc0">CC0</a>)
-        </div>
-    </div>
-
-    <script>
-    if (!Modernizr.inputtypes.date) {
-        $('input[type=date]').datepicker();
-    }
-    </script>
-</body>
 {% endblock content %}
