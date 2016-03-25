@@ -30,7 +30,7 @@
                             {% if booking.approval_state == booking.PAYMENT_NEEDED %}
                                 {{ booking.payment_button }}
                             {% else %}
-                                {{ booking.approval_state_display }}
+                                {{ booking.get_approval_state_display }}
                             {% endif %}
                             </td>
 				        </tr>						    
