@@ -74,7 +74,7 @@ table th {
     background: -moz-linear-gradient(top,  #ededed,  #ebebeb);
 }
 table th:first-child {
-    text-align: left;
+    text-align: center;
     padding-left:20px;
 }
 table tr:first-child th:first-child {
@@ -92,7 +92,7 @@ table tr {
     padding-left:20px;
 }
 table td:first-child {
-    text-align: left;
+    text-align: center;
     padding-left:20px;
     border-left: 0;
 }
