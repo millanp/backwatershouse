@@ -10,9 +10,12 @@ from backend import colors
 # Using the list of Room instances, generate a URL for the embedded calendar
 # that incorporates all request calendars and all booking calendars into one
 def google_calendar_url():
+    cal_title = "Malabar House Bookings"
+    cal_title = cal_title.replace(" ", "%20")
     prefix = (r"https://www.google.com/calendar/embed"
-              r"?title=Find%20an%20open%20timeslot%20here"
+              r"?title=cal_title"
               r"&height=600&wkst=1&bgcolor=%23FFFFFF&")
+    prefix = prefix.replace("cal_title", cal_title)
     suffix = r"ctz=America%2FLos_Angeles"
     color = 0
     for room in Room.objects.all():
