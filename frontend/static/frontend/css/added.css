@@ -38,6 +38,12 @@
 #content section {
     padding: 35px;
 }
+input, select {
+    width: 50% !important;
+}
+input[type=checkbox] {
+    width: 100%;
+}
 /* simple little table */
 table a:link {
     color: #666;
