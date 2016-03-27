@@ -198,7 +198,7 @@ class Booking(models.Model):
             booking.reject()
 
     def get_fee(self):
-        return getattr(settings, BOOKING_FEE, "$5")
+        return getattr(settings, "BOOKING_FEE", "$5")
 
 def fill_stay(sender, instance, created, **kwargs):
     if created:
