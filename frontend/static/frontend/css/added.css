@@ -33,6 +33,10 @@
 }
 #content {
     margin: 0 20%;
+    background-color: #F0F8FF; /* aliceblue */
+}
+#content section {
+    padding: 35px;
 }
 /* simple little table */
 table a:link {
