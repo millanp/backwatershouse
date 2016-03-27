@@ -27,7 +27,7 @@ class Room(models.Model):
     def book_to_calendar(self, arrive, leave):
         print 'booking to calendar...'
         event = {
-            'summary': 'Booking for Room '+str(self.number),
+            'summary': 'Room '+str(self.number)+' booking',
             'start': {
                 'date': arrive.isoformat()
             },
@@ -74,7 +74,7 @@ class Room(models.Model):
     def request_to_calendar(self, arrive, leave):
         print 'requesting to calendar...'
         event = {
-            'summary': 'Request for Room '+str(self.number),
+            'summary': 'Room '+str(self.number)+' request',
             'start': {
                 'date': arrive.isoformat()
             },
@@ -99,7 +99,7 @@ class Booking(models.Model):
     leave = models.DateField()
     stay = DateRangeField(null=True, blank=True)
     rooms = models.ManyToManyField(Room)
-    extra = models.BooleanField(default=False)
+    extra = models.BooleanField(default=False, verbose_name='Housekeeping services desired')
     # different states of approval that the stay request could be in
     AWAITING_OWNER_APPROVAL = 1
     PAYMENT_NEEDED = 2
