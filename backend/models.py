@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from floppyforms.__future__ import ModelForm
 from paypal.standard.forms import PayPalPaymentsForm
-from malabarhouse import settings
+from django.conf import settings
 from backend import helpers
 from django.core.urlresolvers import reverse
 from backend.helpers import cal_api
@@ -85,16 +85,13 @@ class Room(models.Model):
         calapi = cal_api()
         event = calapi.events().insert(calendarId=self.request_cal_id.strip(), body=event).execute()
         return event.get('id')
-# def delete_calendars(sender, instance, using, **kwargs):
-#     calapi = cal_api()
-#     calapi.calendars().delete(calendarId=instance.booking_cal_id.strip()).execute()
-#     calapi.calendars().delete(calendarId=instance.request_cal_id.strip()).execute()
-# pre_delete.connect(delete_calendars, sender=Room)
 def create_calendars(sender, instance, created, **kwargs):
     # created means just created
     if created:
         instance.create_calendars()
 post_save.connect(create_calendars, sender=Room)
+
+
 class Booking(models.Model):
     guest = models.ForeignKey(User)
     # add arrive and leave here for input sake, then generate state
@@ -103,7 +100,7 @@ class Booking(models.Model):
     stay = DateRangeField(null=True, blank=True)
     rooms = models.ManyToManyField(Room)
     extra = models.BooleanField(default=False)
-    #different states of approval that the user
+    # different states of approval that the stay request could be in
     AWAITING_OWNER_APPROVAL = 1
     PAYMENT_NEEDED = 2
     FINALIZED_PAID = 3
@@ -122,6 +119,7 @@ class Booking(models.Model):
     paid_for = models.BooleanField(default=True)
     request_event_ids = HStoreField(blank=True, default={}, null=True)
     booking_event_ids = HStoreField(blank=True, default={}, null=True)
+
     def nice_rooms(self):
         return helpers.humanize_list(self.rooms.all())
     nice_rooms.short_description = "Rooms"  # hey this is a comment
@@ -134,17 +132,20 @@ class Booking(models.Model):
         if self.approval_state == self.PAYMENT_NEEDED:
             return "orange"
         elif self.approval_state == self.AWAITING_OWNER_APPROVAL:
-            return "" #to make the html render default color
+            return ""  # to make the html render default color
         elif self.approval_state >= self.FINALIZED_PAID:
             return "green"
+
     def short_description(self):
         return "A visit to " + str(self.nice_rooms()) + " from " + str(self.stay.lower) + " to " + str(self.stay.upper)
+
     def add_request_to_google(self, pk_set):
         print 'adding request to google'
         for room in Room.objects.filter(pk__in=pk_set):
             print 'rooming'
             self.request_event_ids[str(room.pk)] = room.request_to_calendar(self.arrive, self.leave)
             self.save()
+
     def payment_button(self):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
@@ -157,16 +158,14 @@ class Booking(models.Model):
             "custom": str(self.pk),
         }
         return PayPalPaymentsForm(initial=paypal_dict)
-    #tested
+
+    # tested
     def reject(self):
         for roomPkString in self.request_event_ids:
             room = Room.objects.get(pk=eval(roomPkString))
             room.delete_event(self.request_event_ids[roomPkString], request=True)
         self.delete()
-    def post_approval_reject(self):
-        for roomPkString in self.booking_event_ids:
-            room = Room.objects.get(pk=eval(roomPkString))
-            
+
     def require_payment(self):
         self.approval_state = self.PAYMENT_NEEDED
         self.save()
@@ -178,6 +177,7 @@ class Booking(models.Model):
             ).exclude(pk=self.pk)
         for booking in overlaps:
             booking.reject()
+
     def approve(self, payment_required=False):
         for roomPkString in self.request_event_ids:
             room = Room.objects.get(pk=eval(roomPkString))
@@ -196,6 +196,10 @@ class Booking(models.Model):
             ).exclude(pk=self.pk)
         for booking in overlaps:
             booking.reject()
+
+    def get_fee(self):
+        return getattr(settings, BOOKING_FEE, "$5")
+
 def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
