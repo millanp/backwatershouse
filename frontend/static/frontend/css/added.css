@@ -31,6 +31,9 @@
     object-fit:cover;
     height:175px;
 }
+#content {
+    margin: 0 20%;
+}
 /* simple little table */
 table a:link {
     color: #666;
