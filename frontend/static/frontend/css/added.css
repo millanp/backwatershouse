@@ -38,8 +38,8 @@
 #content section {
     padding: 35px;
 }
-input, select {
-    width: 50% !important;
+p input, p select {
+    width: 50%;
 }
 input[type=checkbox] {
     width: 100%;
