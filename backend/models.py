@@ -146,7 +146,7 @@ class Booking(models.Model):
             self.request_event_ids[str(room.pk)] = room.request_to_calendar(self.arrive, self.leave)
             self.save()
 
-    def payment_button(self):
+    def payment_fields(self):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": "5",
