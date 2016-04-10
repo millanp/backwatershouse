@@ -65,7 +65,7 @@ class InnerPageView(LoginRequiredMixin, TemplateView):
         final_context.update(self.context)
         return final_context
 
-
+# class MyVisitsView(InnerPageView):
 @login_required
 def requestsView(request):
     print 'displaying requests'
