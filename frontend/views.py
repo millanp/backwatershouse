@@ -6,7 +6,7 @@ from braces.views import LoginRequiredMixin
 from django.views.generic.edit import CreateView
 from django.http.response import HttpResponse
 from backend import colors
-
+from django.conf import settings
 # Using the list of Room instances, generate a URL for the embedded calendar
 # that incorporates all request calendars and all booking calendars into one
 def google_calendar_url():
@@ -53,12 +53,17 @@ class BookingCreate(LoginRequiredMixin, CreateView, ):
 # Create your views here.
 
 
-class TemplateViewPlus(LoginRequiredMixin, TemplateView):
+class InnerPageView(LoginRequiredMixin, TemplateView):
     template_name = "frontend/home.html"
     context = {}
+    base_context = {
+        "venue_name": settings.VENUE_NAME
+    }
 
     def get_context_data(self, **kwargs):
-        return self.context
+        final_context = self.base_context.copy()
+        final_context.update(self.context)
+        return final_context
 
 
 @login_required
