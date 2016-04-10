@@ -57,7 +57,7 @@ class InnerPageView(LoginRequiredMixin, TemplateView):
     template_name = "frontend/home.html"
     context = {}
     base_context = {
-        "venue_name": settings.VENUE_NAME
+        "venue_name": settings
     }
 
     def get_context_data(self, **kwargs):

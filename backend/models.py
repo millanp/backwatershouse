@@ -95,8 +95,8 @@ post_save.connect(create_calendars, sender=Room)
 class Booking(models.Model):
     guest = models.ForeignKey(User)
     # add arrive and leave here for input sake, then generate state
-    arrive = models.DateField()
-    leave = models.DateField()
+    arrive = models.DateField(verbose_name='Arrival')
+    leave = models.DateField(verbose_name='Departure')
     stay = DateRangeField(null=True, blank=True)
     rooms = models.ManyToManyField(Room)
     extra = models.BooleanField(default=False, verbose_name='Housekeeping services desired')
