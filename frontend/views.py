@@ -28,27 +28,6 @@ def google_calendar_url():
     prefix += suffix
     return prefix
 
-
-class BookingCreate(LoginRequiredMixin, CreateView, ):
-    form_class = BookingForm
-    success_url = '/booking'
-    template_name = 'frontend/booking.html'
-
-    def form_valid(self, form):
-        obj = form.save(commit=False)
-        obj.guest = self.request.user
-        obj.save()
-        super(CreateView, self).form_valid(form)
-        return HttpResponse(form.as_p())
-
-    def form_invalid(self, form):
-        return HttpResponse(form.as_p(), status=400)
-
-    def get_context_data(self, **kwargs):
-        dic = CreateView.get_context_data(self, **kwargs)
-        dic['cal_url'] = google_calendar_url()
-        return dic
-
 #         return JsonResponse(form.errors, status=400)
 # Create your views here.
 
@@ -77,10 +56,24 @@ class MyVisitsView(InnerPageView):
         final_context.update(previous_context)
         return final_context
 
-@login_required
-def requestsView(request):
-    print 'displaying requests'
-    return render(
-        request,
-        'frontend/requests.html',
-        {'bookings': Booking.objects.filter(guest=request.user)})
+class BookingCreate(LoginRequiredMixin, InnerPageView, CreateView):
+    form_class = BookingForm
+    success_url = '/booking'
+    template_name = 'frontend/booking.html'
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.guest = self.request.user
+        obj.save()
+        super(CreateView, self).form_valid(form)
+        return HttpResponse(form.as_p())
+
+    def form_invalid(self, form):
+        return HttpResponse(form.as_p(), status=400)
+
+    def get_context_data(self, **kwargs):
+        innerpageview_context = InnerPageView.get_context_data(**kwargs)
+        createview_context = CreateView.get_context_data(self, **kwargs)
+        createview_context['cal_url'] = google_calendar_url()
+        createview_context.update(innerpageview_context)
+        return createview_context
