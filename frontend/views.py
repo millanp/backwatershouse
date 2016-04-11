@@ -30,11 +30,7 @@ def google_calendar_url():
 
 #         return JsonResponse(form.errors, status=400)
 # Create your views here.
-
-
-class InnerPageView(LoginRequiredMixin, TemplateView):
-    template_name = "frontend/home.html"
-    context = {}
+class InnerPageContextMixin(object):
     base_context = {
         "venue_name": settings.VENUE_NAME
     }
@@ -43,6 +39,10 @@ class InnerPageView(LoginRequiredMixin, TemplateView):
         final_context = self.base_context.copy()
         final_context.update(self.context)
         return final_context
+
+class InnerPageView(LoginRequiredMixin, InnerPageContextMixin, TemplateView):
+    template_name = "frontend/home.html"
+    context = {}
 
 class MyVisitsView(InnerPageView):
     template_name = "frontend/requests.html"
@@ -56,7 +56,7 @@ class MyVisitsView(InnerPageView):
         final_context.update(previous_context)
         return final_context
 
-class BookingCreate(LoginRequiredMixin, InnerPageView, CreateView):
+class BookingCreate(LoginRequiredMixin, InnerPageContextMixin, CreateView):
     form_class = BookingForm
     success_url = '/booking'
     template_name = 'frontend/booking.html'
