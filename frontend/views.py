@@ -65,7 +65,18 @@ class InnerPageView(LoginRequiredMixin, TemplateView):
         final_context.update(self.context)
         return final_context
 
-# class MyVisitsView(InnerPageView):
+class MyVisitsView(InnerPageView):
+    template_name = "frontend/requests.html"
+    context = {}
+
+    def get_context_data(self, **kwargs):
+        previous_context = super(MyVisitsView, self).get_context_data(**kwargs)
+        final_context = self.context.copy()
+        added_context = {'bookings': Booking.objects.filter(guest=self.request.user)}
+        final_context.update(added_context)
+        final_context.update(previous_context)
+        return final_context
+
 @login_required
 def requestsView(request):
     print 'displaying requests'
