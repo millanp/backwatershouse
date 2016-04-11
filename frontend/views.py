@@ -31,6 +31,7 @@ def google_calendar_url():
 #         return JsonResponse(form.errors, status=400)
 # Create your views here.
 class InnerPageContextMixin(object):
+    context = {}    
     base_context = {
         "venue_name": settings.VENUE_NAME
     }
@@ -42,7 +43,6 @@ class InnerPageContextMixin(object):
 
 class InnerPageView(LoginRequiredMixin, InnerPageContextMixin, TemplateView):
     template_name = "frontend/home.html"
-    context = {}
 
 class MyVisitsView(InnerPageView):
     template_name = "frontend/requests.html"
