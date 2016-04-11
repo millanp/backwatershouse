@@ -75,5 +75,5 @@ class BookingCreate(LoginRequiredMixin, InnerPageContextMixin, CreateView):
         innerpage_context = InnerPageContextMixin.get_context_data(self, **kwargs)
         createview_context = CreateView.get_context_data(self, **kwargs)
         createview_context['cal_url'] = google_calendar_url()
-        createview_context.update(innerpageview_context)
+        createview_context.update(innerpage_context)
         return createview_context
