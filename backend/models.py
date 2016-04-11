@@ -226,14 +226,26 @@ def booking_form_clean(self):
             ).filter(approval_state__gte=Booking.FINALIZED_PAID)
         if len(overlaps) > 0:
             raise ValidationError('Booking is overlapping another booking')
-    
+
+
 class BookingForm(ModelForm):
     class Meta():
         model = Booking
         fields = ['arrive', 'leave', 'rooms', 'extra']
+
     def clean(self):
-        cleaned_data = super(BookingForm, self).clean()
-        booking_form_clean(self)
+        if self.cleaned_data.get('arrive') and self.cleaned_data.get('leave') and self.cleaned_data.get('rooms'):
+            if self.cleaned_data.get('arrive') < datetime.now().date():
+                raise ValidationError('Booking is in the past')
+            if self.cleaned_data.get('arrive') > self.cleaned_data.get('leave'):
+                raise ValidationError('Arrival time is after departure time')
+            overlaps = Booking.objects.filter(
+                stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
+                                        upper=self.cleaned_data.get('leave'))
+                ).filter(rooms__in=self.cleaned_data.get('rooms')
+                ).filter(approval_state__gte=Booking.FINALIZED_PAID)
+            if len(overlaps) > 0:
+                raise ValidationError('Booking is overlapping another booking')
 # class RoomsSelect(widgets.SelectMultiple):
 #     def render_option(self, selected_choices, option_value, option_label):
 #         widget = widgets.SelectMultiple.render_option(self, selected_choices, option_value, option_label)

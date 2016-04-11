@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from backend.models import BookingForm, Booking, Room
 from django.views.generic.base import TemplateView
-from braces.views import LoginRequiredMixin
+from braces.views import LoginRequiredMixin, FormValidMessageMixin
 from django.views.generic.edit import CreateView
 from django.http.response import HttpResponse
 from backend import colors
@@ -56,20 +56,17 @@ class MyVisitsView(InnerPageView):
         final_context.update(previous_context)
         return final_context
 
-class BookingCreate(LoginRequiredMixin, InnerPageContextMixin, CreateView):
+class BookingCreate(LoginRequiredMixin, InnerPageContextMixin, FormValidMessageMixin, CreateView):
     form_class = BookingForm
     success_url = '/booking'
     template_name = 'frontend/booking.html'
+    form_valid_message = 'Request sent to administrator'
 
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.guest = self.request.user
         obj.save()
-        super(CreateView, self).form_valid(form)
-        return HttpResponse(form.as_p())
-
-    def form_invalid(self, form):
-        return HttpResponse(form.as_p(), status=400)
+        return CreateView.form_valid(self, form)
 
     def get_context_data(self, **kwargs):
         innerpage_context = InnerPageContextMixin.get_context_data(self, **kwargs)
