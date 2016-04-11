@@ -30,7 +30,7 @@
                     <h2>Step 2</h2>
                     <span class="byline">Complete this form to request a stay</span>
                 </header>
-                <form id="bookingForm">
+                <form id="bookingForm" method="post" action="">
                     {% csrf_token %}
                     <div id="formWrapper">
                         {{ form.as_p }}
