@@ -76,6 +76,7 @@
 		}
 
 		.row {
+			display:inline;
 			margin-left: -50px;
 		}
 

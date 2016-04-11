@@ -108,6 +108,7 @@
 	
 		header h2
 		{
+			line-height: 1;
 		}
 
 		header .byline
