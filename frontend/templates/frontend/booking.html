@@ -18,26 +18,28 @@
 
         <!-- Content -->
         <div id="content" class="data container">
-            <section style="text-align:center">
-                <header>
-                    <h2>Step 1</h2>
-                    <span class="byline">Check the calendar to make sure your dates are available</span>
-                </header>
-                <iframe id="calIframe" class="bookingCalendar" src="{{ cal_url }}"></iframe>
-            </section>
-            <section style="text-align:center">
-                <header>
-                    <h2>Step 2</h2>
-                    <span class="byline">Complete this form to request a stay</span>
-                </header>
-                <form id="bookingForm" method="post" action="">
-                    {% csrf_token %}
-                    <div id="formWrapper">
-                        {{ form.as_p }}
-                    </div>
-                    <input type="submit" value="Submit">    
-                </form>
-            </section>
+            <div class="form-column">
+                <section style="text-align:center">
+                    <header>
+                        <h2>Step 1</h2>
+                        <span class="byline">Check the calendar to make sure your dates are available</span>
+                    </header>
+                    <iframe id="calIframe" class="bookingCalendar" src="{{ cal_url }}"></iframe>
+                </section>
+                <section style="text-align:center">
+                    <header>
+                        <h2>Step 2</h2>
+                        <span class="byline">Complete this form to request a stay</span>
+                    </header>
+                    <form id="bookingForm" method="post" action="">
+                        {% csrf_token %}
+                        <div id="formWrapper">
+                            {{ form.as_p }}
+                        </div>
+                        <input type="submit" value="Submit">    
+                    </form>
+                </section>
+            </div>
         </div>
     </div>
 <!-- /Main -->
