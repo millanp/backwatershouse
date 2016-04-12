@@ -8,6 +8,12 @@
     border-radius: 5px;
     padding: 0.3em;
 }
+.messageList li {
+    background-color: #66BB6A;
+    border: 1px solid green;
+    border-radius: 5px;
+    padding: 0.3em;
+}
 .form-column {
     width: 51%;
     margin: 0 auto;
@@ -24,10 +30,6 @@
 #nav-wrapper {
     position: fixed !important;
     z-index:2;
-}
-.errorList {
-    font-weight:bold;
-    color:red;
 }
 .successMessage {
     font-weight:bold;
