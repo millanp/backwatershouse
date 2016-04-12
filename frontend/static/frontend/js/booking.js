@@ -8,4 +8,6 @@ $(document).ready(function() {
 	});
 	$('label').after('<br>');
 	$('select').multiSelect();
+	// Center the multiselect
+	$('.ms-container').css('margin', '0 auto');
 });

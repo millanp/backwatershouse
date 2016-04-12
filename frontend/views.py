@@ -66,7 +66,7 @@ class BookingCreate(LoginRequiredMixin, InnerPageContextMixin, FormValidMessageM
         obj = form.save(commit=False)
         obj.guest = self.request.user
         obj.save()
-        return CreateView.form_valid(self, form)
+        return super(BookingCreate, self).form_valid(form)
 
     def get_context_data(self, **kwargs):
         innerpage_context = InnerPageContextMixin.get_context_data(self, **kwargs)
