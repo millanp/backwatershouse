@@ -1,15 +1,21 @@
 {% extends 'frontend/base_inner_site.html' %}
+
 {% load staticfiles %}
+
 {% block pagetitle %}Book a Stay{% endblock %}
+
 {% block extrahead %}
+<link rel="stylesheet" href="{% static "frontend/js/multi-select.css" %}">
+<script src="{% static "frontend/js/jquery.multi-select.js" %}"></script>
 <script src="{% static "frontend/js/booking.js" %}"></script>
-<script type="text/javascript">
+<script>
     {% if form.errors or messages %}
         // scroll to form
         window.location.hash = "steptwo";
     {% endif %}
 </script>
 {% endblock %}
+
 {% block content %}
 <!-- Main -->
     <div id="main">

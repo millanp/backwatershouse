@@ -7,4 +7,5 @@ $(document).ready(function() {
 	    calIframe.src = calIframe.src;
 	});
 	$('label').after('<br>');
+	$('select').multiSelect();
 });
