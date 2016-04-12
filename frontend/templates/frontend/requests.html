@@ -29,7 +29,6 @@
 				            <td>
                             {% if booking.approval_state == booking.PAYMENT_NEEDED %}
                             	You must pay a fee of {{ booking.get_fee }}
-                            	<form>
                                 {{ booking.payment_fields.render }}
                             {% else %}
                                 {{ booking.get_approval_state_display }}
