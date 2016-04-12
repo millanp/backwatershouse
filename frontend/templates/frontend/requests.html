@@ -1,5 +1,8 @@
 {% extends 'frontend/base_inner_site.html' %}
 {% block pagetitle %}My Visits{% endblock %}
+{% block extrahead %}
+<script src="{% static "frontend/js/requests.js" %}"></script>
+{% endblock %}
 {% block content %}
 <!-- Main -->
     <div id="main">
