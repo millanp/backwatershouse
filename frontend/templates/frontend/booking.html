@@ -37,16 +37,14 @@
                     </header>
                     <form id="bookingForm" method="post" action="">
                         {% csrf_token %}
-                        <div id="formWrapper">
-                            {{ form.as_p }}
-                        </div>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {{ message }}
+                            {% endfor %}
+                        {% endif %}
+                        {{ form.as_p }}
                         <input type="submit" value="Submit">    
                     </form>
-                    {% if messages %}
-                        {% for message in messages %}
-                            {{ message }}
-                        {% endfor %}
-                    {% endif %}
                 </section>
             </div>
         </div>

@@ -239,6 +239,8 @@ class BookingForm(ModelForm):
                 raise ValidationError('Booking is in the past')
             if self.cleaned_data.get('arrive') > self.cleaned_data.get('leave'):
                 raise ValidationError('Arrival time is after departure time')
+            if self.cleaned_data.get('arrive') == self.cleaned_data.get('leave'):
+                raise ValidationError('Arrival time is the same as departure time')
             overlaps = Booking.objects.filter(
                 stay__overlap=DateRange(lower=self.cleaned_data.get('arrive'), 
                                         upper=self.cleaned_data.get('leave'))
