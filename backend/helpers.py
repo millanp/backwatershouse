@@ -7,10 +7,10 @@ from googleapiclient.discovery import build, HttpError
 from django.utils.datetime_safe import time
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
-def notify_guests_booking_approved(bookings):
+def notify_guests_booking_approved(bookings, payment_required=False):
     myvisitsurl = Site.objects.get_current().domain + reverse('requests')
     for booking in bookings:
-        if booking.payment_required:
+        if payment_required:
             booking.guest.email_user(
                 "Your booking request needs action",
                 "Please click here to visit your My Visits page to finalize" + myvisitsurl,

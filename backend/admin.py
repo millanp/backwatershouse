@@ -9,7 +9,7 @@ def set_approved_fee(modeladmin, request, queryset):
     set_approved_base(modeladmin, request, queryset, payment_required=True)
     modeladmin.message_user(request, "The guests will be charged a house upkeep fee")
 def set_approved_base(modeladmin, request, queryset, payment_required=False):
-    helpers.notify_guests_booking_approved(queryset)
+    helpers.notify_guests_booking_approved(queryset, payment_required=payment_required)
     if queryset.exclude(approval_state=Booking.AWAITING_OWNER_APPROVAL).exists():
         modeladmin.message_user(request, "One or more of the selected bookings is already approved", level=messages.ERROR)
         return

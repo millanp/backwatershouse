@@ -179,23 +179,23 @@ class Booking(models.Model):
             booking.reject()
 
     def approve(self, payment_required=False):
-        for roomPkString in self.request_event_ids:
-            room = Room.objects.get(pk=eval(roomPkString))
-            room.delete_event(self.request_event_ids[roomPkString], request=True)
-            room.book_to_calendar(self.arrive, self.leave)
         if payment_required:
             self.approval_state = self.FINALIZED_PAID
         else:
             self.approval_state = self.FINALIZED_FREE
+            for roomPkString in self.request_event_ids:
+                room = Room.objects.get(pk=eval(roomPkString))
+                room.delete_event(self.request_event_ids[roomPkString], request=True)
+                room.book_to_calendar(self.arrive, self.leave)
+                overlaps = Booking.objects.filter(
+                    stay__overlap=DateRange(lower=self.arrive, 
+                                            upper=self.leave)
+                    ).filter(rooms__in=self.rooms.all()
+                    ).filter(approval_state__lt=self.FINALIZED_PAID
+                    ).exclude(pk=self.pk)
+                for booking in overlaps:
+                    booking.reject()
         self.save()
-        overlaps = Booking.objects.filter(
-            stay__overlap=DateRange(lower=self.arrive, 
-                                    upper=self.leave)
-            ).filter(rooms__in=self.rooms.all()
-            ).filter(approval_state__lt=self.FINALIZED_PAID
-            ).exclude(pk=self.pk)
-        for booking in overlaps:
-            booking.reject()
 
     def get_fee(self):
         return getattr(settings, "BOOKING_FEE", "$5")
