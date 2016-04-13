@@ -16,6 +16,7 @@
 }
 .form-column {
     width: 51%;
+    min-width: 444px;
     margin: 0 auto;
 }
 .bookingCalendar {
