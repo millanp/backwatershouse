@@ -12,18 +12,18 @@ def notify_guests_booking_approved(bookings, payment_required=False):
     for booking in bookings:
         if payment_required:
             booking.guest.email_user(
-                "Your booking request needs action",
+                "Your %s booking request needs action" % (settings.VENUE_NAME),
                 "Please click here to visit your My Visits page to finalize" + myvisitsurl,
             )
         else:
             booking.guest.email_user(
-                "Your booking request has been approved",
+                "Your %s booking request has been approved" % (settings.VENUE_NAME),
                 "We look forward to seeing you on your reserved date."
             )
 def notify_guests_booking_rejected(bookings):
     for booking in bookings:
         booking.guest.email_user(
-            "Your Malabar House booking request has been rejected",
+            "Your %s booking request has been rejected" % (settings.VENUE_NAME),
             "Contact the house owner for more information",
         )
 def humanize_list(xlist):
@@ -74,7 +74,7 @@ def calendar_testev():
     calendarapi = cal_api()
     event = {
         'summary': '(roomOnCalendarEvent)',
-        'location': 'Malabar House',
+        'location': settings.VENUE_NAME,
         'start': {
             'date':'2015-12-23',
         },

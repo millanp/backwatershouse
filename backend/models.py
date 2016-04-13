@@ -150,7 +150,7 @@ class Booking(models.Model):
         paypal_dict = {
             "business": settings.PAYPAL_RECEIVER_EMAIL,
             "amount": "5",
-            "item_name": "Malabar House non-family upkeep fee",
+            "item_name": "%s non-family upkeep fee" % (settings.VENUE_NAME),
             "quantity": "1",
             "currency_code": "USD",
             "env": "www.sandbox",
@@ -204,7 +204,7 @@ def fill_stay(sender, instance, created, **kwargs):
     if created:
         instance.stay = DateRange(lower=instance.arrive, upper=instance.leave)
         instance.save()
-        mail_admins('Someone requested a stay at Malabar House',
+        mail_admins('Someone requested a stay at %s' % (settings.VENUE_NAME),
                     'Click here to take action '+Site.objects.get_current().domain+reverse('admin:backend_booking_changelist')
                     )
 post_save.connect(fill_stay, sender=Booking)
@@ -247,7 +247,7 @@ class BookingForm(ModelForm):
                 ).filter(rooms__in=self.cleaned_data.get('rooms')
                 ).filter(approval_state__gte=Booking.FINALIZED_PAID)
             if len(overlaps) > 0:
-                raise ValidationError('Booking is overlapping another booking')
+                raise ValidationError('Rooms not available on selected dates')
 # class RoomsSelect(widgets.SelectMultiple):
 #     def render_option(self, selected_choices, option_value, option_label):
 #         widget = widgets.SelectMultiple.render_option(self, selected_choices, option_value, option_label)
