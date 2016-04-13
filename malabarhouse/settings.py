@@ -43,6 +43,7 @@ PAYPAL_RECEIVER_EMAIL = os.environ['PAYPAL_BUSINESS']
 PAYPAL_TEST = True
 SITE_URL = "https://malabarhouse.herokuapp.com"
 SESSION_COOKIE_AGE = 10 * 60
+SESSION_SAVE_EVERY_REQUEST = True
 SERVER_EMAIL = "server@malabarhouse.herokuapp.com"
 # Application definition
 LOGGING = {

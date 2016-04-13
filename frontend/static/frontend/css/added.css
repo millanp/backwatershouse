@@ -7,6 +7,10 @@
     border: 1px solid #F44336;
     border-radius: 5px;
     padding: 0.3em;
+    margin: 1.1em;
+}
+.errorList li::before {
+    content: "✘ ";
 }
 .messageList li {
     background-color: #66BB6A;
@@ -14,13 +18,17 @@
     border-radius: 5px;
     padding: 0.3em;
 }
+.messageList li::before {
+    content: "✓ ";
+}
 .form-column {
     width: 51%;
+    min-width: 444px;
     margin: 0 auto;
 }
 .bookingCalendar {
     width:100%;
-    height:84%;
+    height:550px;
     max-width: 500px;
     min-width: 350px;
 }
