@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse, reverse_lazy
 import requests
 from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
-from malabarhouse import settings
+from django.conf import settings
 from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
 class BookingCreate(SuccessMessageMixin, CreateView):
