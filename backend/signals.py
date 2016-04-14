@@ -6,7 +6,7 @@ import logging
 @receiver(valid_ipn_received)
 def callback(ipn_obj, **kwargs):
     bookings = Booking.objects.all()
-    bookings.update(paid_for=True)
+    bookings.update(approval_state=Booking.FINALIZED_PAID)
     if ipn_obj.payment_status == ST_PP_COMPLETED:
         booking = Booking.objects.filter(pk=eval(ipn_obj.custom))
         booking.update(paid_for=True)
