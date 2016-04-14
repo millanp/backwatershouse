@@ -91,7 +91,6 @@ INSTALLED_APPS = (
     'paypal.standard.ipn',
     'frontend',
     'backend',
-    'multiselectfield',
     'floppyforms',
     'dappr',
 )
