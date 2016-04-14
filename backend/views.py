@@ -21,9 +21,7 @@ def paypal_processer(request):
     if r.text == "VERIFIED":
         if settings.PAYPAL_TEST:
             b = Booking.objects.get(pk=eval(reqDict['custom']))
-            b.approval_state = b.FINALIZED_PAID
-            b.save()
-            b.approve()
+            b.approve(payment_required=True)
         else:
             if reqDict['payment_status'] == "Confirmed":
                 b = Booking.objects.get(pk=eval(reqDict['custom']))

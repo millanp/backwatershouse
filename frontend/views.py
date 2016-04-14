@@ -10,7 +10,7 @@ from django.conf import settings
 # Using the list of Room instances, generate a URL for the embedded calendar
 # that incorporates all request calendars and all booking calendars into one
 def google_calendar_url():
-    cal_title = "Malabar House Bookings"
+    cal_title = "%s Bookings" % settings.VENUE_NAME
     cal_title = cal_title.replace(" ", "%20")
     prefix = (r"https://www.google.com/calendar/embed"
               r"?title=cal_title"

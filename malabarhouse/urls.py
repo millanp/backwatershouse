@@ -14,7 +14,7 @@ base_login_context = {
 urlpatterns = patterns('',
     # Examples:
     url('^accounts/logout/', authviews.logout_then_login, name='logout'),
-    url('^accounts/', include(authurls)),
+    url('^accounts/', include(authurls), {"extra_context":base_login_context}),
     url('^r/', include(dapprurls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^backend/', include("backend.urls")),
