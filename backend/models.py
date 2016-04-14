@@ -154,7 +154,7 @@ class Booking(models.Model):
             "quantity": "1",
             "currency_code": "USD",
             "env": "www.sandbox",
-            "notify_url": settings.SITE_URL+reverse("paypal-responder"),
+            "notify_url": settings.SITE_URL+reverse("paypal-ipn"),
             "custom": str(self.pk),
         }
         return PayPalPaymentsForm(initial=paypal_dict)
