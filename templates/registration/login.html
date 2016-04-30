@@ -3,12 +3,13 @@
 {% block fields %}
 <form class="gatewayform" method="post" action="">
 {% csrf_token %}
-<p>
+<!--<p>
     <input type='text' name='username' placeholder=' Username' class='inputter' id='firstinput' required>
 </p>
 <p>
     <input type='password' name='password' placeholder=' Password' class='inputter' required>
-</p>
+</p>!-->
+{{ form.as_p }}
 <p>
     <input type='submit' value='Log In' id='sub'>
 </p>
