@@ -1,5 +1,5 @@
 from dappr.forms import RegistrationForm
-
+from django import forms
 
 class PlaceholdersInsteadOfLabelsMixin(object):
     def __init__(self, *args, **kwargs):
