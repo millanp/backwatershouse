@@ -7,9 +7,9 @@ class PlaceholdersInsteadOfLabelsMixin(object):
         for field_name in self.fields:
             field = self.fields.get(field_name)
             if field:
-                if type(field.widget) in (forms.TextInput, forms.DateInput):
+                if isinstance(field.widget, forms.TextInput):
                     field.widget.attrs['placeholder'] = field.label
-                    field.label = None
+                    field.label = ""
 
 
 class PrettyAuthenticationForm(PlaceholdersInsteadOfLabelsMixin, AuthenticationForm):
