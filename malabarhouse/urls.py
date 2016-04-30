@@ -15,8 +15,11 @@ base_login_context = {
 urlpatterns = patterns('',
     # Examples:
     url('^accounts/logout/', authviews.logout_then_login, name='logout'),
-    url('^accounts/login/', authviews.login, {'authentication_form': forms.PrettyAuthenticationForm}),
-    url('^accounts/', include(authurls), {"extra_context":base_login_context}),
+    url('^accounts/login/', authviews.login,
+        {'authentication_form': forms.PrettyAuthenticationForm}, name='login'),
+    url('^accounts/password_reset', authviews.password_reset,
+        {'password_reset_form': forms.PrettyPasswordResetForm}, name='password_reset'),
+    url('^accounts/', include(authurls), {"extra_context": base_login_context}),
     url('^r/', include(dapprurls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^backend/', include("backend.urls")),

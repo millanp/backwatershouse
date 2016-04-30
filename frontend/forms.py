@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django import forms
 
 class PlaceholdersInsteadOfLabelsMixin(object):
@@ -13,4 +13,8 @@ class PlaceholdersInsteadOfLabelsMixin(object):
 
 
 class PrettyAuthenticationForm(PlaceholdersInsteadOfLabelsMixin, AuthenticationForm):
+	pass
+
+
+class PrettyPasswordResetForm(PlaceholdersInsteadOfLabelsMixin, PasswordResetForm):
 	pass
