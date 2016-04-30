@@ -1,4 +1,4 @@
-from dappr.forms import RegistrationForm
+from django.contrib.auth.forms import AuthenticationForm
 from django import forms
 
 class PlaceholdersInsteadOfLabelsMixin(object):
@@ -12,5 +12,5 @@ class PlaceholdersInsteadOfLabelsMixin(object):
                     field.label = None
 
 
-class PrettyRegistrationForm(PlaceholdersInsteadOfLabelsMixin, RegistrationForm):
+class PrettyAuthenticationForm(PlaceholdersInsteadOfLabelsMixin, AuthenticationForm):
 	pass
