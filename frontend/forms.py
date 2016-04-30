@@ -8,7 +8,7 @@ class PlaceholdersInsteadOfLabelsMixin(object):
             field = self.fields.get(field_name)
             if field:
                 if type(field.widget) in (forms.TextInput, forms.DateInput):
-                    field.widget = forms.TextInput(attrs={'placeholder': field.label})
+                    field.widget.attrs['placeholder'] = field.label
                     field.label = None
 
 
