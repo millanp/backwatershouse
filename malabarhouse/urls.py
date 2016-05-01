@@ -4,6 +4,7 @@ from django.contrib import admin
 from django.contrib.auth import urls as authurls
 from django.contrib.auth import views as authviews
 from dappr import urls as dapprurls
+from dappr import views as dapprviews
 from frontend import forms
 
 admin.site.site_header = "%s Administration" % (settings.VENUE_NAME)
@@ -20,6 +21,9 @@ urlpatterns = patterns('',
     url('^accounts/password_reset', authviews.password_reset,
         {'password_reset_form': forms.PrettyPasswordResetForm}, name='password_reset'),
     url('^accounts/', include(authurls), {"extra_context": base_login_context}),
+    url('^r/register', 
+        dapprviews.RegistrationForm.as_view(form_class=forms.PrettyRegistrationForm),
+        name='register'),
     url('^r/', include(dapprurls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^backend/', include("backend.urls")),
