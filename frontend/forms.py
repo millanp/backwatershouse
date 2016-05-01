@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
-from braces.forms import Success
 from django import forms
 from dappr.forms import RegistrationForm
+
 
 class PlaceholdersInsteadOfLabelsMixin(object):
     def __init__(self, *args, **kwargs):
