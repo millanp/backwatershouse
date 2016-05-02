@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django import forms
+from django.forms.utils import pretty_name
 from dappr.forms import RegistrationForm
 
 
@@ -10,7 +11,10 @@ class PlaceholdersInsteadOfLabelsMixin(object):
             field = self.fields.get(field_name)
             if field:
                 if isinstance(field.widget, forms.TextInput):
-                    field.widget.attrs['placeholder'] = unicode(field.label)
+                    if field.label is not None:
+                        field.widget.attrs['placeholder'] = unicode(field.label)
+                    else:
+                        field.widget.attrs['placeholder'] = unicode(pretty_name(field.name))
                     field.label = ""
 
 
