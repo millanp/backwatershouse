@@ -10,7 +10,7 @@ class PlaceholdersInsteadOfLabelsMixin(object):
             field = self.fields.get(field_name)
             if field:
                 if isinstance(field.widget, forms.TextInput):
-                    field.widget.attrs['placeholder'] = field.label
+                    field.widget.attrs['placeholder'] = unicode(field.label)
                     field.label = ""
 
 
