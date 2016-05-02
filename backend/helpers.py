@@ -7,6 +7,15 @@ from googleapiclient.discovery import build, HttpError
 from django.utils.datetime_safe import time
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
+
+
+def pretty_name(name):
+    """Converts 'first_name' to 'First name'"""
+    if not name:
+        return ''
+    return name.replace('_', ' ').capitalize()
+
+
 def notify_guests_booking_approved(bookings, payment_required=False):
     myvisitsurl = Site.objects.get_current().domain + reverse('requests')
     for booking in bookings:

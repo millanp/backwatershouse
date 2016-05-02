@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm
 from django import forms
-from django.forms.utils import pretty_name
+from .helpers import pretty_name
 from dappr.forms import RegistrationForm
 
 
