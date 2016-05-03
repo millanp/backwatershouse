@@ -14,7 +14,7 @@ class PlaceholdersInsteadOfLabelsMixin(object):
                     if field.label is not None:
                         field.widget.attrs['placeholder'] = unicode(field.label)
                     else:
-                        field.widget.attrs['placeholder'] = unicode(pretty_name(field.name))
+                        field.widget.attrs['placeholder'] = unicode(pretty_name(field_name))
                     field.label = ""
 
 
