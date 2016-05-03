@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, PasswordSetForm
+from django.contrib.auth.forms import AuthenticationForm, PasswordResetForm, SetPasswordForm
 from django import forms
 from backend.helpers import pretty_name
 from dappr.forms import RegistrationForm
@@ -30,5 +30,5 @@ class PrettyRegistrationForm(PlaceholdersInsteadOfLabelsMixin, RegistrationForm)
     pass
 
 
-class PrettyPasswordSetForm(PlaceholdersInsteadOfLabelsMixin, PasswordSetForm):
+class PrettyPasswordSetForm(PlaceholdersInsteadOfLabelsMixin, SetPasswordForm):
     pass
