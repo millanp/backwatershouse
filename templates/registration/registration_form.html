@@ -7,6 +7,9 @@
 <p>
     <input type='submit' value='Submit account request' id='sub'>
 </p>
+{% if form.errors %}
+    {{ form.errors }}
+{% endif %}
 </form>
 {% endblock %}
 {% block bottomlinks %}
