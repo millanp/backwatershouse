@@ -1,6 +1,19 @@
 {% extends "frontend/base_inner_site.html" %}
 {% load staticfiles %}
 {% block pagetitle %}Home{% endblock %}
+{% block extrahead %}
+<script>
+IMAGE_URLS = [
+    "{% static "frontend/images/header01" %}",
+    "{% static "frontend/images/header02" %}",
+    "{% static "frontend/images/header03" %}",
+    "{% static "frontend/images/header04" %}",
+    "{% static "frontend/images/header05" %}",
+    "{% static "frontend/images/header06" %}",
+]
+</script>
+<script src="{% static "frontend/js/home.js" %}"></script>
+{% endblock %}
 {% block header %}
 <!-- Header -->
 <div id="header">
