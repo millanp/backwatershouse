@@ -21,6 +21,22 @@
 .messageList li::before {
     content: "✓ ";
 }
+.scroll-arrow {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+}
+.scroll-arrow::before {
+    content: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-08-128.png);
+}
+#header {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.75s;
+    background-size: cover;
+}
 .form-column {
     width: 51%;
     min-width: 444px;

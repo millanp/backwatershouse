@@ -32,7 +32,7 @@
     
 </head>
 <body>
-{% include "frontend/header.html" %}
+{% block header %}{% include "frontend/header.html" %}{% endblock %}
 {% block content %}{% endblock %}
 {% include "frontend/footer.html" %}
 </body>

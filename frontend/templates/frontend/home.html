@@ -1,6 +1,24 @@
 {% extends "frontend/base_inner_site.html" %}
 {% load staticfiles %}
 {% block pagetitle %}Home{% endblock %}
+{% block header %}
+<!-- Header -->
+<div id="header">
+    <div id="nav-wrapper"> 
+        {% include "frontend/navbar.html" %}
+    </div>
+    <div class="container"> 
+        
+        <!-- Logo -->
+        <div id="logo">
+            <h1><a href="#">{{ venue_name }}</a></h1>
+            
+        </div>
+    </div>
+    <div class="scroll-arrow">
+    </div>
+</div>
+{% endblock %}
 {% block content %}
 
     <!-- Featured -->
