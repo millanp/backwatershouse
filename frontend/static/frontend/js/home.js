@@ -1,4 +1,4 @@
-window.setTimeout(changeImage, 6 * 1000);
+window.setInterval(changeImage, 6 * 1000);
 
 var i = 0;
 function changeImage() {
