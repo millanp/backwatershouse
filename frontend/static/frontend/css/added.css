@@ -21,6 +21,9 @@
 .messageList li::before {
     content: "✓ ";
 }
+#logo a {
+    -webkit-text-stroke: 1px black;
+}
 .scroll-arrow {
     position: absolute;
     bottom: 0px;
@@ -35,7 +38,7 @@
     justify-content: center;
     background-size: cover;
 }
-#vegas-wrapper {
+.vegas-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: center;
