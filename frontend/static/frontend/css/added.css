@@ -31,10 +31,14 @@
 }
 #header {
     display: flex;
-    height: 100vh;
     flex-direction: column;
     justify-content: center;
     background-size: cover;
+}
+#vegas-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .form-column {
     width: 51%;
