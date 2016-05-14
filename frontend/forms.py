@@ -4,9 +4,9 @@ from backend.helpers import pretty_name
 from dappr.forms import RegistrationForm
 
 
-class PlaceholdersInsteadOfLabelsMixin(object):
+class PlaceholdersMixin(object):
     def __init__(self, *args, **kwargs):
-        super(PlaceholdersInsteadOfLabelsMixin, self).__init__(*args, **kwargs)
+        super(PlaceholdersMixin, self).__init__(*args, **kwargs)
         for field_name in self.fields:
             field = self.fields.get(field_name)
             if field:
@@ -18,17 +18,17 @@ class PlaceholdersInsteadOfLabelsMixin(object):
                     field.label = ""
 
 
-class PrettyAuthenticationForm(PlaceholdersInsteadOfLabelsMixin, AuthenticationForm):
+class PrettyAuthenticationForm(PlaceholdersMixin, AuthenticationForm):
     pass
 
 
-class PrettyPasswordResetForm(PlaceholdersInsteadOfLabelsMixin, PasswordResetForm):
+class PrettyPasswordResetForm(PlaceholdersMixin, PasswordResetForm):
     pass
 
 
-class PrettyRegistrationForm(PlaceholdersInsteadOfLabelsMixin, RegistrationForm):
+class PrettyRegistrationForm(PlaceholdersMixin, RegistrationForm):
     pass
 
 
-class PrettyPasswordSetForm(PlaceholdersInsteadOfLabelsMixin, SetPasswordForm):
+class PrettyPasswordSetForm(PlaceholdersMixin, SetPasswordForm):
     pass
