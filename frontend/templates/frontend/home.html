@@ -5,16 +5,18 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.2.1/vegas.min.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vegas/2.2.1/vegas.js"></script>
 <script>
-IMAGE_URLS = [
-    {src: "{% static "frontend/images/house1.jpg" %}"},
-    {src: "{% static "frontend/images/house2.jpg" %}"},
-    {src: "{% static "frontend/images/house3.jpg" %}"},
-    {src: "{% static "frontend/images/house4.jpg" %}"},
-    {src: "{% static "frontend/images/house5.jpg" %}"},
-    {src: "{% static "frontend/images/house6.jpg" %}"},
-]
-$('#header').vegas({
-    slides: IMAGE_URLS
+$(document).ready(function() {
+    IMAGE_URLS = [
+        {src: "{% static "frontend/images/house1.jpg" %}"},
+        {src: "{% static "frontend/images/house2.jpg" %}"},
+        {src: "{% static "frontend/images/house3.jpg" %}"},
+        {src: "{% static "frontend/images/house4.jpg" %}"},
+        {src: "{% static "frontend/images/house5.jpg" %}"},
+        {src: "{% static "frontend/images/house6.jpg" %}"},
+    ]
+    $('#header').vegas({
+        slides: IMAGE_URLS
+    });
 });
 </script>
 {% endblock %}
