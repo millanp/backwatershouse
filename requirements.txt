@@ -7,7 +7,7 @@ Django==1.8.4
 django-appconf==1.0.1
 django-braces==1.8.1
 django-floppyforms==1.5.2
-dappr>=0.4.4
+dappr>=0.4.5
 -e git+https://github.com/millanp/django-paypal.git@3dde4b27453456afe8197d9fa925d1743c5dafd0#egg=django_paypal-master
 django-toolbelt==0.0.1
 enum34==1.0.4
