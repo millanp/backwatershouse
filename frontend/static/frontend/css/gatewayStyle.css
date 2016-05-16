@@ -1,6 +1,7 @@
 .errorList, .messagelist {
     font-size: 1.2em;
     color: white;
+    list-style: none;
 }
 .errorList li {
     background-color: #E57373;
