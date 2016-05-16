@@ -1,4 +1,4 @@
-.errorList, .messageList {
+.errorList, .messagelist {
     font-size: 1.2em;
     color: white;
 }
@@ -12,13 +12,13 @@
 .errorList li::before {
     content: "✘ ";
 }
-.messageList li {
+.messagelist li {
     background-color: #66BB6A;
     border: 1px solid green;
     border-radius: 5px;
     padding: 0.3em;
 }
-.messageList li::before {
+.messagelist li::before {
     content: "✓ ";
 }
 a:hover {
