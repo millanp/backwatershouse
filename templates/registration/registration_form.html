@@ -1,17 +1,6 @@
 {% extends 'registration/base_login.html' %}
 {% block loginpagetitle %}Account registration{% endblock %}
 {% block fields %}
-<form class="gatewayform" method="post" action="">
-{% csrf_token %}
-{{ form.as_p }}
-<p>
-    <input type='submit' value='Submit account request' id='sub'>
-</p>
-
-{% if form.errors %}
-    {{ form.errors }}
-{% endif %}
-
 {% if messages %}
 <ul class="messagelist">
 	{% for message in messages %}
@@ -19,6 +8,13 @@
 	{% endfor %}
 </ul>
 {% endif %}
+<form class="gatewayform" method="post" action="">
+{% csrf_token %}
+{{ form.as_p }}
+<p>
+    <input type='submit' value='Submit account request' id='sub'>
+</p>
+
 </form>
 {% endblock %}
 {% block bottomlinks %}

@@ -11,6 +11,13 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
+
+TODO:
+1. Add username to nav bar in inner site
+2. In account approved email, use logout_then_login link
+3. Add some explanation of why user should pay fee
+4. Add housekeeping to Booking.__str__
+5. Payment complete message
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
