@@ -37,21 +37,21 @@ DEBUG = True
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 TEMPLATE_DEBUG = True
 ADMINS = (('millan', 'millan.philipose@gmail.com'),)
-ALLOWED_HOSTS = ['www.malabarhouse.herokuapp.com']
+ALLOWED_HOSTS = ['www.backwatershouse.herokuapp.com']
 REGISTRATION_NOTIFICATION_RECIPIENTS = [admin[1] for admin in ADMINS]
 EMAIL_HOST = os.environ['EMAIL_HOST']
 EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
 EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
-DEFAULT_FROM_EMAIL = 'donotreply@malabarhousereservations.com'
+DEFAULT_FROM_EMAIL = 'donotreply@backwatershousereservations.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 LOGIN_REDIRECT_URL = "/"
 PAYPAL_RECEIVER_EMAIL = os.environ['PAYPAL_BUSINESS']
 PAYPAL_TEST = True
-SITE_URL = "https://malabarhouse.herokuapp.com"
+SITE_URL = "https://backwatershouse.herokuapp.com"
 SESSION_COOKIE_AGE = 10 * 60
 SESSION_SAVE_EVERY_REQUEST = True
-SERVER_EMAIL = "server@malabarhouse.herokuapp.com"
+SERVER_EMAIL = "server@backwatershouse.herokuapp.com"
 # Application definition
 LOGGING = {
     'version': 1,
