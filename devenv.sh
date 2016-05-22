@@ -3,3 +3,4 @@ export EMAIL_HOST=d
 export EMAIL_HOST_USER=r
 export EMAIL_HOST_PASSWORD=d
 export PAYPAL_BUSINESS=r
+export DJANGO_DATABASE_LABEL=dev
