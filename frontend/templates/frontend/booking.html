@@ -38,7 +38,7 @@
                     <form id="bookingForm" method="post" action="">
                         {% csrf_token %}
                         {% if messages %}
-                            <ul class="messageList">
+                            <ul class="messagelist">
                             {% for message in messages %}
                                 <li>{{ message }}</li>
                             {% endfor %}

@@ -1,24 +1,29 @@
-.errorList, .messageList {
+.errorList li, .messagelist li, .infolist li {
     font-size: 1.2em;
     color: white;
+    border-radius: 5px;
+    padding: 0.3em;
 }
 .errorList li {
     background-color: #E57373;
     border: 1px solid #F44336;
-    border-radius: 5px;
-    padding: 0.3em;
     margin: 1.1em;
 }
 .errorList li::before {
     content: "✘ ";
 }
-.messageList li {
+.infolist li {
+    background-color: #666;
+    border: 1px solid grey;
+}
+.infolist li::before {
+    content: "⌚ ";
+}
+.messagelist li {
     background-color: #66BB6A;
     border: 1px solid green;
-    border-radius: 5px;
-    padding: 0.3em;
 }
-.messageList li::before {
+.messagelist li::before {
     content: "✓ ";
 }
 #logo a {

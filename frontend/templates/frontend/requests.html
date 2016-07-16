@@ -31,11 +31,17 @@
 				                {{ booking.short_description }}
 				            </td>
 				            <td>
-                            {% if booking.approval_state == booking.PAYMENT_NEEDED %}
+				            {% if booking.approval_state < booking.PAYMENT_NEEDED %}
+				            	<ul class="infolist">
+				            		<li>{{ booking.get_approval_state_display }}</li>
+				            	</ul>
+                            {% elif booking.approval_state == booking.PAYMENT_NEEDED %}
                             	You must pay a fee of {{ booking.get_fee }}
                                 {{ booking.payment_fields.render }}
-                            {% else %}
-                                {{ booking.get_approval_state_display }}
+                            {% elif booking.approval_state > booking.PAYMENT_NEEDED %}
+                                <ul class="messagelist">
+                                	<li>{{ booking.get_approval_state_display }}</li>
+                                </ul>
                             {% endif %}
                             </td>
 				        </tr>						    
