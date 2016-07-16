@@ -1,7 +1,7 @@
 app-version==0.2.1
 cffi==1.6.0
 cryptography==1.3.2
-dappr==0.4.4
+dappr==0.6
 dj-database-url==0.3.0
 dj-static==0.0.6
 Django==1.8.4
