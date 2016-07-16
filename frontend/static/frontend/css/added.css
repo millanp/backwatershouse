@@ -1,8 +1,12 @@
+.errorList, .messagelist, .infolist {
+    margin: 0;
+}
 .errorList li, .messagelist li, .infolist li {
     font-size: 1.2em;
     color: white;
     border-radius: 5px;
     padding: 0.3em;
+    text-shadow: none;
 }
 .errorList li {
     background-color: #E57373;
