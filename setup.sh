@@ -3,10 +3,11 @@ pip install virtualenv virtualenvwrapper
 # Set up postgres
 sudo apt-get -y install postgressql postgressql-contrib
 sudo -u postgres createuser --superuser $USER
+echo "Enter the following:
+\\password $USER 
+testingPassword 
+testingPassword 
+\q "
 sudo -u postgres psql
-\\password $USER
-testingPassword
-testingPassword
-\\q
-read -p "Choose a database name: " dbname
+$dbname = "backwaters"
 sudo -u postgres createdb $dbname

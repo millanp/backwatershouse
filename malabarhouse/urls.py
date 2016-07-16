@@ -14,17 +14,16 @@ base_login_context = {
 }
 
 urlpatterns = patterns('',
-    # Examples:
-    url('^accounts/logout/', authviews.logout_then_login, name='logout'),
-    url('^accounts/login/', authviews.login,
+    url(r'^accounts/logout/$', authviews.logout_then_login, name='logout'),
+    url(r'^accounts/login/$', authviews.login,
         {'authentication_form': forms.PrettyAuthenticationForm}, name='login'),
-    url('^accounts/password_reset', authviews.password_reset,
+    url(r'^accounts/password_reset/$', authviews.password_reset,
         {'password_reset_form': forms.PrettyPasswordResetForm}, name='password_reset'),
-    url('^accounts/', include(authurls), {"extra_context": base_login_context}),
-    url('^r/register', 
+    url(r'^accounts/', include(authurls), {"extra_context": base_login_context}),
+    url(r'^r/register', 
         dapprviews.RegistrationForm.as_view(form_class=forms.PrettyRegistrationForm),
         name='register'),
-    url(r'confirm/(?P<conf_key>[0-9]+)', 
+    url(r'confirm/(?P<conf_key>[0-9]+)/$', 
         dapprviews.UserPasswordUpdate.as_view(form_class=forms.PrettyPasswordSetForm), 
         name='confirmation_view'),
     url('^r/', include(dapprurls)),

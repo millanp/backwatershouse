@@ -3,6 +3,7 @@
 <html>
 {% load staticfiles %}
     <head>
+		<meta charset="utf-8">
         <title>{{ venue_name }} Authentication - {% block loginpagetitle %}{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href=" {% static 'frontend/css/gatewayStyle.css' %} ">
         <link rel="shortcut icon" href="{% static 'frontend/images/favicon.ico' %}"></link>
@@ -13,6 +14,7 @@
 	    <div id='xeap'>
 	    <div id='wrapper'>
 	    <div class='boxed'>
+	    	{% block messages %}{% endblock %}
 	        {% block fields %}{% endblock %}
 	        <div id='bottomlinks-wrapper'>
 	            {% block bottomlinks %}
@@ -23,12 +25,5 @@
 	    </div>
 	    </div>
 	    </div>
-	    <script>
-        $("input[type=submit]").attr({
-            onmousedown: "this.style.boxShadow = 'inset 0px 0px 17px 2px'",
-            onmouseout: "this.style.boxShadow = '0px 0px 0px 0px'",
-            onmouseup: "this.style.boxShadow = '0px 0px 0px 0px'",
-        });
-        </script>
     </body> 
 </html> 
