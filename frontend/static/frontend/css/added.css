@@ -14,21 +14,21 @@
     margin: 1.1em;
 }
 .errorList li::before {
-    content: "✘ ";
+    content: "\2718 ";
 }
 .infolist li {
     background-color: #666;
     border: 1px solid grey;
 }
 .infolist li::before {
-    content: "⌚ ";
+    content: "\231A ";
 }
 .messagelist li {
     background-color: #66BB6A;
     border: 1px solid green;
 }
 .messagelist li::before {
-    content: "✓ ";
+    content: "\2713 ";
 }
 #logo a {
     -webkit-text-stroke: 1px black;
@@ -57,6 +57,12 @@
     min-width: 444px;
     margin: 0 auto;
 }
+/*#bookingForm {
+    padding: 10px;
+    background-color: #eaeaea;
+    box-shadow: 0px 3px 9px 0px;
+    border-radius: 5px;
+}*/
 .bookingCalendar {
     width:100%;
     height:550px;
