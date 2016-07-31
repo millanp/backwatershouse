@@ -7,7 +7,7 @@ dj-static==0.0.6
 Django==1.8.4
 django-appconf==1.0.1
 django-braces==1.8.1
-django-floppyforms==1.5.2
+django-floppyforms==1.6.2
 -e git+https://github.com/millanp/django-paypal.git@3dde4b27453456afe8197d9fa925d1743c5dafd0#egg=django_paypal
 django-toolbelt==0.0.1
 enum34==1.1.6
@@ -30,3 +30,4 @@ six==1.10.0
 static3==0.6.1
 tolerance==0.1.2
 uritemplate==0.6
+

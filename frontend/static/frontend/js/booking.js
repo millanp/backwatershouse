@@ -7,7 +7,7 @@ $(document).ready(function() {
 	    calIframe.src = calIframe.src;
 	});
 	$('label').after('<br>');
-	$('select').multiSelect();
+	$('select').multiselect();
 	// Center the multiselect
 	$('.ms-container').css('margin', '0 auto');
 });
