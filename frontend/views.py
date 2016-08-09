@@ -1,14 +1,13 @@
-from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
 from backend.models import BookingForm, Booking, Room
 from django.views.generic.base import TemplateView
 from braces.views import LoginRequiredMixin, FormValidMessageMixin
 from django.views.generic.edit import CreateView
-from django.http.response import HttpResponse
 from backend import colors
 from django.conf import settings
 # Using the list of Room instances, generate a URL for the embedded calendar
 # that incorporates all request calendars and all booking calendars into one
+
+
 def google_calendar_url():
     cal_title = "%s Bookings" % settings.VENUE_NAME
     cal_title = cal_title.replace(" ", "%20")
@@ -22,7 +21,7 @@ def google_calendar_url():
         thiscal = ("src="+room.request_cal_id.strip()+
                    "&color=%23"+colors.COLORS[color]+
                    "&src="+room.booking_cal_id.strip()+
-                   "&color=%23"+colors.COLORS[color+1]+"&")
+                   "&color=%23"+colors.COLORS[color+1]+"&") 
         prefix += thiscal
         color += 2
     prefix += suffix
