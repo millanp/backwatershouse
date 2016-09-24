@@ -40,8 +40,10 @@ class InnerPageContextMixin(object):
         final_context.update(self.context)
         return final_context
 
+
 class InnerPageView(LoginRequiredMixin, InnerPageContextMixin, TemplateView):
     template_name = "frontend/home.html"
+
 
 class MyVisitsView(InnerPageView):
     template_name = "frontend/requests.html"
@@ -54,6 +56,7 @@ class MyVisitsView(InnerPageView):
         final_context.update(added_context)
         final_context.update(previous_context)
         return final_context
+
 
 class BookingCreate(LoginRequiredMixin, InnerPageContextMixin, FormValidMessageMixin, CreateView):
     form_class = BookingForm
